@@ -3,7 +3,7 @@ const pool = require("./db");
 async function addUser (user) {
   try {
     const sql = 'INSERT INTO users (firstName, lastName, email, password, organization_id, type, location, interests, bio, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;'
-    const result = await pool.query(sql, [user.firstName, user.lastName, user.email, user.password, user.organization_id, user.type, user.location, user.interests, user.bio, user.img_url]);
+    const result = await pool.query(sql, [user.firstname, user.lastname, user.email, user.password, user.organization_id, user.type, user.location, user.interests, user.bio, user.img_url]);
     return result.rows[0];
   } catch (error) {
     throw new Error(error.message);
@@ -70,8 +70,14 @@ async function editUser (id, newInfo) {
 
 async function getMatches (user) {
   try {
+    const interests = [...user.interests];
+
+    while (interests.length < 5) {
+      interests.push("");
+    }
+
     const sql = 'SELECT * FROM users WHERE ($3 = ANY(interests) OR $4 = ANY(interests) OR $5 = ANY(interests) OR $6 = ANY(interests) OR $7 = ANY(interests)) AND organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);'
-    const result = await pool.query(sql, [user.organization_id, user.id, ...user.interests,]);
+    const result = await pool.query(sql, [user.organization_id, user.id, ...interests,]);
     return result.rows;
     
   } catch (error) {
