@@ -1,9 +1,13 @@
 const router = require('express').Router();
+const organizationController = require('./controllers/organization');
+const userController = require('./controllers/user');
+const authMiddleware = require('./middleware/auth');
 
-router.post('/organization/create');
-router.post('/login');
-router.get('/organization/:id/users');
-router.delete('/organization/:id/user/:userId');
+router.post('/organization/create', organizationController.createNewOrganization);
+router.post('/organization/:id/users', authMiddleware, organizationController.addUserToOrganization);
+router.get('/organization/:id/users', authMiddleware, organizationController.getOrganizationUsers);
+router.delete('/organization/:id/user/:userId', authMiddleware, organizationController.deleteOrganizationUser);
 
+router.post('/login', userController.login);
 
 module.exports = router;

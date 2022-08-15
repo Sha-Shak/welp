@@ -5,8 +5,15 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 const router = require('./router');
 const pool = require('./models/db');
+const SERVER_PORT = process.env.SERVER_PORT || 3001;
 
-app.use(cors());
+const corsConfig = {
+  //origin: 'http://localhost:3000',
+  credentials: true,
+  exposedHeaders: 'Authorization'
+};
+
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router)
 
@@ -19,7 +26,7 @@ const server = http.createServer(app);
     await pool.connect();
     console.log('Connected to Postgress!');
   
-    server.listen(3001, () => {
+    server.listen(SERVER_PORT, () => {
       console.log('Server is listening on port 3001.');
     });
 
