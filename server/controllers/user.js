@@ -1,4 +1,7 @@
 const { getUserByEmail } = require("../models/user");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const secret = process.env.JWT_SECRET
 
 async function login (req, res) {
   try {
@@ -6,9 +9,11 @@ async function login (req, res) {
     const password = req.body.password;
 
     const checkUser = await getUserByEmail(email);
-    
+
     if (checkUser.length === 1) {
-      if (password === checkUser[0].password) {
+      if (bcrypt.compareSync(password, checkUser[0].password)) {
+        const token = jwt.sign({id: checkUser[0].id}, secret, {expiresIn:'1h'});
+        res.setHeader('Authorization', 'Bearer ' + token);
         res.status(200).send(checkUser[0]);
       } else {
         res.status(401).send('Incorrect credentials.');

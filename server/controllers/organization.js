@@ -1,5 +1,8 @@
 const { addOrganization, addAdminToOrganization } = require("../models/organization");
 const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/user");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const secret = process.env.JWT_SECRET
 
 
 async function createNewOrganization (req, res) {
@@ -8,12 +11,15 @@ async function createNewOrganization (req, res) {
     if (checkUser.length < 1) {
       const org = {name: req.body.orgName, type: req.body.type};
       const queryResult = await addOrganization(org);
+
+      const salt = bcrypt.genSaltSync(10);
+      const password = bcrypt.hashSync(req.body.password, salt);
   
       const user = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        password: req.body.password,
+        password: password,
         organization_id: queryResult.id,
         type: 'admin',
         location: '',
@@ -30,6 +36,9 @@ async function createNewOrganization (req, res) {
       }
   
       await addAdminToOrganization(admin);
+
+      const token = jwt.sign({id: addUserRes.id}, secret, {expiresIn:'1h'});
+      res.setHeader('Authorization', 'Bearer ' + token);
       res.status(201).send(addUserRes);
     } else {
       res.status(401).send('This email is already in use.');
