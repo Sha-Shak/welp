@@ -85,8 +85,44 @@ async function deleteOrganizationUser(req, res) {
 }
 
 
+
+async function addUserToOrganization (req, res) {
+  try {
+    if (req.user.organization_id === req.params.id && req.user.type === admin) {
+      const orgId = req.params.id;
+
+      const salt = bcrypt.genSaltSync(10);
+      const password = bcrypt.hashSync(req.body.password, salt);
+
+      const user = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: password,
+        organization_id: orgId,
+        type: req.body.type || 'basic',
+        location: '',
+        interests: [],
+        bio: '',
+        img_url: ''
+      }
+  
+      const result = await addUser(user);
+
+      res.status(200).send(result);
+    } else {
+      res.status(403).send('You do not have admin access for this organization.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
 module.exports = { 
   createNewOrganization, 
   getOrganizationUsers,
-  deleteOrganizationUser
+  deleteOrganizationUser,
+  addUserToOrganization
 }
