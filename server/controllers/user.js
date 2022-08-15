@@ -1,4 +1,4 @@
-const { getUserByEmail } = require("../models/user");
+const { getUserByEmail, getUserById, editUser } = require("../models/user");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const secret = process.env.JWT_SECRET
@@ -29,4 +29,45 @@ async function login (req, res) {
 }
 
 
-module.exports = {login}
+
+async function getProfile (req, res) {
+  try {
+    if (req.user.id == req.params.id) {
+      const id = req.params.id;
+      const userList = await getUserById(id);
+      const user = userList[0];
+      res.status(200).send(user);
+    } else {
+      res.status(401).send('Unauthorized to see this profile.')
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
+
+async function editProfile (req, res) {
+  try {
+    if (req.user.id) {
+      const id = req.user.id;
+      const newInfo = req.body;
+
+      const result = await editUser(id, newInfo);
+      res.status(200).send(result);
+    } else {
+      res.status(401).send('Unauthorized to edit this profile.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
+module.exports = {
+  login,
+  getProfile,
+  editProfile
+}
