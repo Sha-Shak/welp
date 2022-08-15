@@ -8,7 +8,7 @@ const pool = require('./models/db');
 const SERVER_PORT = process.env.SERVER_PORT || 3001;
 
 const corsConfig = {
-  origin: 'http://localhost:3000',
+  //origin: 'http://localhost:3000',
   credentials: true,
   exposedHeaders: 'Authorization'
 };

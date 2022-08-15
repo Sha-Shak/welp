@@ -44,9 +44,22 @@ async function deleteUser(userId, orgId) {
 }
 
 
+
+async function getUserById (id) {
+  try {
+    const sql = 'SELECT * FROM users WHERE id = $1'
+    const result = await pool.query(sql, [id]);
+    return result.rows;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
 module.exports = { 
   addUser, 
   getUserByEmail,
+  getUserById,
   getOrgUsers,
   deleteUser
  }

@@ -53,9 +53,13 @@ async function createNewOrganization (req, res) {
 
 async function getOrganizationUsers(req, res) {
   try {
-    const orgId = req.params.id;
-    const result = await getOrgUsers(orgId);
-    res.status(200).send(result);
+    if (req.user.organization_id == req.params.id && req.user.type === 'admin') {
+      const orgId = req.params.id;
+      const result = await getOrgUsers(orgId);
+      res.status(200).send(result);
+    } else {
+      res.status(403).send('You do not have admin access for this organization.');
+    }
 
   } catch (error) {
     res.status(500);
@@ -66,10 +70,14 @@ async function getOrganizationUsers(req, res) {
 
 async function deleteOrganizationUser(req, res) {
   try {
-    const orgId = req.params.id;
-    const userId = req.params.userId;
-    const result = await deleteUser(userId, orgId);
-    res.status(200).send(result);
+    if (req.user.organization_id === req.params.id && req.user.type === admin) {
+      const orgId = req.params.id;
+      const userId = req.params.userId;
+      const result = await deleteUser(userId, orgId);
+      res.status(200).send(result);
+    } else {
+      res.status(403).send('You do not have admin access for this organization.');
+    }
   } catch (error) {
     res.status(500);
     console.log(error);
