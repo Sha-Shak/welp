@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const organizationController = require('./controllers/organization');
+const userController = require('./controllers/user');
 
 router.post('/organization/create', organizationController.createNewOrganization);
 router.get('/organization/:id/users', organizationController.getOrganizationUsers);
 router.delete('/organization/:id/user/:userId', organizationController.deleteOrganizationUser);
 
-router.post('/login');
+router.post('/login', userController.login);
 
 module.exports = router;
