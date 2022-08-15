@@ -109,6 +109,15 @@ async function addUserToOrganization (req, res) {
   
       const result = await addUser(user);
 
+      if (req.body.type == 'admin') {
+        const admin = {
+          organization_id: orgId,
+          admin_id: result.id,
+        }
+        
+        await addAdminToOrganization(admin);  
+      }
+
       res.status(200).send(result);
     } else {
       res.status(403).send('You do not have admin access for this organization.');
