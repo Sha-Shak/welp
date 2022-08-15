@@ -2,7 +2,7 @@ const pool = require("./db");
 
 async function addUser (user) {
   try {
-    const sql = 'INSERT INTO users (firstName, lastName, email, password, organization_id, type, location, interests, bio, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, firstName, lastName, organization_id, type;'
+    const sql = 'INSERT INTO users (firstName, lastName, email, password, organization_id, type, location, interests, bio, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;'
     const result = await pool.query(sql, [user.firstName, user.lastName, user.email, user.password, user.organization_id, user.type, user.location, user.interests, user.bio, user.img_url]);
     return result.rows[0];
   } catch (error) {
@@ -56,10 +56,23 @@ async function getUserById (id) {
 }
 
 
+async function editUser (id, newInfo) {
+  try {
+    const sql = 'UPDATE users SET firstName = $1, lastName = $2, email = $3, password = $4, organization_id = $5, type = $6, location = $7, interests = $8, bio = $9, img_url = $10 WHERE id = $11 RETURNING *;'
+    const result = await pool.query(sql, [newInfo.firstName, newInfo.lastName, newInfo.email, newInfo.password, newInfo.organization_id, newInfo.type, newInfo.location, newInfo.interests, newInfo.bio, newInfo.img_url, id]);
+    return result.rows[0];
+    
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
 module.exports = { 
   addUser, 
   getUserByEmail,
   getUserById,
   getOrgUsers,
-  deleteUser
+  deleteUser,
+  editUser
  }

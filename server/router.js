@@ -9,5 +9,7 @@ router.get('/organization/:id/users', authMiddleware, organizationController.get
 router.delete('/organization/:id/user/:userId', authMiddleware, organizationController.deleteOrganizationUser);
 
 router.post('/login', userController.login);
+router.get('/user/:id', authMiddleware, userController.getProfile);
+router.put('/user', authMiddleware, userController.editProfile);
 
 module.exports = router;
