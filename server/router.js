@@ -11,5 +11,6 @@ router.delete('/organization/:id/user/:userId', authMiddleware, organizationCont
 router.post('/login', userController.login);
 router.get('/user/:id', authMiddleware, userController.getProfile);
 router.put('/user', authMiddleware, userController.editProfile);
+router.get('/suggestion', authMiddleware, userController.getSuggestions);
 
 module.exports = router;

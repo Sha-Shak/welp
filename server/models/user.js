@@ -59,9 +59,32 @@ async function getUserById (id) {
 async function editUser (id, newInfo) {
   try {
     const sql = 'UPDATE users SET firstName = $1, lastName = $2, email = $3, password = $4, organization_id = $5, type = $6, location = $7, interests = $8, bio = $9, img_url = $10 WHERE id = $11 RETURNING *;'
-    const result = await pool.query(sql, [newInfo.firstName, newInfo.lastName, newInfo.email, newInfo.password, newInfo.organization_id, newInfo.type, newInfo.location, newInfo.interests, newInfo.bio, newInfo.img_url, id]);
+    const result = await pool.query(sql, [newInfo.firstname, newInfo.lastname, newInfo.email, newInfo.password, newInfo.organization_id, newInfo.type, newInfo.location, newInfo.interests, newInfo.bio, newInfo.img_url, id]);
     return result.rows[0];
     
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
+async function getMatches (user) {
+  try {
+    const sql = 'SELECT * FROM users WHERE ($3 = ANY(interests) OR $4 = ANY(interests) OR $5 = ANY(interests) OR $6 = ANY(interests) OR $7 = ANY(interests)) AND organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);'
+    const result = await pool.query(sql, [user.organization_id, user.id, ...user.interests,]);
+    return result.rows;
+    
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
+async function getRandomUsers (user) {
+  try {
+    const sql = 'SELECT * FROM users WHERE organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);'
+    const result = await pool.query(sql, [user.organization_id, user.id]);
+    return result.rows;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -74,5 +97,7 @@ module.exports = {
   getUserById,
   getOrgUsers,
   deleteUser,
-  editUser
+  editUser,
+  getMatches,
+  getRandomUsers
  }

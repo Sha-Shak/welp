@@ -1,4 +1,4 @@
-const { getUserByEmail, getUserById, editUser } = require("../models/user");
+const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers } = require("../models/user");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const secret = process.env.JWT_SECRET
@@ -66,8 +66,31 @@ async function editProfile (req, res) {
 }
 
 
+async function getSuggestions(req, res) {
+  try {
+    if (req.user) {
+      const user = req.user;
+      const result = await getMatches(user);
+
+      if (result.length > 0) {
+        res.status(200).send(result);
+      } else {
+        const randomRes = await getRandomUsers(user);
+        res.status(200).send(randomRes);
+      }
+    } else {
+      res.status(401).send('Unauthorized to get matches.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
 module.exports = {
   login,
   getProfile,
-  editProfile
+  editProfile,
+  getSuggestions
 }
