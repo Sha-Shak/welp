@@ -22,4 +22,31 @@ async function getUserByEmail (email) {
 }
 
 
-module.exports = { addUser, getUserByEmail }
+async function getOrgUsers(orgId) {
+  try {
+    const sql = 'SELECT * FROM users WHERE organization_id = $1'
+    const result = await pool.query(sql, [orgId]);
+    return result.rows;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
+async function deleteUser(userId, orgId) {
+  try {
+    const sql = 'DELETE FROM users WHERE id = $1 AND organization_id = $2'
+    const result = await pool.query(sql, [userId, orgId]);
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
+module.exports = { 
+  addUser, 
+  getUserByEmail,
+  getOrgUsers,
+  deleteUser
+ }

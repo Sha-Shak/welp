@@ -1,5 +1,5 @@
 const { addOrganization, addAdminToOrganization } = require("../models/organization");
-const { addUser, getUserByEmail } = require("../models/user");
+const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/user");
 
 
 async function createNewOrganization (req, res) {
@@ -42,4 +42,34 @@ async function createNewOrganization (req, res) {
 }
 
 
-module.exports = { createNewOrganization }
+async function getOrganizationUsers(req, res) {
+  try {
+    const orgId = req.params.id;
+    const result = await getOrgUsers(orgId);
+    res.status(200).send(result);
+
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
+async function deleteOrganizationUser(req, res) {
+  try {
+    const orgId = req.params.id;
+    const userId = req.params.userId;
+    const result = await deleteUser(userId, orgId);
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
+module.exports = { 
+  createNewOrganization, 
+  getOrganizationUsers,
+  deleteOrganizationUser
+}
