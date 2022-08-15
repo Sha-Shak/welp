@@ -1,7 +1,9 @@
 import React from "react";
 
-function addAdmin() {
-  return <div>addAdmin</div>;
+function AddAdmin() {
+  return (
+    <AddAdminForm>
+  );
 }
 
-export default addAdmin;
+export default AddAdmin;

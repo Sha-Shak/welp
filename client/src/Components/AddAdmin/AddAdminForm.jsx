@@ -1,7 +1,9 @@
-import React from "react";
 
 function AddAdminForm() {
-  return <div>AddAdminForm</div>;
+  return (
+    
+  );
 }
 
 export default AddAdminForm;
+

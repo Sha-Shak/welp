@@ -1,6 +1,6 @@
 import React from "react";
 
-function LoginForm() {
+function SignupForm() {
   return (
     <>
       <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -116,4 +116,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignupForm;
