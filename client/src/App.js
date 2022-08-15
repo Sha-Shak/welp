@@ -1,13 +1,19 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dashboard from "../src/pages/dashboard.jsx";
+import Login from "../src/pages/Login.jsx";
 import "./App.css";
-
+import SignUp from "./pages/signup.jsx";
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl text-pink-600 underline">Hii1</h1>
-      <button>B1</button>
-      <button className="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">
-        Button
-      </button>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/auth" element={<Login />} />
+          <Route path="/post" element={<SignUp />} />
+        </Routes>
+        <Dashboard />
+      </BrowserRouter>
     </div>
   );
 }
