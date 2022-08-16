@@ -3,10 +3,6 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function AddAdminForm() {
-
-
- 
-
   return (
     <>
       <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
@@ -41,7 +37,6 @@ function AddAdminForm() {
                     half
                   />
                 </div>
-            
               </div>
               <div className="mb-4">
                 <TextInput
@@ -76,7 +71,6 @@ function AddAdminForm() {
             </div>
 
             <Button type="submit" buttonText="Add Admin"></Button>
-          
           </form>
         </div>
       </div>

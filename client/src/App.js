@@ -7,6 +7,7 @@ import Sidebar from "./Components/Sidebar/Sidebar.jsx";
 import TopBar from "./Components/TopBar/TopBar.jsx";
 import AddAdmin from "./pages/AddAdmin.jsx";
 import AddUser from "./pages/AddUser.jsx";
+import EditUser from "./pages/EditUser.jsx";
 import SignUp from "./pages/SignUp.jsx";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/add-user" element={<AddUser />} />
                 <Route path="/add-admin" element={<AddAdmin />} />
+                <Route path="/edit-user" element={<EditUser />} />
               </Routes>
             </BrowserRouter>
           </div>
