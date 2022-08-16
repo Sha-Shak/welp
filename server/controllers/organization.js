@@ -70,7 +70,7 @@ async function getOrganizationUsers(req, res) {
 
 async function deleteOrganizationUser(req, res) {
   try {
-    if (req.user.organization_id === req.params.id && req.user.type === admin) {
+    if (req.user.organization_id == req.params.id && req.user.type === 'admin') {
       const orgId = req.params.id;
       const userId = req.params.userId;
       const result = await deleteUser(userId, orgId);
@@ -88,7 +88,7 @@ async function deleteOrganizationUser(req, res) {
 
 async function addUserToOrganization (req, res) {
   try {
-    if (req.user.organization_id == req.params.id && req.user.type === "admin") {
+    if (req.user.organization_id == req.params.id && req.user.type === 'admin') {
       const orgId = req.params.id;
 
       const salt = bcrypt.genSaltSync(10);
