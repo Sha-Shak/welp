@@ -31,13 +31,13 @@ function Dashboard() {
     },
   ];
   return (
-    <div data-theme="light">
+    <div data-theme="dark">
       <Banner />
       <h3 className="text-3xl mt-3 mb-3 pb-2 border-b-2 border-gray-100">
         Organization User
       </h3>
       <div className="mt-1 flex flex-wrap  justify-evenly">
-        {orgUsers.length ? (
+        {!orgUsers.length ? (
           <div>
             <h1 className="text-dark text-3xl mt-16 mb-10 items-center">
               You don't have any users yet

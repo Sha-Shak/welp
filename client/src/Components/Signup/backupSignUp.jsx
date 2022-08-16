@@ -1,8 +1,8 @@
 import React from "react";
 
-function LoginForm() {
+function SignupForm() {
   return (
-    <>
+    <div>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -20,7 +20,8 @@ function LoginForm() {
                 href="#"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
-                start your 14-day free trial
+                {" "}
+                start your 14-day free trial{" "}
               </a>
             </p>
           </div>
@@ -111,8 +112,8 @@ function LoginForm() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-export default LoginForm;
+export default SignupForm;
