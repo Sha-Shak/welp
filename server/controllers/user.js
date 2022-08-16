@@ -8,6 +8,11 @@ async function login (req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
+    if (!email || !password) {
+      res.status(401).send('Invalid fields.');
+      return;
+    }
+
     const checkUser = await getUserByEmail(email);
 
     if (checkUser.length === 1) {
