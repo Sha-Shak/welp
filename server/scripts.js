@@ -23,8 +23,8 @@ const createTable = async (table) => {
 const userSql = `
   CREATE TABLE IF NOT EXISTS "users" (
     "id" SERIAL,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
+    "firstname" TEXT NOT NULL,
+    "lastname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "organization_id" INT, 
@@ -43,7 +43,7 @@ const orgSql = `
   CREATE TABLE IF NOT EXISTS "organizations" (
     "id" SERIAL,
     "name" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
+    "type" TEXT ,
     PRIMARY KEY ("id")
   );`;
 

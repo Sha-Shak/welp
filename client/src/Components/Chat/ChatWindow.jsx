@@ -2,7 +2,7 @@ import React from "react";
 
 function ChatWindow() {
   return (
-    <>
+    <div>
       <div className="h-screen bg-gray-300">
         <div className="flex items-center h-screen">
           <div className="w-100 h-100 bg-white rounded shadow-2xl">
@@ -225,7 +225,7 @@ function ChatWindow() {
               <div className=" " id="chatmsg"></div>
             </div>
 
-            <div className="flex justify-between items-center p-1 ">
+            <div className="flex justify-between items-center p-5 ">
               <div className="relative">
                 <i
                   className="mdi mdi-emoticon-excited-outline absolute top-1 left-1 text-gray-400"
@@ -234,7 +234,7 @@ function ChatWindow() {
                 <input
                   type="text"
                   className="rounded-full pl-6 pr-12 py-2 focus:outline-none  h-auto placeholder-gray-100 bg-gray-900 text-white"
-                  style={{ fontSize: "11px", width: "100%" }}
+                  style={{ fontSize: "20px", width: "100%" }}
                   placeholder="Type a message..."
                   id="typemsg"
                 />
@@ -253,7 +253,7 @@ function ChatWindow() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

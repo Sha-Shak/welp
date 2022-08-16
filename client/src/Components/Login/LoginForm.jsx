@@ -1,13 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { trial } from "../../actions/users.action.js";
+import { logInOrg } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.users);
+  console.log("after login", user);
   const handleSwitch = (e) => {
     console.log(e.target);
     navigate("/signup");
@@ -20,7 +22,7 @@ function LoginForm() {
       password: e.target.password.value,
     };
     console.log("component", data);
-    dispatch(trial(data));
+    dispatch(logInOrg(data));
   };
   return (
     <>
