@@ -12,13 +12,15 @@ function App() {
         <Sidebar />
         <div className="w-full">
           <TopBar />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-            </Routes>
-          </BrowserRouter>
+          <div className="container mx-auto">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+              </Routes>
+            </BrowserRouter>
+          </div>
         </div>
       </div>
     </div>

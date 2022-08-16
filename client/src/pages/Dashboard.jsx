@@ -50,11 +50,7 @@ function Dashboard() {
           orgUsers.map((user) => (
             <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
               <figure>
-                <img
-                  className="rounded-full w-36 h-36"
-                  src={user.profilePic}
-                  alt="profile-picture"
-                />
+                <img className="rounded-full w-36 h-36" src={user.profilePic} />
               </figure>
               <div className="card-body">
                 <h2 className="card-title text-2xl border-b-2 border-gray-200">
