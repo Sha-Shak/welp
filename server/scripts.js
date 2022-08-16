@@ -55,19 +55,28 @@ const orgUserSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
-        REFERENCES organizations(id)
+        REFERENCES organizations(id),
+    CONSTRAINT fk_adminId
+      FOREIGN KEY (admin_id)
+        REFERENCES users(id)
   );`
 
 const chatSql = `
-  CREATE TABLE IF NOT EXISTS "chat" (
+  CREATE TABLE IF NOT EXISTS "chatrooms" (
     "id" SERIAL,
     "user_id1" INT NOT NULL,
     "user_id2" INT NOT NULL,
-    PRIMARY KEY ("id")
+    PRIMARY KEY ("id"),
+    CONSTRAINT fk_userid1
+      FOREIGN KEY (user_id1)
+        REFERENCES users(id),
+    CONSTRAINT fk_userid2
+      FOREIGN KEY (user_id2)
+        REFERENCES users(id)
   );`
 
 const messageSql = `
-  CREATE TABLE IF NOT EXISTS "message" (
+  CREATE TABLE IF NOT EXISTS "messages" (
     "id" SERIAL,
     "chat_id" INT NOT NULL,
     "sender_id" INT NOT NULL,
@@ -75,13 +84,16 @@ const messageSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
-        REFERENCES chat(id)
+        REFERENCES chat(id),
+    CONSTRAINT fk_senderid
+      FOREIGN KEY (sender_id)
+        REFERENCES users(id)
   );`
 
 async function strip() {
   await db.connect();
-  await dropTableIfExist('message');
-  await dropTableIfExist('chat');
+  await dropTableIfExist('messages');
+  await dropTableIfExist('chatrooms');
   await dropTableIfExist('organizationuser');
   await dropTableIfExist('users');
   await dropTableIfExist('organizations');
