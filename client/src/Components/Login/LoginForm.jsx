@@ -1,14 +1,26 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { trial } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function LoginForm() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleSwitch = (e) => {
     console.log(e.target);
     navigate("/signup");
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let data = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    console.log("component", data);
+    dispatch(trial(data));
   };
   return (
     <>
@@ -20,7 +32,12 @@ function LoginForm() {
               Sign in to your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleSubmit}
+            className="mt-8 space-y-6"
+            action="#"
+            method="POST"
+          >
             <div className="rounded-md p-4 w-full">
               <div className="mb-4">
                 <TextInput
