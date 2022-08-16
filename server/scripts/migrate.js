@@ -1,5 +1,5 @@
 require("dotenv").config();
-const db = require('./models/db');
+const db = require('../models/db');
 
 const dropTableIfExist = async (table) => {
     const sql = `DROP TABLE IF EXISTS "${table}"`
