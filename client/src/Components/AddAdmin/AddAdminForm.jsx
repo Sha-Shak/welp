@@ -5,7 +5,7 @@ import TextInput from "../Inputs/TextInput";
 function AddAdminForm() {
   return (
     <>
-      <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+      <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-300 ">
         <div className="max-w-md w-full space-y-8">
           <div>
             <h6 className="text-xl left">Make Managing Easier</h6>
@@ -68,9 +68,8 @@ function AddAdminForm() {
                   placeholder="Confirm Password"
                 />
               </div>
+              <Button type="submit" buttonText="Add Admin"></Button>
             </div>
-
-            <Button type="submit" buttonText="Add Admin"></Button>
           </form>
         </div>
       </div>

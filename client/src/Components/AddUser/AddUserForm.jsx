@@ -8,9 +8,9 @@ function AddUserForm() {
         <div className="max-w-md w-full space-y-8">
           <div>
             <h6 className="text-xl left">Add people to your community</h6>
-            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+            <h1 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
               Create User
-            </h2>
+            </h1>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
             <div className="rounded-md shadow-md p-8 ">
@@ -25,7 +25,6 @@ function AddUserForm() {
                     placeholder="First Name"
                     half
                   />
-
                   <TextInput
                     id="last-name"
                     name="last-name"
