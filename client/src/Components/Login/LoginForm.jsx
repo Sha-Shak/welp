@@ -12,8 +12,8 @@ function LoginForm() {
   };
   return (
     <>
-      <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-300">
+        <div className="w-full">
           <div>
             <h6 className=" left">Welcome Back!</h6>
             <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
@@ -21,7 +21,7 @@ function LoginForm() {
             </h2>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
-            <div className="rounded-md shadow-sm -space-y-px">
+            <div className="rounded-md p-4 w-full">
               <div className="mb-4">
                 <TextInput
                   id="email"
@@ -42,9 +42,9 @@ function LoginForm() {
                   placeholder="Password"
                 />
               </div>
+              <Button type="submit" buttonText="Sign in"></Button>
             </div>
 
-            <Button type="submit" buttonText="Sign in"></Button>
             <h6 className="text-xl">
               Don't have an account?{" "}
               <span

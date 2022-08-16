@@ -13,8 +13,8 @@ function SignupForm() {
 
   return (
     <>
-      <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-200 ">
+        <div className="max-w-md space-y-8">
           <div>
             <h6 className="text-xl left">Welcome to Welp!</h6>
             <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
@@ -22,7 +22,7 @@ function SignupForm() {
             </h2>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
-            <div className="rounded-md shadow-lg p-8 ">
+            <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput
@@ -85,9 +85,9 @@ function SignupForm() {
                   placeholder="Confirm Password"
                 />
               </div>
+              <Button type="submit" buttonText="Sign up"></Button>
             </div>
 
-            <Button type="submit" buttonText="Sign up"></Button>
             <h6 className="text-xl">
               Already have an account?{" "}
               <span

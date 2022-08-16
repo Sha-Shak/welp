@@ -31,7 +31,7 @@ function Dashboard() {
     },
   ];
   return (
-    <div data-theme="dark">
+    <div data-theme="light">
       <Banner />
       <h3 className="text-3xl mt-3 mb-3 pb-2 border-b-2 border-gray-100">
         Organization User

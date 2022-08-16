@@ -4,7 +4,7 @@ import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
   return (
     <>
-      <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
+      <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">
         <div className="max-w-md w-full space-y-8">
           <div>
             <h6 className="text-xl left">Add people to your community</h6>
@@ -13,7 +13,7 @@ function AddUserForm() {
             </h2>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
-            <div className="rounded-md shadow-lg p-8 ">
+            <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput
@@ -57,9 +57,8 @@ function AddUserForm() {
                   placeholder="Password"
                 />
               </div>
+              <Button type="submit" buttonText="Create User"></Button>
             </div>
-
-            <Button type="submit" buttonText="Create User"></Button>
           </form>
         </div>
       </div>
