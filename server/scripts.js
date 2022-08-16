@@ -1,24 +1,24 @@
 require("dotenv").config();
-const db = require('./models/db');
+const db = require("./models/db");
 
 const dropTableIfExist = async (table) => {
-    const sql = `DROP TABLE IF EXISTS "${table}"`
-    try {
-      await db.query(sql);
-      console.log(`Deleted ${table} table`);
-    } catch (e) {
-      console.error(e.stack);
-    } 
-}
+  const sql = `DROP TABLE IF EXISTS "${table}"`;
+  try {
+    await db.query(sql);
+    console.log(`Deleted ${table} table`);
+  } catch (e) {
+    console.error(e.stack);
+  }
+};
 
 const createTable = async (table) => {
-    try {
-      await db.query(table);
-      console.log(`Added ${table} to DB`);
-    } catch (e) {
-      console.error(e.stack);
-    } 
-}
+  try {
+    await db.query(table);
+    console.log(`Added ${table} to DB`);
+  } catch (e) {
+    console.error(e.stack);
+  }
+};
 
 const userSql = `
   CREATE TABLE IF NOT EXISTS "users" (
@@ -37,16 +37,16 @@ const userSql = `
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
         REFERENCES organizations(id)
-  );`
-    
+  );`;
+
 const orgSql = `
   CREATE TABLE IF NOT EXISTS "organizations" (
     "id" SERIAL,
     "name" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     PRIMARY KEY ("id")
-  );`
-      
+  );`;
+
 const orgUserSql = `
   CREATE TABLE IF NOT EXISTS "organizationuser" (
     "id" SERIAL,
@@ -59,7 +59,7 @@ const orgUserSql = `
     CONSTRAINT fk_adminId
       FOREIGN KEY (admin_id)
         REFERENCES users(id)
-  );`
+  );`;
 
 const chatSql = `
   CREATE TABLE IF NOT EXISTS "chatrooms" (
@@ -73,7 +73,7 @@ const chatSql = `
     CONSTRAINT fk_userid2
       FOREIGN KEY (user_id2)
         REFERENCES users(id)
-  );`
+  );`;
 
 const messageSql = `
   CREATE TABLE IF NOT EXISTS "messages" (
@@ -88,15 +88,15 @@ const messageSql = `
     CONSTRAINT fk_senderid
       FOREIGN KEY (sender_id)
         REFERENCES users(id)
-  );`
+  );`;
 
 async function strip() {
   await db.connect();
-  await dropTableIfExist('messages');
-  await dropTableIfExist('chatrooms');
-  await dropTableIfExist('organizationuser');
-  await dropTableIfExist('users');
-  await dropTableIfExist('organizations');
+  await dropTableIfExist("messages");
+  await dropTableIfExist("chatrooms");
+  await dropTableIfExist("organizationuser");
+  await dropTableIfExist("users");
+  await dropTableIfExist("organizations");
 }
 
 async function build() {
@@ -108,9 +108,4 @@ async function build() {
   process.exit(0);
 }
 
-strip()
-  .then(() => build());
-
-
-
-
+strip().then(() => build());
