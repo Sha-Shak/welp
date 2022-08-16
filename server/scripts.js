@@ -84,7 +84,7 @@ const messageSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
-        REFERENCES chat(id),
+        REFERENCES chatrooms(id),
     CONSTRAINT fk_senderid
       FOREIGN KEY (sender_id)
         REFERENCES users(id)
