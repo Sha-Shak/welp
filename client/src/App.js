@@ -4,6 +4,7 @@ import Login from "../src/pages/Login.jsx";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar.jsx";
 import TopBar from "./Components/TopBar/TopBar.jsx";
+import AddUser from "./pages/AddUser.jsx";
 import SignUp from "./pages/SignUp.jsx";
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/add-user" element={<AddUser />} />
               </Routes>
             </BrowserRouter>
           </div>
