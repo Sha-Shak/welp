@@ -8,6 +8,8 @@ import TextInput from "../Inputs/TextInput";
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.errors);
+  console.log("error", error);
   const user = useSelector((state) => state.users);
   console.log("after login", user);
   const handleSwitch = (e) => {

@@ -1,17 +1,24 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addUserToOrganization } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
-  const user = localStorage.getItem("data");
+  const userJson = localStorage.getItem("data");
+  const user = JSON.parse(userJson);
   console.log(user);
-  const handleSubmit = () => {
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newUser = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
-      password: e.target.password,
-      orgname: user.
+      password: e.target.password.value,
+      type: user.type,
+      orgId: user.organization_id,
     };
+    dispatch(addUserToOrganization(newUser));
   };
   return (
     <>
