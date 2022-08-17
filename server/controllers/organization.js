@@ -29,6 +29,7 @@ async function createNewOrganization (req, res) {
       }
   
       const addUserRes = await addUser(user);
+      addUserRes.orgname = req.body.orgName;
   
       const admin = {
         organization_id: queryResult.id,
@@ -53,8 +54,8 @@ async function createNewOrganization (req, res) {
 
 async function getOrganizationUsers(req, res) {
   try {
-    if (req.user.organization_id == req.params.id && req.user.type === 'admin') {
-      const orgId = req.params.id;
+    if (req.user.type === 'admin') {
+      const orgId = req.user.organization_id;
       const result = await getOrgUsers(orgId);
       res.status(200).send(result);
     } else {
@@ -70,8 +71,8 @@ async function getOrganizationUsers(req, res) {
 
 async function deleteOrganizationUser(req, res) {
   try {
-    if (req.user.organization_id == req.params.id && req.user.type === 'admin') {
-      const orgId = req.params.id;
+    if (req.user.type === 'admin') {
+      const orgId = req.user.organization_id;
       const userId = req.params.userId;
       const result = await deleteUser(userId, orgId);
       res.status(200).send(result);
@@ -88,12 +89,12 @@ async function deleteOrganizationUser(req, res) {
 
 async function addUserToOrganization (req, res) {
   try {
-    if (req.user.organization_id == req.params.id && req.user.type === 'admin') {
-      const orgId = req.params.id;
-
+    if (req.user.type === 'admin') {
+      const orgId = req.user.organization_id;
       const salt = bcrypt.genSaltSync(10);
       const password = bcrypt.hashSync(req.body.password, salt);
 
+      //Validate user information before making request
       const user = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
