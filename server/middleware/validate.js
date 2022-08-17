@@ -12,6 +12,7 @@ const validEmail = (email) => {
 
 // password
 const validPassword = (password) => {
+  // requires at least one of each of lower and uppercase letters, digits and special characters
   const lower = /[a-z]/.test(password) ? 1 : 0;
   const upper = /[A-Z]/.test(password) ? 1 : 0;
   const digit = /\d/.test(password) ? 1 : 0;
@@ -21,6 +22,7 @@ const validPassword = (password) => {
 }
 
 // need to add for other user inputs
+
 
 // organization
 const validOrgName = (orgName) => {
