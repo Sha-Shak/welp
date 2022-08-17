@@ -68,3 +68,25 @@ export const clearCreateAdmin = () => (dispatch) => {
     console.log("action LogOut", e);
   }
 };
+
+export const getUsers = () => async (dispatch) => {
+  try {
+    console.log("form action get users: ");
+    const users = await api.getUsers();
+    console.log("form action get users: ", users.data);
+    dispatch({ type: "GET_ALL_USERS", payload: users.data });
+  } catch (e) {
+    console.log("error get all users", e);
+  }
+};
+export const deleteUser = (id) => async (dispatch) => {
+  try {
+    console.log("action delete", id);
+    const response = await api.deleteUser(id);
+    console.log("from backend", response);
+    //from response filter users
+    dispatch({ type: "DELETE_USER", payload: response });
+  } catch (e) {
+    console.log("delete user", e);
+  }
+};

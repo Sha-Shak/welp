@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addUserToOrganization,
@@ -8,16 +8,17 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
   const userJson = localStorage.getItem("data");
-  // const user = JSON.parse(userJson);
+
   const response = useSelector((state) => state.users);
+  // const [user, setUser] = useState(response);
   console.log("changed", response);
   const dispatch = useDispatch();
-  useEffect(() => {
-    setTimeout(() => {
-      console.log("timeout");
-      dispatch(clearCreateUser());
-    }, 2000);
-  }, [response]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     console.log("timeout");
+  //     dispatch(clearCreateUser());
+  //   }, 2000);
+  // }, [user]);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("adduser");
@@ -28,7 +29,12 @@ function AddUserForm() {
       password: e.target.password.value,
     };
     console.log("from add user comp: ", newUser);
-    dispatch(addUserToOrganization(newUser));
+    dispatch(addUserToOrganization(newUser)).then(() => {
+      setTimeout(() => {
+        console.log("timeout");
+        dispatch(clearCreateUser());
+      }, 2000);
+    });
   };
   return (
     <>
@@ -46,15 +52,16 @@ function AddUserForm() {
             action="#"
             method="POST"
           >
-            {response.status > 201 ? (
-              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
-                Something went wrong
-              </h2>
-            ) : (
-              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-success">
-                User created Successfully!
-              </h2>
-            )}
+            {response.status &&
+              (response.status > 201 ? (
+                <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                  Something went wrong
+                </h2>
+              ) : (
+                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-[#73aa34]">
+                  User created Successfully!
+                </h2>
+              ))}
 
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">

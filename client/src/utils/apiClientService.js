@@ -19,3 +19,6 @@ export const addUserToOrganization = (data) =>
   axios.post(`${url}/organization/users`, data);
 export const addAdminToOrganization = (data) =>
   axios.post(`${url}/organization/users`, data);
+export const getUsers = () => axios.get(`${url}/organization/users`);
+export const deleteUser = (id) =>
+  axios.delete(`${url}/organization/users/${id}`);

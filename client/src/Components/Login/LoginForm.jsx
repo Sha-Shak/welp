@@ -18,7 +18,6 @@ function LoginForm() {
     console.log("changed", error);
     setTimeout(() => {
       console.log("timeout");
-      // setErrorMsg(null);
       dispatch(clearError());
     }, 3000);
   }, [error]);

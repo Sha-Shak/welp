@@ -1,14 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAdminToOrganization } from "../../actions/users.action.js";
+import {
+  addAdminToOrganization,
+  clearCreateAdmin,
+} from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddAdminForm() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.users);
+  const response = useSelector((state) => state.users);
+  console.log("addAdmin", response.status);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("addAdmin", user);
     const newAdmin = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
@@ -17,7 +20,11 @@ function AddAdminForm() {
       password: e.target.password.value,
     };
     console.log("from add user comp: ", newAdmin);
-    dispatch(addAdminToOrganization(newAdmin));
+    dispatch(addAdminToOrganization(newAdmin)).then(() => {
+      setTimeout(() => {
+        dispatch(clearCreateAdmin());
+      }, 2000);
+    });
   };
   return (
     <>
@@ -35,6 +42,16 @@ function AddAdminForm() {
             method="POST"
             onSubmit={handleSubmit}
           >
+            {response.status &&
+              (response.status > 201 ? (
+                <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                  Something went wrong
+                </h2>
+              ) : (
+                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-[#73aa34]">
+                  Admin created Successfully!
+                </h2>
+              ))}
             <div className="rounded-md shadow-lg p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">

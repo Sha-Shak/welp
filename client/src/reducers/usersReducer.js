@@ -7,11 +7,15 @@ export default function users(state = {}, action) {
       console.log("add admin reduce", action.payload);
       return action.payload;
     case "CLEAR_USER_RES":
-      state = "";
+      console.log("clear user reduce");
+      state = {};
       return state;
     case "CLEAR_ADMIN_RES":
-      state = "";
+      state = {};
       return state;
+    case "DELETE_USER":
+      console.log("delete reduce", action.payload);
+      return action.payload;
     default:
       return state;
   }
