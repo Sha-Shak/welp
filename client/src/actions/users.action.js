@@ -16,8 +16,8 @@ export const logIn = (data) => async (dispatch) => {
     console.log("from backend", user);
     dispatch({ type: "LOG_IN", payload: user });
   } catch (e) {
-    dispatch({ type: "ERROR", payload: e });
     console.log("Error action LogIn", e);
+    dispatch({ type: "ERROR", payload: e.response.data });
   }
 };
 export const logOut = (data) => (dispatch) => {
@@ -31,7 +31,7 @@ export const addUserToOrganization = (data) => async (dispatch) => {
   try {
     console.log("action add user", data);
     const response = await api.addUserToOrganization(data);
-    console.log(data);
+    console.log(response);
     dispatch({ type: "ADD_USER_TO_ORG", payload: response });
   } catch (e) {
     console.log("error action add user to org", e);
@@ -45,5 +45,26 @@ export const addAdminToOrganization = (data) => async (dispatch) => {
     dispatch({ type: "ADD_ADMIN_TO_ORG", payload: response });
   } catch (e) {
     console.log("error action add admin to org", e);
+  }
+};
+export const clearError = () => (dispatch) => {
+  try {
+    dispatch({ type: "CLEAR_ERROR" });
+  } catch (e) {
+    console.log("action LogOut", e);
+  }
+};
+export const clearCreateUser = () => (dispatch) => {
+  try {
+    dispatch({ type: "CLEAR_USER_RES" });
+  } catch (e) {
+    console.log("action LogOut", e);
+  }
+};
+export const clearCreateAdmin = () => (dispatch) => {
+  try {
+    dispatch({ type: "CLEAR_ADMIN_RES" });
+  } catch (e) {
+    console.log("action LogOut", e);
   }
 };

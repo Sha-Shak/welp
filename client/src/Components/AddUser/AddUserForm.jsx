@@ -1,23 +1,33 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { addUserToOrganization } from "../../actions/users.action.js";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addUserToOrganization,
+  clearCreateUser,
+} from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
   const userJson = localStorage.getItem("data");
-  const user = JSON.parse(userJson);
-  console.log(user);
+  // const user = JSON.parse(userJson);
+  const response = useSelector((state) => state.users);
+  console.log("changed", response);
   const dispatch = useDispatch();
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("timeout");
+      dispatch(clearCreateUser());
+    }, 2000);
+  }, [response]);
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("adduser");
     const newUser = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
       password: e.target.password.value,
-      type: user.type,
-      orgId: user.organization_id,
     };
+    console.log("from add user comp: ", newUser);
     dispatch(addUserToOrganization(newUser));
   };
   return (
@@ -31,11 +41,21 @@ function AddUserForm() {
             </h1>
           </div>
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             className="mt-8 space-y-6"
             action="#"
             method="POST"
           >
+            {response.status > 201 ? (
+              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                Something went wrong
+              </h2>
+            ) : (
+              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-success">
+                User created Successfully!
+              </h2>
+            )}
+
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
