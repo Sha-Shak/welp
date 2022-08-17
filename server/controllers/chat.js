@@ -1,5 +1,9 @@
 const { getChats, getMessages } = require("../models/chat");
 
+async function createNewChat (req, res) {
+  
+}
+
 
 async function getUserChats (req, res) {
   try {

@@ -1,5 +1,5 @@
 require("dotenv").config();
-const db = require("./models/db");
+const db = require('../models/db');
 
 const dropTableIfExist = async (table) => {
   const sql = `DROP TABLE IF EXISTS "${table}"`;
@@ -43,7 +43,11 @@ const orgSql = `
   CREATE TABLE IF NOT EXISTS "organizations" (
     "id" SERIAL,
     "name" TEXT NOT NULL,
+<<<<<<< HEAD:server/scripts.js
     "type" TEXT ,
+=======
+    "type" TEXT,
+>>>>>>> back-end:server/scripts/migrate.js
     PRIMARY KEY ("id")
   );`;
 
@@ -55,17 +59,23 @@ const orgUserSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
+<<<<<<< HEAD:server/scripts.js
         REFERENCES organizations(id),
     CONSTRAINT fk_adminId
       FOREIGN KEY (admin_id)
         REFERENCES users(id)
   );`;
+=======
+        REFERENCES organizations(id)
+  );`
+>>>>>>> back-end:server/scripts/migrate.js
 
 const chatSql = `
-  CREATE TABLE IF NOT EXISTS "chatrooms" (
+  CREATE TABLE IF NOT EXISTS "chat" (
     "id" SERIAL,
     "user_id1" INT NOT NULL,
     "user_id2" INT NOT NULL,
+<<<<<<< HEAD:server/scripts.js
     PRIMARY KEY ("id"),
     CONSTRAINT fk_userid1
       FOREIGN KEY (user_id1)
@@ -74,9 +84,13 @@ const chatSql = `
       FOREIGN KEY (user_id2)
         REFERENCES users(id)
   );`;
+=======
+    PRIMARY KEY ("id")
+  );`
+>>>>>>> back-end:server/scripts/migrate.js
 
 const messageSql = `
-  CREATE TABLE IF NOT EXISTS "messages" (
+  CREATE TABLE IF NOT EXISTS "message" (
     "id" SERIAL,
     "chat_id" INT NOT NULL,
     "sender_id" INT NOT NULL,
@@ -84,6 +98,7 @@ const messageSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
+<<<<<<< HEAD:server/scripts.js
         REFERENCES chatrooms(id),
     CONSTRAINT fk_senderid
       FOREIGN KEY (sender_id)
@@ -97,6 +112,18 @@ async function strip() {
   await dropTableIfExist("organizationuser");
   await dropTableIfExist("users");
   await dropTableIfExist("organizations");
+=======
+        REFERENCES chat(id)
+  );`
+
+async function strip() {
+  await db.connect();
+  await dropTableIfExist('message');
+  await dropTableIfExist('chat');
+  await dropTableIfExist('organizationuser');
+  await dropTableIfExist('users');
+  await dropTableIfExist('organizations');
+>>>>>>> back-end:server/scripts/migrate.js
 }
 
 async function build() {
