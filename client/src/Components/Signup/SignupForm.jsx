@@ -1,14 +1,32 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createOrg } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function SignupForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSwitch = (e) => {
     console.log(e.target);
     navigate("/login");
+  };
+  const handleSubmit = (e) => {
+    console.log("first from comp");
+    e.preventDefault();
+
+    let data = {
+      email: e.target.email.value,
+      firstname: e.target.firstname.value,
+      lastname: e.target.lastname.value,
+      orgName: e.target.organization.value,
+      type: "Bootcamp",
+      password: e.target.password.value,
+    };
+    console.log("component", data);
+    dispatch(createOrg(data));
   };
 
   return (
@@ -21,13 +39,18 @@ function SignupForm() {
               Sign up for an account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleSubmit}
+            className="mt-8 space-y-6"
+            action="#"
+            method="POST"
+          >
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput
-                    id="first-name"
-                    name="first-name"
+                    id="firstname"
+                    name="firstname"
                     type="text"
                     autocomplete="given-name"
                     required
@@ -36,8 +59,8 @@ function SignupForm() {
                   />
 
                   <TextInput
-                    id="last-name"
-                    name="last-name"
+                    id="lastname"
+                    name="lastname"
                     type="text"
                     autocomplete="family-name"
                     required
@@ -47,8 +70,8 @@ function SignupForm() {
                 </div>
                 <div className="mb-4">
                   <TextInput
-                    id="organization-name"
-                    name="organization-name"
+                    id="organization"
+                    name="organization"
                     type="text"
                     required
                     placeholder="Organization Name"
@@ -77,8 +100,8 @@ function SignupForm() {
               </div>
               <div className="mb-4">
                 <TextInput
-                  id="confirm-password"
-                  name="confirm-password"
+                  id="confirmPassword"
+                  name="confirm password"
                   type="password"
                   autocomplete="off"
                   required
