@@ -47,7 +47,7 @@ describe('Integration tests', () => {
     })
 
 
-    it('should login', async () => {
+    it('should login with correct login information', async () => {
 
       const post = await request.post("/login")
         .send(mock.mockLogin)
@@ -73,6 +73,23 @@ describe('Integration tests', () => {
     it('should get user information if logged in', async () => {
 
       const get = await request.get("/user")
+        .set('authorization', token);
+  
+      expect(get.status).toBe(200);
+    })
+
+
+    it('should not get user suggestions if not logged in', async () => {
+
+      const get = await request.get("/suggestion");
+  
+      expect(get.status).not.toBe(200);
+    })
+
+
+    it('should get user suggestions if logged in', async () => {
+
+      const get = await request.get("/suggestion")
         .set('authorization', token);
   
       expect(get.status).toBe(200);
