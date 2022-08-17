@@ -1,6 +1,7 @@
 const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers } = require("../models/user");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const validate = require("../middleware/validate");
 const secret = process.env.JWT_SECRET
 
 async function login (req, res) {
@@ -79,9 +80,13 @@ async function editProfile (req, res) {
     if (req.user.id) {
       const id = req.user.id;
       const newInfo = req.body;
-
-      const result = await editUser(id, newInfo);
-      res.status(200).send(result);
+      
+      if (validate.validEditFields(newInfo)) {
+        const result = await editUser(id, newInfo);
+        res.status(200).send(result);
+      } else {
+        res.status(400).send('Invalid body fields.')
+      }
     } else {
       res.status(401).send('Unauthorized to edit this profile.');
     }

@@ -1,3 +1,5 @@
+const validate = {};
+
 // helpers
 const lengthFilter = (input) => {
   return input.length < 25 && input.length > 6
@@ -33,3 +35,19 @@ const validOrgType = (orgType) => {
   return orgType === 'Institution' || orgType === 'Corporation';
 }
 
+
+//Edit profile
+const fields = ['id', 'firstname', 'lastname', 'email', 'password', 'organization_id', 'type', 'location', 'interests', 'bio', 'img_url', 'orgname'];
+
+validate.validEditFields = (editFields) => {
+  const editFieldKeys = Object.keys(editFields);
+
+  for(i=0; i<fields.length; i++) {
+    if(editFieldKeys.indexOf(fields[i]) < 0)
+      return false;
+    }
+    
+  return true
+}
+
+module.exports = validate;
