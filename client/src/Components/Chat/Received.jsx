@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Receiver() {
+function Received({content}) {
   return (
     <div>
                 <div className="flex items-center p-[1rem]">
@@ -15,8 +15,7 @@ function Receiver() {
                   className="flex ml-1  h-auto bg-gray-900 text-gray-200 font-normal rounded-sm px-3 p-4 items-end"
                   style={{ fontSize: "1rem" }}
                 >
-                  Hi Dr.Hendrikson, I haven't been feeling well for past few
-                  days.{" "}
+                  {content}{" "}
                   <span
                     className="text-gray-400 pl-3"
                     style={{ fontSize: "1rem" }}
@@ -30,4 +29,4 @@ function Receiver() {
   )
 }
 
-export default Receiver
+export default Received

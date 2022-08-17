@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Sender() {
+function Sent({content}) {
   return (
     <div>
         <div className="flex justify-end pt-2 p-[1rem]">
@@ -8,7 +8,7 @@ function Sender() {
                   className="bg-green-900 h-auto text-gray-200 text-xs font-normal rounded-sm px-3 p-4 items-end flex justify-end "
                   style={{ fontSize: "1rem" }}
                 >
-                  Lets jump on a video call.{" "}
+                  {content}{" "}
                   <span
                     className="text-gray-400 pl-3"
                     style={{ fontSize: "16px" }}
@@ -21,4 +21,4 @@ function Sender() {
   )
 }
 
-export default Sender
+export default Sent
