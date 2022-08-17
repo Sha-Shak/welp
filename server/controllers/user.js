@@ -37,11 +37,15 @@ async function login (req, res) {
 
 async function getProfile (req, res) {
   try {
-    if (req.user.id == req.params.id) {
+    if (req.user) {
       const id = req.params.id;
       const userList = await getUserById(id);
       const user = userList[0];
-      res.status(200).send(user);
+
+      if (req.user.organization_id === user.organization_id)
+        res.status(200).send(user);
+      else 
+        res.status(401).send('Requested profile is not in your organization.');
     } else {
       res.status(401).send('Unauthorized to see this profile.')
     }
