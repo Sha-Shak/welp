@@ -43,7 +43,7 @@ const orgSql = `
   CREATE TABLE IF NOT EXISTS "organizations" (
     "id" SERIAL,
     "name" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
+    "type" TEXT,
     PRIMARY KEY ("id")
   );`
       
