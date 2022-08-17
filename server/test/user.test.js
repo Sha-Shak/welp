@@ -27,12 +27,12 @@ describe('Integration tests', () => {
     it('should not login with incomplete fields', async () => {
 
       const post1 = await request.post("/login")
-        .send(mock.invalidLogin1);
+        .send(mock.loginWithoutPassword);
   
       expect(post1.status).not.toBe(200);
 
       const post2 = await request.post("/login")
-      .send(mock.invalidLogin2);
+      .send(mock.loginWithoutEmail);
 
       expect(post2.status).not.toBe(200);
     })
@@ -41,7 +41,7 @@ describe('Integration tests', () => {
     it('should not login with wrong password', async () => {
 
       const post = await request.post("/login")
-        .send(mock.invalidLogin3);
+        .send(mock.loginWithWrongPassword);
   
       expect(post.status).not.toBe(200);
     })
