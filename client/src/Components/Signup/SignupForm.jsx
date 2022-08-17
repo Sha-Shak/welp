@@ -22,7 +22,7 @@ function SignupForm() {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       orgName: e.target.organization.value,
-      type: "Bootcamp",
+      type: "Admin",
       password: e.target.password.value,
     };
     console.log("component", data);

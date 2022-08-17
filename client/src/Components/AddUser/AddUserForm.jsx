@@ -2,6 +2,17 @@ import React from "react";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
+  const user = localStorage.getItem("data");
+  console.log(user);
+  const handleSubmit = () => {
+    const newUser = {
+      firstname: e.target.firstname.value,
+      lastname: e.target.lastname.value,
+      email: e.target.email.value,
+      password: e.target.password,
+      orgname: user.
+    };
+  };
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">
@@ -12,13 +23,18 @@ function AddUserForm() {
               Create User
             </h1>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleSubmit}
+            className="mt-8 space-y-6"
+            action="#"
+            method="POST"
+          >
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput
-                    id="first-name"
-                    name="first-name"
+                    id="firstname"
+                    name="firstname"
                     type="text"
                     autocomplete="given-name"
                     required
@@ -26,8 +42,8 @@ function AddUserForm() {
                     half
                   />
                   <TextInput
-                    id="last-name"
-                    name="last-name"
+                    id="lastname"
+                    name="lastname"
                     type="text"
                     autocomplete="family-name"
                     required

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logInOrg } from "../../actions/users.action.js";
+import { logIn } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
@@ -22,7 +22,7 @@ function LoginForm() {
       password: e.target.password.value,
     };
     console.log("component", data);
-    dispatch(logInOrg(data));
+    dispatch(logIn(data));
   };
   return (
     <>
