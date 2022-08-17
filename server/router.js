@@ -10,6 +10,7 @@ router.get('/organization/:id/users', authMiddleware, organizationController.get
 router.delete('/organization/:id/user/:userId', authMiddleware, organizationController.deleteOrganizationUser);
 
 router.post('/login', userController.login);
+router.get('/user', authMiddleware, userController.getOwnProfile);
 router.get('/user/:id', authMiddleware, userController.getProfile);
 router.put('/user', authMiddleware, userController.editProfile);
 router.get('/suggestion', authMiddleware, userController.getSuggestions);

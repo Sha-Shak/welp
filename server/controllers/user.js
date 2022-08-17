@@ -47,6 +47,23 @@ async function getProfile (req, res) {
 }
 
 
+async function getOwnProfile (req, res) {
+  try {
+    if (req.user) {
+      const id = req.user.id;
+      const userList = await getUserById(id);
+      const user = userList[0];
+      res.status(200).send(user);
+    } else {
+      res.status(401).send('Unauthorized to see this profile.')
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
 
 async function editProfile (req, res) {
   try {
@@ -91,6 +108,7 @@ async function getSuggestions(req, res) {
 module.exports = {
   login,
   getProfile,
+  getOwnProfile,
   editProfile,
   getSuggestions
 }
