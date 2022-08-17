@@ -2,6 +2,8 @@ import React from "react";
 import './chat.css'
 
 function Chats() {
+
+  
   return (
     <div className="h-90vh ml-6 mr-3 w-1/3">
       <div className="h-90vh w-full flex items-center h-100">
