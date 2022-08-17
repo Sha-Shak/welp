@@ -13,7 +13,7 @@ async function addUser (user) {
 
 async function getUserByEmail (email) {
   try {
-    const sql = 'SELECT * FROM users WHERE email = $1'
+    const sql = 'SELECT users.*, organizations.name as orgname FROM users INNER JOIN organizations ON users.organization_id = organizations.id WHERE users.email = $1'
     const result = await pool.query(sql, [email]);
     return result.rows;
   } catch (error) {

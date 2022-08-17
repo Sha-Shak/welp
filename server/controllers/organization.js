@@ -29,6 +29,7 @@ async function createNewOrganization (req, res) {
       }
   
       const addUserRes = await addUser(user);
+      addUserRes.orgname = req.body.orgName;
   
       const admin = {
         organization_id: queryResult.id,
