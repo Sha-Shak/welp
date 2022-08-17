@@ -35,9 +35,26 @@ async function login (req, res) {
 
 
 
+async function getOwnProfile (req, res) {
+  try {
+    if (req.user) {
+      const id = req.user.id;
+      const userList = await getUserById(id);
+      const user = userList[0];
+      res.status(200).send(user);
+    } else {
+      res.status(401).send('Unauthorized to see this profile.')
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
 async function getProfile (req, res) {
   try {
-    if (req.user.id == req.params.id) {
+    if (req.user) {
       const id = req.params.id;
       const userList = await getUserById(id);
       const user = userList[0];
@@ -97,5 +114,6 @@ module.exports = {
   login,
   getProfile,
   editProfile,
-  getSuggestions
+  getSuggestions,
+  getOwnProfile
 }
