@@ -3,6 +3,20 @@ import './chat.css'
 import ChatSearch from "./ChatSearch";
 import ContactCard from "./ContactCard";
 
+const currentUsersChats = [{
+  chat_id : 1,
+  user_id1 : 1,
+  user_id2 : 2,
+},{
+  chat_id : 2,
+  user_id1 : 1,
+  user_id2 : 3,
+},{
+  chat_id : 3,
+  user_id1 : 4,
+  user_id2 : 1,
+}]
+
 function Chats() {
 
 
@@ -17,7 +31,12 @@ function Chats() {
             style={{ height: "70vh" }}
             id="journal-scroll"
           >
-         <ContactCard/>
+            {currentUsersChats.map((room)=>(
+                <ContactCard room = {room}/>
+            )
+            
+            )}
+         
           </div>
 
      

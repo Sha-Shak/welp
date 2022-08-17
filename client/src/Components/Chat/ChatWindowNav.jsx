@@ -1,6 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { findContactName } from './services'
 
 function ChatWindowNav() {
+    const currentUser = 1
+    const getChat = useSelector((state)=>state.currentChat)
+    const contact = findContactName(getChat,currentUser)[0] 
+ 
+
+   
+
   return (
     <div> 
         <nav className="h-20 bg-gray-900 rounded-tr rounded-tl flex justify-between items-center">
@@ -13,8 +22,10 @@ function ChatWindowNav() {
                 height="70"
                 alt="propic"
             />
+      
+
             <span className="text-xl font-medium text-gray-300 ml-1">
-                Alex cairo
+                {contact.name}
             </span>
             </div>
 

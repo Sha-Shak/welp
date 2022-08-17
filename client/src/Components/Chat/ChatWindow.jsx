@@ -1,5 +1,5 @@
 import React from "react";
-import Call from "./Call";
+// import Call from "./Call";
 import './chat.css'
 import ChatInput from "./ChatInput";
 import ChatWindowNav from "./ChatWindowNav";
@@ -18,7 +18,7 @@ function ChatWindow() {
         <div className="w-100 h-90vh flex items-center">
           <div className="h-90vh w-full bg-white rounded shadow-2xl">
            
-              <ChatWindowNav/>
+              <ChatWindowNav />
                 <div
                   className="overflow-auto px-1 py-1"
                   style={{ height: "67vh" }}

@@ -1,18 +1,18 @@
 const msgs = [{
     content: "Hey",
-    chat_id : "1",
+    chat_id : 1,
     sender_id : 1,
-    timestap : ""
+    timestamp : ""
 },{
     content: "Hello",
-    chat_id : "1",
+    chat_id : 1,
     sender_id : 2,
-    timestap : ""
+    timestamp : ""
 },{
     content: "Did you push it?",
-    chat_id : "1",
+    chat_id : 1,
     sender_id : 1,
-    timestap : ""
+    timestamp : ""
 }] // This will fetch all the messages from the db
 
 export default function messagesReducer(state=msgs, action){
@@ -28,3 +28,4 @@ export default function messagesReducer(state=msgs, action){
         }
     }
 }
+
