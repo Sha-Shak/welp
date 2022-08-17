@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logIn } from "../../actions/users.action.js";
+import { clearError, logIn } from "../../actions/users.action.js";
+
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
@@ -9,9 +10,18 @@ function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
-  console.log("error", error);
+  // const [errorMsg, setErrorMsg] = useState(error);
+  console.log("error comp state", error);
   const user = useSelector((state) => state.users);
-  console.log("after login", user);
+
+  useEffect(() => {
+    console.log("changed", error);
+    setTimeout(() => {
+      console.log("timeout");
+      dispatch(clearError());
+    }, 3000);
+  }, [error]);
+
   const handleSwitch = (e) => {
     console.log(e.target);
     navigate("/signup");
@@ -23,7 +33,7 @@ function LoginForm() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    console.log("component", data);
+    // console.log("component", data);
     dispatch(logIn(data));
   };
   return (
@@ -42,6 +52,11 @@ function LoginForm() {
             action="#"
             method="POST"
           >
+            {error && (
+              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                {error}
+              </h2>
+            )}
             <div className="rounded-md p-4 w-full">
               <div className="mb-4">
                 <TextInput

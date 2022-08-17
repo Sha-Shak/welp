@@ -1,9 +1,11 @@
-export default function (state = {}, action) {
+export default function (state = "", action) {
   switch (action.type) {
     case "ERROR":
-      console.log("check error");
       console.log("error reducer", action.payload);
-      return action.payload.message;
+      return action.payload;
+    case "CLEAR_ERROR":
+      state = "";
+      return state;
     default:
       return state;
   }

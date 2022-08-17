@@ -15,12 +15,6 @@ export default function auth(state = [], action) {
       return (state = user);
     case "LOG_OUT":
       localStorage.clear();
-    case "ADD_USER_TO_ORG":
-      console.log("add user reduce", action.payload);
-      return action.payload;
-    case "ADD_ADMIN_TO_ORG":
-      console.log("add admin reduce", action.payload);
-      return action.payload;
     default:
       return state;
   }
