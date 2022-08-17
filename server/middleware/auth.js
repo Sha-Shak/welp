@@ -8,7 +8,6 @@ const authMiddleware = async (req, res, next) => {
       const token = req.get('Authorization').split(' ')[1];
       const { id } = jwt.verify(token, secret);
       const user = await getUserById(id);
-  
       if(user.length === 1) {
         req.user = user[0];
         next();
@@ -18,7 +17,7 @@ const authMiddleware = async (req, res, next) => {
     } else {
       res.status(401).send('You are not logged in!');
     }
-    
+
   } catch (error) {
     res.status(500);
     console.log(error);
