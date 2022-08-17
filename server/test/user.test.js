@@ -88,8 +88,6 @@ describe('Integration tests', () => {
   
         const get = await request.get("/user")
           .set('authorization', token);
-
-          console.log(token);
     
         expect(get.status).toBe(200);
       })
