@@ -1,9 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addUserToOrganization } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
-  const user = localStorage.getItem("data");
+  const userJson = localStorage.getItem("data");
+  const user = JSON.parse(userJson);
   console.log(user);
+<<<<<<< HEAD
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newUser = {
+      firstname: e.target.firstname.value,
+      lastname: e.target.lastname.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      type: user.type,
+      orgId: user.organization_id,
+    };
+    dispatch(addUserToOrganization(newUser));
+  };
+=======
   // const handleSubmit = () => {
   //   const newUser = {
   //     firstname: e.target.firstname.value,
@@ -13,6 +31,7 @@ function AddUserForm() {
   //     // orgname: user.
   //   };
   // };
+>>>>>>> 99a6b81bca96fdaa4359e3dd53c7d5fdd4ce4e23
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">

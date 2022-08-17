@@ -1,5 +1,14 @@
 const pool = require("./db");
 
+async function newChat (chatId, userId1, userId2) {
+  try {
+    const sql = 'INSERT INTO chat (id, user_id1, user_id2) VALUES ($1, $2, $3) RETURNING id;'
+    const result = await pool.query(sql, [chatId, userId1, userId2]);
+    return result.rows[0];
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
 
 async function getChats (user) {
   try {
@@ -37,6 +46,7 @@ async function postMessage (message) {
 
 
 module.exports = {
+  newChat,
   getChats,
   getMessages,
   postMessage
