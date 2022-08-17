@@ -2,29 +2,29 @@ require("dotenv").config();
 const db = require('../models/db');
 
 const dropTableIfExist = async (table) => {
-  const sql = `DROP TABLE IF EXISTS "${table}"`;
-  try {
-    await db.query(sql);
-    console.log(`Deleted ${table} table`);
-  } catch (e) {
-    console.error(e.stack);
-  }
-};
+    const sql = `DROP TABLE IF EXISTS "${table}"`
+    try {
+      await db.query(sql);
+      console.log(`Deleted ${table} table`);
+    } catch (e) {
+      console.error(e.stack);
+    } 
+}
 
 const createTable = async (table) => {
-  try {
-    await db.query(table);
-    console.log(`Added ${table} to DB`);
-  } catch (e) {
-    console.error(e.stack);
-  }
-};
+    try {
+      await db.query(table);
+      console.log(`Added ${table} to DB`);
+    } catch (e) {
+      console.error(e.stack);
+    } 
+}
 
 const userSql = `
   CREATE TABLE IF NOT EXISTS "users" (
     "id" SERIAL,
-    "firstname" TEXT NOT NULL,
-    "lastname" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "organization_id" INT, 
@@ -37,20 +37,16 @@ const userSql = `
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
         REFERENCES organizations(id)
-  );`;
-
+  );`
+    
 const orgSql = `
   CREATE TABLE IF NOT EXISTS "organizations" (
     "id" SERIAL,
     "name" TEXT NOT NULL,
-<<<<<<< HEAD:server/scripts.js
-    "type" TEXT ,
-=======
     "type" TEXT,
->>>>>>> back-end:server/scripts/migrate.js
     PRIMARY KEY ("id")
-  );`;
-
+  );`
+      
 const orgUserSql = `
   CREATE TABLE IF NOT EXISTS "organizationuser" (
     "id" SERIAL,
@@ -59,35 +55,16 @@ const orgUserSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
-<<<<<<< HEAD:server/scripts.js
-        REFERENCES organizations(id),
-    CONSTRAINT fk_adminId
-      FOREIGN KEY (admin_id)
-        REFERENCES users(id)
-  );`;
-=======
         REFERENCES organizations(id)
   );`
->>>>>>> back-end:server/scripts/migrate.js
 
 const chatSql = `
   CREATE TABLE IF NOT EXISTS "chat" (
     "id" SERIAL,
     "user_id1" INT NOT NULL,
     "user_id2" INT NOT NULL,
-<<<<<<< HEAD:server/scripts.js
-    PRIMARY KEY ("id"),
-    CONSTRAINT fk_userid1
-      FOREIGN KEY (user_id1)
-        REFERENCES users(id),
-    CONSTRAINT fk_userid2
-      FOREIGN KEY (user_id2)
-        REFERENCES users(id)
-  );`;
-=======
     PRIMARY KEY ("id")
   );`
->>>>>>> back-end:server/scripts/migrate.js
 
 const messageSql = `
   CREATE TABLE IF NOT EXISTS "message" (
@@ -98,21 +75,6 @@ const messageSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
-<<<<<<< HEAD:server/scripts.js
-        REFERENCES chatrooms(id),
-    CONSTRAINT fk_senderid
-      FOREIGN KEY (sender_id)
-        REFERENCES users(id)
-  );`;
-
-async function strip() {
-  await db.connect();
-  await dropTableIfExist("messages");
-  await dropTableIfExist("chatrooms");
-  await dropTableIfExist("organizationuser");
-  await dropTableIfExist("users");
-  await dropTableIfExist("organizations");
-=======
         REFERENCES chat(id)
   );`
 
@@ -123,7 +85,6 @@ async function strip() {
   await dropTableIfExist('organizationuser');
   await dropTableIfExist('users');
   await dropTableIfExist('organizations');
->>>>>>> back-end:server/scripts/migrate.js
 }
 
 async function build() {
@@ -135,4 +96,5 @@ async function build() {
   process.exit(0);
 }
 
-strip().then(() => build());
+strip()
+  .then(() => build());
