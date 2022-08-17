@@ -6,15 +6,15 @@ mock.mockLogin = {
 }
 
 
-mock.invalidLogin1 = {
+mock.loginWithoutPassword = {
   email: 'codeworks-test1@email.com'
 }
 
-mock.invalidLogin2 = {
+mock.loginWithoutEmail = {
   password: '123'
 }
 
-mock.invalidLogin3 = {
+mock.loginWithWrongPassword = {
   email: 'codeworks-test1@email.com',
   password: 'password123'
 }

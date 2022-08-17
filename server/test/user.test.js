@@ -22,9 +22,6 @@ describe('Integration tests', () => {
   })
 
 
-
-
-
   describe('Organization Routes', () => {
 
     it('should not login with incomplete fields', async () => {
@@ -54,9 +51,31 @@ describe('Integration tests', () => {
 
       const post = await request.post("/login")
         .send(mock.mockLogin)
+
+      isAuthorizationHeaderPresent = post.header['authorization'] !== undefined;
   
   
       expect(post.status).toBe(200);
+      expect(isAuthorizationHeaderPresent).toEqual(true);
+
+      token = post.header['authorization'];
+    })
+
+
+    it('should not get user information if not logged in', async () => {
+
+      const get = await request.get("/user");
+  
+      expect(get.status).not.toBe(200);
+    })
+
+
+    it('should get user information if logged in', async () => {
+
+      const get = await request.get("/user")
+        .set('authorization', token);
+  
+      expect(get.status).toBe(200);
     })
   })
 })
