@@ -22,7 +22,7 @@ describe('Integration tests', () => {
 
   beforeAll(async () => {
     await pool.connect();
-    await pool.query('DELETE FROM users WHERE email = $1;', [mock.newOrganizationAdmin.email]);
+    await pool.query('DELETE FROM users WHERE email = $1 OR email = $2;', [mock.newOrganizationAdmin.email, mock.newUser.email]);
 
     const newUserRes = await request.post("/organization/create")
       .send(mock.newOrganizationAdmin);
@@ -69,6 +69,7 @@ describe('Integration tests', () => {
         expect(isAuthorizationHeaderPresent).toEqual(true);
   
         token = post.header['authorization'];
+        user1 = post.body;
       })
     })
 
@@ -87,6 +88,8 @@ describe('Integration tests', () => {
   
         const get = await request.get("/user")
           .set('authorization', token);
+
+          console.log(token);
     
         expect(get.status).toBe(200);
       })
@@ -119,27 +122,42 @@ describe('Integration tests', () => {
     })
 
 
+    describe ('Edit profile routes', () => {
+      
+      it("should not edit a user's profile without being logged in", async () => {
 
-    describe ('User suggestions route', () => {
-      it('should not get user suggestions if not logged in', async () => {
-  
-        const get = await request.get("/suggestion");
-    
-        expect(get.status).not.toBe(200);
+        const newUserInfo = {...user1, ...mock.editUserFields};
+
+        const post = await request.put('/user')
+          .send(newUserInfo);
+
+        expect(post.status).not.toBe(200);
+
       })
-  
-  
-      it('should get user suggestions if logged in', async () => {
-  
-        const get = await request.get("/suggestion")
-          .set('authorization', token);
-    
-        expect(get.status).toBe(200);
+
+
+      it("should not edit a user's profile with missing information", async () => {
+
+        const incompleteInfo = {...mock.editUserFields};
+
+        const post = await request.put('/user')
+          .set('authorization', token)
+          .send(incompleteInfo);
+
+        expect(post.status).not.toBe(200);
+      })
+
+
+      it("should edit a user's profile with correct information", async () => {
+
+        const newUserInfo = {...user1, ...mock.editUserFields};
+
+        const post = await request.put('/user')
+          .set('authorization', token)
+          .send(newUserInfo);
+
+        expect(post.status).toBe(200);
       })
     })
-
-
-
-
   })
 })

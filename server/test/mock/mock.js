@@ -37,4 +37,12 @@ mock.newUser = {
   password: 'password123',
 }
 
+
+mock.editUserFields = {
+  firstname: 'Edit',
+  interests: ['hobby1', 'hobby2'],
+  bio: 'Random bio'
+}
+
+
 module.exports = mock;
