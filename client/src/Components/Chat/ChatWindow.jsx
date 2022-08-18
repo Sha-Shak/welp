@@ -42,12 +42,14 @@ function ChatWindow() {
       const iffy = async ()=>{
 
         try{
-          const room = await getChatRoom(currentRoomId)
-            .then(()=>{
-              setRoomExists(true);
-              getChatMessages(currentRoomId).then(data => setMessages(data.data)).catch(e => console.log(e));
-            })
-            .catch((err)=> console.log(err))
+          if (currentRoomId > 0) {
+            const room = await getChatRoom(currentRoomId)
+              .then(()=>{
+                setRoomExists(true);
+                getChatMessages(currentRoomId).then(data => setMessages(data.data)).catch(e => console.log(e));
+              })
+              .catch((err)=> console.log(err))
+          }
         }
           catch(e){
             console.log(e)

@@ -17,7 +17,6 @@ function ChatWindowNav() {
 
         const iffy = async ()=>{
             if(currentRoomId!==0){
-
             
             const room = await getChatRoom(currentRoomId); //get the room object
             console.log(room.data)
