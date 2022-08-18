@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteUser } from "../../actions/users.action.js";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
 
 const UserCard = ({ user }) => {
-
-  console.log()
+  console.log();
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
-
+  const handleProfile = async (id) => {
+    await dispatch(getOtherProfile(id));
+    navigate("/profile");
+  };
   const navigate = useNavigate();
   // console.log("before change deleteBox val is", deleteBox);
 
@@ -28,9 +30,8 @@ const UserCard = ({ user }) => {
   };
 
   const handleChatClick = (id) => {
-
-      navigate(`/chat/`+id);
-  }
+    navigate(`/chat/` + id);
+  };
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (
@@ -61,7 +62,7 @@ const UserCard = ({ user }) => {
             </div>
           </div>
         ) : (
-          <div>
+          <div onClick={(e) => handleProfile(user.id)}>
             <h2 className="card-title text-2xl border-b-2 border-gray-200 mb-1 ">
               {user.firstname}
             </h2>
@@ -69,7 +70,10 @@ const UserCard = ({ user }) => {
               user.interest.map((interest) => <p>{interest}</p>)}
 
             <div className="flex">
-              <button onClick={() => handleChatClick(user.id)} className="btn btn-primary mx-1 rounded-full right-0">
+              <button
+                onClick={() => handleChatClick(user.id)}
+                className="btn btn-primary mx-1 rounded-full right-0"
+              >
                 CHAT
               </button>
               <button

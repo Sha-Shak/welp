@@ -7,11 +7,12 @@ import TopBar from "./Components/TopBar/TopBar";
 import AddAdmin from "./pages/AddAdmin";
 import AddUser from "./pages/AddUser";
 import Chat from "./pages/Chat";
+import Dashboard from "./pages/Dashboard";
 import EditAdmin from "./pages/EditAdmin";
 import EditUser from "./pages/EditUser";
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
 import Messaging from "./pages/Messaging";
+import ProfilePage from "./pages/ProfilePage";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -22,24 +23,25 @@ function App() {
           <div className="w-full">
             <TopBar />
             <div className="container mx-auto">
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<SignUp />} />
-                  <Route path="/add-user" element={<AddUser />} />
-                  <Route path="/add-admin" element={<AddAdmin />} />
-                  <Route path="/edit-admin" element={<EditAdmin />} />
-                  <Route path="/edit-user" element={<EditUser />} />
-                  <Route path="/chat" element={<Chat />} />
-                  <Route path="/:id/dashboard" element={<Dashboard />} />
-                  <Route path="/messaging" element={<Messaging />} />
-                  <Route
-                    path="*"
-                    element={
-                      <p>STOP EMBARASSING YOURSELF! Route doesn't exist</p>
-                    }
-                  />
-                </Routes>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/add-user" element={<AddUser />} />
+                <Route path="/add-admin" element={<AddAdmin />} />
+                <Route path="/edit-admin" element={<EditAdmin />} />
+                <Route path="/edit-user" element={<EditUser />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/:id/dashboard" element={<Dashboard />} />
+                <Route path="/messaging" element={<Messaging />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route
+                  path="*"
+                  element={
+                    <p>STOP EMBARASSING YOURSELF! Route doesn't exist</p>
+                  }
+                />
+              </Routes>
             </div>
           </div>
         </div>

@@ -13,6 +13,15 @@ export default function users(state = {}, action) {
     case "CLEAR_ADMIN_RES":
       state = {};
       return state;
+    case "GET_OWN_PROFILE":
+      console.log("reduce", action.payload);
+      return action.payload;
+    case "GET_OTHER_PROFILE":
+      console.log("other reduce", action.payload);
+      return action.payload;
+    case "EDIT_PROFILE":
+      console.log("reduce edit profile", action.payload);
+      return action.payload;
     default:
       return state;
   }

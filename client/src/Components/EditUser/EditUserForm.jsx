@@ -1,7 +1,29 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { editUser } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function EditUserForm() {
+  const user = JSON.parse(localStorage.getItem("data"));
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const interestArray = e.target.interest.value.split(",");
+    console.log("object", interestArray);
+    const data = {
+      firstname: e.target.firstname.value,
+      lastname: e.target.lastname.value,
+      bio: e.target.bio.value,
+      interests: interestArray,
+      location: e.target.location.value,
+      password: e.target.password.value,
+    };
+    const newData = { ...user, ...data };
+    console.log("edited data", newData);
+    dispatch(editUser(newData)).then(() => {
+      e.target.reset();
+    });
+  };
   return (
     <div className="grow justify-center">
       <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
@@ -11,13 +33,18 @@ function EditUserForm() {
               Edit User
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleSubmit}
+            className="mt-8 space-y-6"
+            action="#"
+            method="POST"
+          >
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput
-                    id="first-name"
-                    name="first-name"
+                    id="firstname"
+                    name="firstname"
                     type="text"
                     autocomplete="given-name"
                     required
@@ -26,8 +53,8 @@ function EditUserForm() {
                   />
 
                   <TextInput
-                    id="last-name"
-                    name="last-name"
+                    id="lastname"
+                    name="lastname"
                     type="text"
                     autocomplete="family-name"
                     required
@@ -38,11 +65,11 @@ function EditUserForm() {
               </div>
               <div className="mb-4">
                 <TextInput
-                  id="status"
-                  name="status"
+                  id="bio"
+                  name="bio"
                   type="text"
                   required
-                  placeholder="Status"
+                  placeholder="Bio"
                 />
               </div>
               <div className="mb-4">
@@ -54,6 +81,26 @@ function EditUserForm() {
                   placeholder="Location"
                 />
               </div>
+              <div className="mb-4">
+                <TextInput
+                  id="interest"
+                  name="interest"
+                  type="text"
+                  required
+                  placeholder="Interests"
+                />
+              </div>
+              <div className="mb-4">
+                <TextInput
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="off"
+                  required
+                  placeholder="Password"
+                />
+              </div>
+
               <div className="flex justify-center items-center">
                 <button
                   type="submit"
