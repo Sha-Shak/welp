@@ -2,7 +2,7 @@ import React from 'react'
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
 
-function ChatInput() {
+function ChatInput({ handleSocketSubmit }) {
 
   const [content, setContent] = useState("")
   const dispatch = useDispatch()
@@ -16,6 +16,7 @@ function ChatInput() {
   const handleSubmit = () => {
 
     if(content.length){
+      handleSocketSubmit(content);
       dispatch({
         type: 'SEND_MESSAGE',
         payload : {
@@ -27,6 +28,7 @@ function ChatInput() {
         }
       })
       setContent("");
+
     }
     
   }

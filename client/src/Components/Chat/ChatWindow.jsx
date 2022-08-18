@@ -7,15 +7,26 @@ import Received from "./Received";
 import Sent from "./Sent";
 import {useSelector} from 'react-redux';
 import { getChatRoom, getUserInfo } from "../../utils/apiClientService";
+import io from 'socket.io-client';
+const socket = io('http://localhost:3001');
 
 function ChatWindow() {
 
   const msgs = useSelector((state)=>state.messages);
-  const user = 1 // get current User
+  const user = JSON.parse(localStorage.getItem("data"));// get current User
 
   const currentRoomId = useSelector((state)=>state.currentChat);
   const [roomExists, setRoomExists] = useState(false);
+  const [messages, setMessages] = useState([]);
   console.log(currentRoomId)
+
+  useEffect(() => {
+    socket.emit('join_room', currentRoomId);
+
+    socket.on('receive_message', (data) => {
+      setMessages(prevList => [...prevList, data]);
+    })
+  }, [currentRoomId])
  
    
   useEffect(() => {
@@ -38,6 +49,19 @@ function ChatWindow() {
     },[currentRoomId]); 
 
 
+    function handleSocketSubmit (msg) {
+  
+      const message = {
+        content: msg,
+        chat_id: currentRoomId,
+        sender_id: user.id,
+      }
+
+      console.log('Posted message: ', message);
+
+      socket.emit("send_message", message);
+    }
+
   return (
     <div className="relative h-90vh mr-6 w-2/3">
    
@@ -51,7 +75,7 @@ function ChatWindow() {
                   style={{ height: "67vh" }}
                   id="journal-scroll"
                 >
-                  {msgs.map((msg)=>(
+                  {messages.map((msg)=>(
                     <>
                     { msg.sender_id === user && <Sent content={msg.content} /> }
                     { msg.sender_id !== user && <Received content={msg.content}/> }
@@ -62,7 +86,7 @@ function ChatWindow() {
                   }
                     </div>
 
-          <ChatInput/>
+          <ChatInput handleSocketSubmit = {handleSocketSubmit}/>
             </div>
          </div>
         }
@@ -79,15 +103,10 @@ function ChatWindow() {
                   id="journal-scroll"
                 >
                   <div style={{margin:"auto 0 "}}>Chat Away</div>
-                  
-
-              
-
-              
-            </div>
+           </div>
 
           
-            </div>
+          </div>
           
         </div>
           </>

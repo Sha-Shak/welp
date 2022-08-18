@@ -76,8 +76,9 @@ const chatSql = `
   );`
 
 const messageSql = `
-  CREATE TABLE IF NOT EXISTS "message" (
+  CREATE TABLE IF NOT EXISTS "messages" (
     "id" SERIAL,
+    "content" text NOT NULL,
     "chat_id" INT NOT NULL,
     "sender_id" INT NOT NULL,
     "timestamp" TIMESTAMP NOT NULL,
