@@ -26,7 +26,7 @@ function LoginForm() {
     console.log(e.target);
     navigate("/signup");
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let data = {
@@ -34,7 +34,15 @@ function LoginForm() {
       password: e.target.password.value,
     };
     // console.log("component", data);
-    dispatch(logIn(data));
+    await dispatch(logIn(data)).then(() => {
+      setTimeout(() => {
+        console.log("timeout");
+        dispatch(clearError());
+      }, 3000);
+    });
+    const user = JSON.parse(localStorage.getItem("data"));
+    console.log(user.id);
+    navigate(`/${user.id}/dashboard`);
   };
   return (
     <>

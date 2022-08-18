@@ -13,10 +13,9 @@ function AddUserForm() {
   console.log(user);
 
   const response = useSelector((state) => state.users);
-  // const [user, setUser] = useState(response);
+
   console.log("changed", response);
 
-  // const [user, setUser] = useState(response);
   console.log("changed", response);
   const dispatch = useDispatch();
 
@@ -36,6 +35,7 @@ function AddUserForm() {
         dispatch(clearCreateUser());
       }, 2000);
     });
+    e.target.reset();
   };
 
   return (
