@@ -34,11 +34,6 @@ const UserCard = ({ user }) => {
   };
 
   const handleChatClick = (id) => {
-
-    navigate(`/chat/` + id);
-  };
-
-
     // dispatch({
     //   type: "SET_CHAT",
     //   payload : id
@@ -63,13 +58,15 @@ const UserCard = ({ user }) => {
           console.log('Error in checkChat');
           navigate('/chat');
         });
+  };
+
+
 
       
 
   
 
-  const dummyImage =
-    "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
+  const dummyImage =  "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (
     <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
       <figure>
