@@ -1,8 +1,8 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   addUserToOrganization,
-  clearCreateUser,
+  clearCreateUser
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
@@ -42,11 +42,6 @@ function AddUserForm() {
       }, 2000);
     });
   };
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 498e4051137362fb3f054811000739dadf9a3176
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">
