@@ -1,4 +1,4 @@
-export default function (state = "", action) {
+export default function error(state = "", action) {
   switch (action.type) {
     case "ERROR":
       console.log("error reducer", action.payload);

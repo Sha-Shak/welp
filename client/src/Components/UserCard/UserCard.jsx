@@ -5,15 +5,12 @@ import { deleteUser } from "../../actions/users.action.js";
 const UserCard = ({ user }) => {
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
-  console.log("before change deleteBox val is", deleteBox);
-
+  const userStore = JSON.parse(localStorage.getItem("data"));
+  console.log("card", userStore.type);
   const handleConfirmDelete = () => {
-    console.log("Confirm delete? ");
     setDeleteBox((prevDeleteBox) => !deleteBox);
-    console.log("deleteBox val is", deleteBox);
   };
   const handleDelete = (id) => {
-    console.log("from compo: ", id);
     dispatch(deleteUser(id));
   };
   const handleCancel = () => {
@@ -25,6 +22,7 @@ const UserCard = ({ user }) => {
     <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
       <figure>
         <img
+          alt="user"
           className="rounded-full w-36 h-36"
           src={!user.img_url ? dummyImage : user.img_url}
         />
@@ -40,12 +38,14 @@ const UserCard = ({ user }) => {
               >
                 CANCEL
               </button>
-              <button
-                onClick={(e) => handleDelete(user.id)}
-                className="btn btn-error mx-1 rounded-full right-0"
-              >
-                Delete
-              </button>
+              {userStore.type === "admin" && (
+                <button
+                  onClick={(e) => handleDelete(user.id)}
+                  className="btn btn-error mx-1 rounded-full right-0"
+                >
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         ) : (
@@ -60,12 +60,14 @@ const UserCard = ({ user }) => {
               <button className="btn btn-primary mx-1 rounded-full right-0">
                 CHAT
               </button>
-              <button
-                onClick={handleConfirmDelete}
-                className="btn btn-error mx-1 rounded-full right-0"
-              >
-                Delete
-              </button>
+              {userStore.type === "admin" && (
+                <button
+                  onClick={handleConfirmDelete}
+                  className="btn btn-error mx-1 rounded-full right-0"
+                >
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         )}
