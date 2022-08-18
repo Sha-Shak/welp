@@ -88,6 +88,7 @@ async function deleteOrganizationUser(req, res) {
       const orgId = req.user.organization_id;
       const userId = req.params.userId;
       const result = await deleteUser(userId, orgId);
+      await deleteChatForUser(userId);
       res.status(200).send(result);
     } else {
       res.status(403).send('You do not have admin access for this organization.');

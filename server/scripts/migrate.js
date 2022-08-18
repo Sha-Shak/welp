@@ -55,7 +55,10 @@ const orgUserSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
-        REFERENCES organizations(id)
+        REFERENCES organizations(id),
+    CONSTRAINT fk_adminId
+      FOREIGN KEY (admin_id)
+        REFERENCES users(id)
   );`
 
 const chatSql = `
@@ -63,7 +66,13 @@ const chatSql = `
     "id" SERIAL,
     "user_id1" INT NOT NULL,
     "user_id2" INT NOT NULL,
-    PRIMARY KEY ("id")
+    PRIMARY KEY ("id"),
+    CONSTRAINT fk_userid1
+      FOREIGN KEY (user_id1)
+        REFERENCES users(id),
+    CONSTRAINT fk_userid2
+      FOREIGN KEY (user_id2)
+        REFERENCES users(id)
   );`
 
 const messageSql = `
@@ -75,7 +84,10 @@ const messageSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
-        REFERENCES chatrooms(id)
+        REFERENCES chatrooms(id),
+    CONSTRAINT fk_senderId
+      FOREIGN KEY (sender_id)
+        REFERENCES users(id)
   );`
 
 async function strip() {
