@@ -4,7 +4,7 @@ const { userTest } = require('../middleware/validate');
 async function addUser(user) {
   try {
     const sql =
-      "INSERT INTO users (firstName, lastName, email, password, organization_id, type, location, interests, bio, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;";
+      'INSERT INTO users ("firstName", "lastName", email, password, organization_id, type, location, interests, bio, img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;';
     const result = await pool.query(sql, [
       user.firstname,
       user.lastname,
