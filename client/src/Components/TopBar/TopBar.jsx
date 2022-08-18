@@ -25,18 +25,16 @@ const TopBar = () => {
       {stateUser ? (
         <div>
           {" "}
-          {
-            (user.type = "admin" && (
-              <Link to="/add-user">
-                <button
-                  type="submit"
-                  className="py-1 px-2 mr-1 rounded-2xl  bg-indigo-600 text-white"
-                >
-                  Add User
-                </button>
-              </Link>
-            ))
-          }
+          {user.type === "admin" && (
+            <Link to="/add-user">
+              <button
+                type="submit"
+                className="py-1 px-2 mr-1 rounded-2xl  bg-indigo-600 text-white"
+              >
+                Add User
+              </button>
+            </Link>
+          )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
             <div className="bg-slate-300 text-neutral-content rounded-full w-8 shadow-lg">
               <span className="text-xl text-black cursor-pointer">L</span>
