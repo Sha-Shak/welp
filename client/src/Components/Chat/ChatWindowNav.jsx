@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { findContactName } from './services'
+import { getChatRoom, getUserInfo } from '../../utils/apiClientService'
+
 
 function ChatWindowNav() {
-    const currentUser = 1
-    const getChat = useSelector((state)=>state.currentChat)
-    const contact = findContactName(getChat,currentUser)[0] 
- 
+    
+  
+
+    const currentRoomId = useSelector((state)=>state.currentChat);
+    console.log(currentRoomId)
+    const [contact, setContact] = useState();
+    console.log(currentRoomId)
+   
+     
+    useEffect(() => {
+
+        const iffy = async ()=>{
+            if(currentRoomId!==0){
+
+            
+            const room = await getChatRoom(currentRoomId); //get the room object
+            console.log(room.data)
+            const currentUser = JSON.parse(localStorage.getItem("data")); //get the current user
+            const otherUserId = room.data.user_id1 === currentUser.id ? room.data.user_id2 : room.data.user_id1; //differentiate the current user from the other user
+            console.log(otherUserId);
+            const data = await getUserInfo(otherUserId); // get the user object
+            setContact(data.data); //set the user object 
+        }
+        }
+    
+        iffy();
+      },[currentRoomId]); 
+
 
    
 
@@ -25,7 +50,7 @@ function ChatWindowNav() {
       
 
             <span className="text-xl font-medium text-gray-300 ml-1">
-                {contact.name}
+                {contact ? (contact.firstname + ' ' + contact.lastname) : null}
             </span>
             </div>
 

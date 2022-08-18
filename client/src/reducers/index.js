@@ -5,6 +5,7 @@ import errors from "./errorReducers";
 import users from "./usersReducer";
 import messages from "./messages.reducer";
 import currentChat from "./currentChat.reducer"
+import currentUsersChats from "./currentUsersChats.reducer";
 
 const rootReducer = combineReducers({
   auth,
@@ -13,7 +14,7 @@ const rootReducer = combineReducers({
 
   messages,
   currentChat,
-
+  currentUsersChats,
   allUsers,
 
 });

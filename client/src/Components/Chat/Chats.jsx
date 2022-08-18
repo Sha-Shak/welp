@@ -3,6 +3,7 @@ import './chat.css'
 import ChatSearch from "./ChatSearch";
 import ContactCard from "./ContactCard";
 import { getCurrentUsersChats } from "../../utils/apiClientService";
+import { useSelector } from "react-redux";
 
 //const currentUsersChats = getCurrentUsersChats();
 
@@ -10,17 +11,9 @@ import { getCurrentUsersChats } from "../../utils/apiClientService";
 
 function Chats() {
 
-  const [currentUsersChats,setCurrentUsersChats] = useState([]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect( ()=>{
-    const iffy = async ()=>{
-      const currentUsersChats = await getCurrentUsersChats(); 
-      setCurrentUsersChats(currentUsersChats);
-    }
-      iffy()
-  },[])
-  console.log(currentUsersChats)
+  
+  const currentUsersChats = useSelector((state)=> state.currentUsersChats);
 
   return (
     <div className="h-90vh ml-6 mr-3 w-1/3">
@@ -33,7 +26,7 @@ function Chats() {
             style={{ height: "70vh" }}
             id="journal-scroll"
           >
-            {currentUsersChats.map((room)=>(
+            {currentUsersChats && currentUsersChats.map((room)=>(
                 <ContactCard room = {room}/>
             )
             

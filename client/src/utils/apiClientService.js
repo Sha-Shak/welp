@@ -36,3 +36,10 @@ export const recommendUser = () => axios.get(`${url}/suggestion`);
 export const deleteUser = (id) =>
   axios.delete(`${url}/organization/user/${id}`);
 
+export const createChat = (id) => axios.post(`${url}/chats`, { userId: id });
+
+export const checkChat = (id) => axios.get(`${url}/chat/check`, { userId: id });
+
+export const getUserInfo = (id) => axios.get(`${url}/user/${id}`);
+
+export const getChatRoom = (id) => axios.get(`${url}/chatroom/${id}`)
