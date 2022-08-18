@@ -8,16 +8,16 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
   const userJson = localStorage.getItem("data");
-<<<<<<< HEAD
+
   const user = JSON.parse(userJson);
   console.log(user);
 
-=======
+
 
   const response = useSelector((state) => state.users);
   // const [user, setUser] = useState(response);
   console.log("changed", response);
->>>>>>> 498e4051137362fb3f054811000739dadf9a3176
+
   const dispatch = useDispatch();
   // useEffect(() => {
   //   setTimeout(() => {
@@ -42,11 +42,7 @@ function AddUserForm() {
       }, 2000);
     });
   };
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 498e4051137362fb3f054811000739dadf9a3176
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">

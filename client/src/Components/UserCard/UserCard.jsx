@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteUser } from "../../actions/users.action.js";
+import {useNavigate} from 'react-router-dom'
 
 const UserCard = ({ user }) => {
+
+  console.log()
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
-  console.log("before change deleteBox val is", deleteBox);
+
+  const navigate = useNavigate();
+  // console.log("before change deleteBox val is", deleteBox);
 
   const handleConfirmDelete = () => {
-    console.log("Confirm delete? ");
+    // console.log("Confirm delete? ");
     setDeleteBox((prevDeleteBox) => !deleteBox);
-    console.log("deleteBox val is", deleteBox);
+    // console.log("deleteBox val is", deleteBox);
   };
+
   const handleDelete = (id) => {
-    console.log("from compo: ", id);
+    // console.log("from compo: ", id);
     dispatch(deleteUser(id));
   };
+
   const handleCancel = () => {
     setDeleteBox(false);
   };
+
+  const handleChatClick = (id) => {
+
+      navigate(`/chat/`+id);
+  }
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (
@@ -57,7 +69,7 @@ const UserCard = ({ user }) => {
               user.interest.map((interest) => <p>{interest}</p>)}
 
             <div className="flex">
-              <button className="btn btn-primary mx-1 rounded-full right-0">
+              <button onClick={() => handleChatClick(user.id)} className="btn btn-primary mx-1 rounded-full right-0">
                 CHAT
               </button>
               <button

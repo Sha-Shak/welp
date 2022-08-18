@@ -1,24 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './chat.css'
 import ChatSearch from "./ChatSearch";
 import ContactCard from "./ContactCard";
+import { getCurrentUsersChats } from "../../utils/apiClientService";
 
-const currentUsersChats = [{
-  chat_id : 1,
-  user_id1 : 1,
-  user_id2 : 2,
-},{
-  chat_id : 2,
-  user_id1 : 1,
-  user_id2 : 3,
-},{
-  chat_id : 3,
-  user_id1 : 4,
-  user_id2 : 1,
-}]
+//const currentUsersChats = getCurrentUsersChats();
+
+
 
 function Chats() {
 
+  const [currentUsersChats,setCurrentUsersChats] = useState([]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect( ()=>{
+    const iffy = async ()=>{
+      const currentUsersChats = await getCurrentUsersChats(); 
+      setCurrentUsersChats(currentUsersChats);
+    }
+      iffy()
+  },[])
+  console.log(currentUsersChats)
 
   return (
     <div className="h-90vh ml-6 mr-3 w-1/3">

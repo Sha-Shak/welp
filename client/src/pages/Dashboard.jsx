@@ -37,13 +37,13 @@ function Dashboard() {
   const user = JSON.parse(localStorage.getItem("data"));
 
   useEffect(() => {
-    console.log("use effect");
+    // console.log("use effect");
     dispatch(getUsers());
   }, [dispatch]);
   const fetchUsers = useSelector((state) => state.allUsers);
-  const orgUsers = fetchUsers.filter((fetchUser) => fetchUser.id != user.id);
+  const orgUsers = fetchUsers.filter((fetchUser) => fetchUser.id !== user.id);
   // const [orgUsers, setOrgUsers] = useState(fetchUsers);
-  console.log("object", orgUsers);
+  // console.log("object", orgUsers);
   return (
     <div data-theme="light">
       <Banner users={orgUsers} />
