@@ -20,6 +20,19 @@ const createTable = async (table) => {
     } 
 }
 
+const removeConstraint = async (table, constraintNames) => {
+  try {
+    for(let i = 0; i < constraintNames.length ; i++) {
+      const sql = `ALTER TABLE "${table}" DROP CONSTRAINT ${constraintNames[i]}`
+      await db.query(sql);
+      console.log(`Dropped constraint ${constraintNames[i]} from ${table} table.`);
+    }
+  } catch (e) {
+    console.error(e.stack);
+  } 
+}
+
+
 const userSql = `
   CREATE TABLE IF NOT EXISTS "users" (
     "id" SERIAL,
@@ -91,8 +104,15 @@ const messageSql = `
         REFERENCES users(id)
   );`
 
-async function strip() {
+async function dropConstraints () {
   await db.connect();
+  await removeConstraint('messages', ['fk_chatid', 'fk_senderId']);
+  await removeConstraint('chatrooms', ['fk_userid1', 'fk_userid2']);
+  await removeConstraint('organizationuser', ['fk_orgId', 'fk_adminId']);
+  await removeConstraint('users', ['fk_orgId']);
+}
+
+async function strip() {
   await dropTableIfExist('message');
   await dropTableIfExist('chat');
   await dropTableIfExist('organizationuser');
@@ -109,5 +129,7 @@ async function build() {
   process.exit(0);
 }
 
-strip()
-  .then(() => build());
+
+dropConstraints().then(() => {
+  strip().then(() => build())
+});

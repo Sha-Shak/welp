@@ -1,5 +1,6 @@
 const { addOrganization, addAdminToOrganization } = require("../models/organization");
 const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/user");
+const { deleteChatForUser } = require("../models/chat");
 const { userTest, validEmail, validPassword } = require("../middleware/validate");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
