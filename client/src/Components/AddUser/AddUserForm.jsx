@@ -1,23 +1,19 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addUserToOrganization,
-  clearCreateUser
+  clearCreateUser,
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
   const userJson = localStorage.getItem("data");
-<<<<<<< HEAD
   const user = JSON.parse(userJson);
   console.log(user);
-
-=======
 
   const response = useSelector((state) => state.users);
   // const [user, setUser] = useState(response);
   console.log("changed", response);
->>>>>>> 498e4051137362fb3f054811000739dadf9a3176
   const dispatch = useDispatch();
   // useEffect(() => {
   //   setTimeout(() => {
