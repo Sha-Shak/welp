@@ -1,8 +1,12 @@
 import React from "react";
 
-function SubmitButton({ buttonText, type }) {
+function SubmitButton({ buttonText, type, disabled }) {
   return (
-    <button type={type} className="btn btn-primary mx-1 rounded-full right-0">
+    <button
+      type={type}
+      disabled={disabled ? "disabled" : null}
+      className="btn btn-primary mx-1 rounded-full right-0"
+    >
       {buttonText}
     </button>
   );

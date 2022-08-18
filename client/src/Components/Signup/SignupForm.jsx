@@ -1,16 +1,17 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createOrg } from "../../actions/users.action.js";
+import { clearError, createOrg } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function SignupForm() {
+  const [btnDisable, setBtnDisable] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.errors);
 
   const handleSwitch = (e) => {
-    console.log(e.target);
     navigate("/login");
   };
   const handleSubmit = (e) => {
@@ -26,7 +27,17 @@ function SignupForm() {
       password: e.target.password.value,
     };
     console.log("component", data);
-    dispatch(createOrg(data));
+    dispatch(createOrg(data)).then(() => {
+      setTimeout(() => {
+        console.log("timeout");
+        dispatch(clearError());
+      }, 3000);
+    });
+  };
+  const handleChangePassword = (e) => {
+    const password = e.target.password;
+    const cPassword = e.target.confirmPassword;
+    console.log(password, cPassword);
   };
 
   return (
@@ -45,6 +56,11 @@ function SignupForm() {
             action="#"
             method="POST"
           >
+            {error && (
+              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                {error}
+              </h2>
+            )}
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
@@ -90,6 +106,7 @@ function SignupForm() {
               </div>
               <div className="mb-4">
                 <TextInput
+                  onChange={(e) => handleChangePassword(e)}
                   id="password"
                   name="password"
                   type="password"
@@ -101,14 +118,18 @@ function SignupForm() {
               <div className="mb-4">
                 <TextInput
                   id="confirmPassword"
-                  name="confirm password"
+                  name="confirmPassword"
                   type="password"
                   autocomplete="off"
                   required
                   placeholder="Confirm Password"
                 />
               </div>
-              <Button type="submit" buttonText="Sign up"></Button>
+              <Button
+                disabled={btnDisable && "disabled"}
+                type="submit"
+                buttonText="Sign up"
+              ></Button>
             </div>
 
             <h6 className="text-xl">
@@ -117,7 +138,7 @@ function SignupForm() {
                 onClick={handleSwitch}
                 className="text-2xl text-indigo-500 cursor-pointer"
               >
-                Log-in{" "}
+                Log-in
               </span>
             </h6>
           </form>

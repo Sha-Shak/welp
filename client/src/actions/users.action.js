@@ -7,6 +7,7 @@ export const createOrg = (data) => async (dispatch) => {
     console.log("from backend", user);
     dispatch({ type: "CREATE_ORG", payload: user });
   } catch (e) {
+    dispatch({ type: "ERROR", payload: e.response.data });
     console.log("createOrg", e);
   }
 };
@@ -24,7 +25,6 @@ export const logIn = (data) => async (dispatch) => {
 };
 
 export const logOut = () => (dispatch) => {
-
   try {
     console.log("lout");
     dispatch({ type: "LOG_OUT" });
