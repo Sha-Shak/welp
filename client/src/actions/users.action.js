@@ -106,6 +106,36 @@ export const recommendUsers = () => async (dispatch) => {
     // console.log("recomme object", data);
     dispatch({ type: "RECOM_USERS", payload: data });
   } catch (e) {
-    console.log("recomended user error", e);
+    console.log("recommended user error", e);
+  }
+};
+export const getOwnProfile = () => async (dispatch) => {
+  try {
+    console.log("get own");
+    const response = await api.getOwnProfile();
+    console.log(response);
+    dispatch({ type: "GET_OWN_PROFILE", payload: response.data });
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const getOtherProfile = (id) => async (dispatch) => {
+  try {
+    console.log("get other");
+    const response = await api.getOtherProfile(id);
+    console.log("get other", response);
+    dispatch({ type: "GET_OTHER_PROFILE", payload: response.data });
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const editUser = (data) => async (dispatch) => {
+  try {
+    console.log("editUser", data);
+    const response = await api.editUser(data);
+    console.log("from server", response);
+    dispatch({ type: "EDIT_PROFILE", payload: response.data });
+  } catch (e) {
+    console.log(e);
   }
 };

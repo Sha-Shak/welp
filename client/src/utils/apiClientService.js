@@ -25,16 +25,16 @@ export const addAdminToOrganization = (data) =>
 
 export const getUsers = () => axios.get(`${url}/organization/users`);
 
-
-
-
 export const getCurrentUsersChats = () => axios.get(`${url}/chats`);
 
-// export const 
-
 export const recommendUser = () => axios.get(`${url}/suggestion`);
+export const getOwnProfile = () => axios.get(`${url}/user`);
+export const getOtherProfile = (id) => axios.get(`${url}/user/${id}`);
 export const deleteUser = (id) =>
   axios.delete(`${url}/organization/user/${id}`);
+<<<<<<< HEAD
+export const editUser = (data) => axios.put(`${url}/user`, data);
+=======
 
 export const createChat = (id) => axios.post(`${url}/chats`, { userId: id });
 
@@ -43,3 +43,4 @@ export const checkChat = (id) => axios.get(`${url}/chat/check`, { userId: id });
 export const getUserInfo = (id) => axios.get(`${url}/user/${id}`);
 
 export const getChatRoom = (id) => axios.get(`${url}/chatroom/${id}`)
+>>>>>>> b6b368170134d3abe9351db9929d530b4c707e87
