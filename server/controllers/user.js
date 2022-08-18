@@ -9,7 +9,8 @@ async function login (req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
-    if (!validEmail(email) || !validPassword(password)) {
+    // if (!validEmail(email) || !validPassword(password)) {
+    if (!email || !password) {
       res.status(401).send('Invalid fields.');
       return;
     }
