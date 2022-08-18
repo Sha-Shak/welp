@@ -23,8 +23,8 @@ const createTable = async (table) => {
 const userSql = `
   CREATE TABLE IF NOT EXISTS "users" (
     "id" SERIAL,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
+    "firstname" TEXT NOT NULL,
+    "lastname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "organization_id" INT, 
@@ -59,7 +59,7 @@ const orgUserSql = `
   );`
 
 const chatSql = `
-  CREATE TABLE IF NOT EXISTS "chat" (
+  CREATE TABLE IF NOT EXISTS "chatrooms" (
     "id" SERIAL,
     "user_id1" INT NOT NULL,
     "user_id2" INT NOT NULL,
@@ -75,7 +75,7 @@ const messageSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
-        REFERENCES chat(id)
+        REFERENCES chatrooms(id)
   );`
 
 async function strip() {

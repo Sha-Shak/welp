@@ -9,8 +9,8 @@ const secret = process.env.JWT_SECRET
 async function createNewOrganization (req, res) {
   try {
 
-    const firstname = req.body.firstName;
-    const lastname = req.body.lastName;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
     const email = req.body.email;
     const password = req.body.password;
 
@@ -102,9 +102,13 @@ async function deleteOrganizationUser(req, res) {
 
 async function addUserToOrganization (req, res) {
   try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
 
     // if (!validEmail(email) || !validPassword(password)) {
-    if (!email || !password) {
+    if (!email || !password || !firstname || !lastname) {
       res.status(401).send('Invalid fields.');
       return;
     }
@@ -112,14 +116,14 @@ async function addUserToOrganization (req, res) {
     if (req.user.type === 'admin') {
       const orgId = req.user.organization_id;
       const salt = bcrypt.genSaltSync(10);
-      const password = bcrypt.hashSync(req.body.password, salt);
+      const encryptedPassword = bcrypt.hashSync(password, salt);
 
       //Validate user information before making request
       const user = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: password,
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        password: encryptedPassword,
         organization_id: orgId,
         type: req.body.type || 'basic',
         location: '',
