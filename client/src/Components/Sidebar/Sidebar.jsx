@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const user = JSON.parse(localStorage.getItem("data"));
-  console.log(user);
+  
   return (
     <div className="h-screen flex flex-col items-center p-3 justify-between shadow-lg border-r-2">
       <div className="avatar placeholder">

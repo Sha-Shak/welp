@@ -4,34 +4,7 @@ import { getUsers, recommendUsers } from "../actions/users.action.js";
 import Banner from "../Components/Banner/Banner";
 import UserCard from "../Components/UserCard/UserCard";
 
-// const orgUsers = [
-//   {
-//     name: "Alesandro1",
-//     interest: ["Football", "Code", "CS"],
-//     profilePic:
-//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-//   },
-//   {
-//     name: "Xavier",
-//     interest: ["Traveling", "Sports", "CS"],
-//     profilePic:
-//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-//   },
 
-//   {
-//     name: "William",
-//     interest: ["Movies", "Code", "CS"],
-//     profilePic:
-//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-//   },
-
-//   {
-//     name: "Alex",
-//     interest: ["Cars", "Code", "CS"],
-//     profilePic:
-//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-//   },
-// ];
 function Dashboard() {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("data"));

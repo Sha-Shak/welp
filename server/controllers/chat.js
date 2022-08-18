@@ -1,4 +1,4 @@
-const { getChats, getMessages, checkForChat, newChat } = require("../models/chat");
+const { getChats, getMessages, checkForChat, newChat, getChatById } = require("../models/chat");
 
 async function createNewChat (req, res) {
   try {
@@ -6,11 +6,12 @@ async function createNewChat (req, res) {
       const userId1 = req.user.id;
       const userId2 = req.body.userId;
 
-      const checkForChat = await checkForChat(userId1, userId2);
+      const checkForChatRes = await checkForChat(userId1, userId2);
+      console.log('createNewChat(): ', checkForChatRes.length);
 
-      if (checkForChat = 0) {
-        const newChat = await newChat(userId1, userId2);
-        res.status(201).send(newChat);
+      if (checkForChatRes.length === 0) {
+        const newChatRes = await newChat(userId1, userId2);
+        res.status(201).send(newChatRes);
       } else {
         res.status(400).send('Chat with this user already exists.');
       }
@@ -56,9 +57,55 @@ async function getChatMessages (req, res) {
 }
 
 
+async function checkIfChatExists (req, res) {
+  try {
+    if (req.user) {
+      const userId1 = req.user.id;
+      const userId2 = req.body.userId;
+
+      const checkForChatRes = await checkForChat(userId1, userId2);
+      console.log('checkIfChat(): ', checkForChatRes.length);
+
+      if (checkForChatRes.length === 0) {
+        res.status(200).send(false);
+      } else {
+        res.status(200).send(checkForChatRes[0]);
+      }
+    } else {
+      res.send(401).send('User is not logged in.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
+async function getChatInfoById (req, res) {
+  try {
+    if (req.user) {
+      const chatId = req.params.id;
+      const result = await getChatById(chatId);
+      if (result.length === 0) {
+        res.status(400).send('Chat does not exist.');
+      } else {
+        res.status(200).send(result[0]);
+      }
+    } else {
+      res.send(401).send('User is not logged in.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
 
 module.exports = {
   getUserChats,
+  getChatInfoById,
   getChatMessages,
-  createNewChat
+  createNewChat,
+  checkIfChatExists
 }

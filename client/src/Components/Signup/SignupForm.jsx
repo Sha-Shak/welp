@@ -11,9 +11,6 @@ function SignupForm() {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
 
-  const handleSwitch = (e) => {
-    navigate("/login");
-  };
   const handleSubmit = (e) => {
     console.log("first from comp");
     e.preventDefault();
@@ -33,7 +30,11 @@ function SignupForm() {
         dispatch(clearError());
       }, 3000);
     });
+    const user = JSON.parse(localStorage.getItem("data"));
+    console.log(user.id);
+    navigate(`/${user.id}/dashboard`);
   };
+
   const handleChangePassword = (e) => {
     const password = e.target.password;
     const cPassword = e.target.confirmPassword;
@@ -135,7 +136,7 @@ function SignupForm() {
             <h6 className="text-xl">
               Already have an account?{" "}
               <span
-                onClick={handleSwitch}
+                onClick={() => navigate('/login')}
                 className="text-2xl text-indigo-500 cursor-pointer"
               >
                 Log-in

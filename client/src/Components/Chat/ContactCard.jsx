@@ -1,17 +1,30 @@
-import React from 'react'
-import { findContactName } from './services';
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
+import {getUserInfo} from '../../utils/apiClientService'
 
 function ContactCard({room}) {
 
-  const currentUser = 1;
-  const contact = findContactName(room,currentUser)[0];
-  const dispatch = useDispatch()
+  const currentUser = JSON.parse(localStorage.getItem("data"));
+  const otherUserId = room.user_id1 === currentUser.id ? room.user_id2 : room.user_id1;
+
+  const [contact, setContact] = useState();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const iffy = async ()=>{
+      const data = await getUserInfo(otherUserId); 
+     
+      setContact(data.data);
+    }
+
+    iffy();
+  }, [otherUserId]);
 
   const handleClick = () => {
     dispatch({
       type : "SET_CHAT",
-      payload : room.chat_id
+      payload : room.id
     })
   }
   return (
@@ -27,7 +40,7 @@ function ContactCard({room}) {
           />
       <div className="">
      
-        <div className="px-3 text-xl">{contact.name}</div>
+        <div className="px-3 text-xl">{contact ? contact.firstname : 'Loading...'}</div>
 
         {/* <div
           className="text-gray-400 px-3"

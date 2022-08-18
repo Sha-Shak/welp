@@ -15,7 +15,17 @@ async function checkForChat (userId1, userId2) {
   try {
     const sql = 'SELECT * FROM chatrooms WHERE (user_id1 = $1 AND user_id2 = $2) OR (user_id1 = $2 AND user_id2 = $1);'
     const result = await pool.query(sql, [userId1, userId2]);
-    return result.rowCount;
+    return result.rows;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
+async function deleteChatForUser (userId) {
+  try {
+    const sql = 'DELETE FROM chatrooms WHERE user_id1 = $1 OR user_id2 = $1;'
+    const result = await pool.query(sql, [userId]);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -31,6 +41,18 @@ async function getChats (user) {
     throw new Error(error.message);
   }
 }
+
+
+async function getChatById (id) {
+  try {
+    const sql = 'SELECT * FROM chatrooms WHERE id = $1;'
+    const result = await pool.query(sql, [id]);
+    return result.rows;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 
 
 async function getMessages (chatId) {
@@ -59,8 +81,10 @@ async function postMessage (message) {
 
 module.exports = {
   newChat,
+  deleteChatForUser,
   checkForChat,
   getChats,
+  getChatById,
   getMessages,
   postMessage
 }

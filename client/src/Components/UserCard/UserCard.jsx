@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
+=======
+import { deleteUser } from "../../actions/users.action.js";
+import {useNavigate} from 'react-router-dom'
+import { checkChat, createChat } from "../../utils/apiClientService.js";
+>>>>>>> b6b368170134d3abe9351db9929d530b4c707e87
 
 const UserCard = ({ user }) => {
   console.log();
@@ -30,16 +36,50 @@ const UserCard = ({ user }) => {
   };
 
   const handleChatClick = (id) => {
+<<<<<<< HEAD
     navigate(`/chat/` + id);
   };
+=======
+
+    // dispatch({
+    //   type: "SET_CHAT",
+    //   payload : id
+    // })
+      checkChat(id)
+        .then(data => {
+          console.log('From handleChatClick: ', data.data);
+          if(data.data === false) {
+            createChat(id)
+              .then(() => {
+                navigate('/chat')}
+                )
+              .catch(() =>{
+                console.log('Error in createChat');
+                navigate('/chat');
+              } )
+          } else {
+            navigate('/chat');
+          }
+        })
+        .catch((e)=>{
+          console.log('Error in checkChat');
+          navigate('/chat');
+        });
+
+      
+
+  }
+>>>>>>> b6b368170134d3abe9351db9929d530b4c707e87
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (
     <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
       <figure>
+       
         <img
           className="rounded-full w-36 h-36"
           src={!user.img_url ? dummyImage : user.img_url}
+          alt="propic"
         />
       </figure>
       <div className="card-body">
