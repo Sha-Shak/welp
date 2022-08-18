@@ -36,7 +36,14 @@ function Dashboard() {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("data"));
 
+
+  useEffect(() => {
+    // console.log("use effect");
+    dispatch(getUsers());
+  }, [dispatch]);
   const fetchUsers = useSelector((state) => state.allUsers);
+
+  
   const [userList, setUserList] = useState(fetchUsers);
   console.log("fetch users", fetchUsers);
   useEffect(() => {
@@ -46,6 +53,7 @@ function Dashboard() {
       dispatch(recommendUsers());
     }
   }, [userList, dispatch]);
+
 
   const orgUsers = fetchUsers.filter((fetchUser) => fetchUser.id !== user.id);
   // const [orgUsers, setOrgUsers] = useState(fetchUsers);

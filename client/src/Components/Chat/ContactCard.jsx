@@ -29,12 +29,12 @@ function ContactCard({room}) {
      
         <div className="px-3 text-xl">{contact.name}</div>
 
-        <div
+        {/* <div
           className="text-gray-400 px-3"
           style={{ fontSize: "16px" }}
         >
          Last Message
-        </div>
+        </div> */}
       </div>
     </span>
   </div></div>

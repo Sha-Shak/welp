@@ -1,28 +1,42 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteUser } from "../../actions/users.action.js";
+import {useNavigate} from 'react-router-dom'
 
 const UserCard = ({ user }) => {
+
+  console.log()
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
-  const userStore = JSON.parse(localStorage.getItem("data"));
-  console.log("card", userStore.type);
+
+  const navigate = useNavigate();
+  // console.log("before change deleteBox val is", deleteBox);
+
   const handleConfirmDelete = () => {
+    // console.log("Confirm delete? ");
     setDeleteBox((prevDeleteBox) => !deleteBox);
+    // console.log("deleteBox val is", deleteBox);
   };
+
   const handleDelete = (id) => {
+    // console.log("from compo: ", id);
     dispatch(deleteUser(id));
   };
+
   const handleCancel = () => {
     setDeleteBox(false);
   };
+
+  const handleChatClick = (id) => {
+
+      navigate(`/chat/`+id);
+  }
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (
     <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
       <figure>
         <img
-          alt="user"
           className="rounded-full w-36 h-36"
           src={!user.img_url ? dummyImage : user.img_url}
         />
@@ -38,14 +52,12 @@ const UserCard = ({ user }) => {
               >
                 CANCEL
               </button>
-              {userStore.type === "admin" && (
-                <button
-                  onClick={(e) => handleDelete(user.id)}
-                  className="btn btn-error mx-1 rounded-full right-0"
-                >
-                  Delete
-                </button>
-              )}
+              <button
+                onClick={(e) => handleDelete(user.id)}
+                className="btn btn-error mx-1 rounded-full right-0"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ) : (
@@ -57,17 +69,15 @@ const UserCard = ({ user }) => {
               user.interest.map((interest) => <p>{interest}</p>)}
 
             <div className="flex">
-              <button className="btn btn-primary mx-1 rounded-full right-0">
+              <button onClick={() => handleChatClick(user.id)} className="btn btn-primary mx-1 rounded-full right-0">
                 CHAT
               </button>
-              {userStore.type === "admin" && (
-                <button
-                  onClick={handleConfirmDelete}
-                  className="btn btn-error mx-1 rounded-full right-0"
-                >
-                  Delete
-                </button>
-              )}
+              <button
+                onClick={handleConfirmDelete}
+                className="btn btn-error mx-1 rounded-full right-0"
+              >
+                Delete
+              </button>
             </div>
           </div>
         )}

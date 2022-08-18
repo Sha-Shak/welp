@@ -7,7 +7,15 @@ import {
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
+  const userJson = localStorage.getItem("data");
+
+  const user = JSON.parse(userJson);
+  console.log(user);
+
   const response = useSelector((state) => state.users);
+  // const [user, setUser] = useState(response);
+  console.log("changed", response);
+
   // const [user, setUser] = useState(response);
   console.log("changed", response);
   const dispatch = useDispatch();

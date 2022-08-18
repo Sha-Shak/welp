@@ -1,4 +1,5 @@
 import * as api from "../utils/apiClientService";
+
 export const createOrg = (data) => async (dispatch) => {
   try {
     console.log("action", data);
@@ -9,6 +10,7 @@ export const createOrg = (data) => async (dispatch) => {
     console.log("createOrg", e);
   }
 };
+
 export const logIn = (data) => async (dispatch) => {
   try {
     console.log("action", data);
@@ -20,7 +22,9 @@ export const logIn = (data) => async (dispatch) => {
     dispatch({ type: "ERROR", payload: e.response.data });
   }
 };
+
 export const logOut = () => (dispatch) => {
+
   try {
     console.log("lout");
     dispatch({ type: "LOG_OUT" });
@@ -28,6 +32,7 @@ export const logOut = () => (dispatch) => {
     console.log("action LogOut", e);
   }
 };
+
 export const addUserToOrganization = (data) => async (dispatch) => {
   try {
     console.log("action add user", data);
@@ -38,6 +43,7 @@ export const addUserToOrganization = (data) => async (dispatch) => {
     console.log("error action add user to org", e);
   }
 };
+
 export const addAdminToOrganization = (data) => async (dispatch) => {
   try {
     // console.log("action add admin", data);
@@ -48,6 +54,7 @@ export const addAdminToOrganization = (data) => async (dispatch) => {
     console.log("error action add admin to org", e);
   }
 };
+
 export const clearError = () => (dispatch) => {
   try {
     dispatch({ type: "CLEAR_ERROR" });
@@ -55,6 +62,7 @@ export const clearError = () => (dispatch) => {
     console.log("action LogOut", e);
   }
 };
+
 export const clearCreateUser = () => (dispatch) => {
   try {
     dispatch({ type: "CLEAR_USER_RES" });
@@ -62,6 +70,7 @@ export const clearCreateUser = () => (dispatch) => {
     console.log("action LogOut", e);
   }
 };
+
 export const clearCreateAdmin = () => (dispatch) => {
   try {
     dispatch({ type: "CLEAR_ADMIN_RES" });
@@ -80,6 +89,7 @@ export const getUsers = () => async (dispatch) => {
     console.log("error get all users", e);
   }
 };
+
 export const deleteUser = (id) => async (dispatch) => {
   try {
     const response = await api.deleteUser(id);

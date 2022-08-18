@@ -6,12 +6,15 @@ function ChatInput() {
 
   const [content, setContent] = useState("")
   const dispatch = useDispatch()
+
   const handleChange = (e)=>{
     
       setContent(e.target.value)
+      
   }
   
   const handleSubmit = () => {
+
     if(content.length){
       dispatch({
         type: 'SEND_MESSAGE',
@@ -23,6 +26,7 @@ function ChatInput() {
   
         }
       })
+      setContent("");
     }
     
   }
@@ -38,6 +42,7 @@ function ChatInput() {
                   className="rounded-full pl-6 pr-12 py-2 focus:outline-none  h-auto placeholder-gray-100 bg-gray-900 text-white"
                   style={{ fontSize: "1rem", width: "100%" }}
                   onChange = {handleChange}
+                  value={content}
                   placeholder="Type a message..."
                   id="typemsg"
                 />
