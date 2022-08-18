@@ -20,7 +20,6 @@ const createTable = async (table) => {
     } 
 }
 
-
 const removeConstraint = async (table, constraintNames) => {
   try {
     for(let i = 0; i < constraintNames.length ; i++) {
@@ -32,6 +31,7 @@ const removeConstraint = async (table, constraintNames) => {
     console.error(e.stack);
   } 
 }
+
 
 const userSql = `
   CREATE TABLE IF NOT EXISTS "users" (
@@ -104,7 +104,6 @@ const messageSql = `
         REFERENCES users(id)
   );`
 
-
 async function dropConstraints () {
   await db.connect();
   await removeConstraint('messages', ['fk_chatid', 'fk_senderId']);
@@ -129,6 +128,7 @@ async function build() {
   await createTable(messageSql);
   process.exit(0);
 }
+
 
 dropConstraints().then(() => {
   strip().then(() => build())

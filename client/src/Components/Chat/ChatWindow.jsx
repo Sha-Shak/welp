@@ -6,8 +6,9 @@ import ChatWindowNav from "./ChatWindowNav";
 import Received from "./Received";
 import Sent from "./Sent";
 import {useSelector} from 'react-redux';
-import { getChatRoom, getUserInfo } from "../../utils/apiClientService";
+import { getChatRoom, getChatMessages } from "../../utils/apiClientService";
 import io from 'socket.io-client';
+
 const socket = io('http://localhost:3001');
 
 function ChatWindow() {
@@ -35,7 +36,10 @@ function ChatWindow() {
 
         try{
           const room = await getChatRoom(currentRoomId)
-            .then(()=>setRoomExists(true))
+            .then(()=>{
+              setRoomExists(true);
+              getChatMessages(currentRoomId).then(data => setMessages(data.data)).catch(e => console.log(e));
+            })
             .catch((err)=> console.log(err))
         }
           catch(e){
@@ -60,6 +64,8 @@ function ChatWindow() {
       console.log('Posted message: ', message);
 
       socket.emit("send_message", message);
+
+      setMessages(prevList => [...prevList, message]);
     }
 
   return (
@@ -77,8 +83,8 @@ function ChatWindow() {
                 >
                   {messages.map((msg)=>(
                     <>
-                    { msg.sender_id === user && <Sent content={msg.content} /> }
-                    { msg.sender_id !== user && <Received content={msg.content}/> }
+                    { msg.sender_id === user.id && <Sent content={msg.content} /> }
+                    { msg.sender_id !== user.id && <Received content={msg.content}/> }
                     
                     {/* <Call/> */}
                     </>
