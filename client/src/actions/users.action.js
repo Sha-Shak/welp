@@ -7,6 +7,7 @@ export const createOrg = (data) => async (dispatch) => {
     console.log("from backend", user);
     dispatch({ type: "CREATE_ORG", payload: user });
   } catch (e) {
+    dispatch({ type: "ERROR", payload: e.response.data });
     console.log("createOrg", e);
   }
 };
@@ -24,7 +25,6 @@ export const logIn = (data) => async (dispatch) => {
 };
 
 export const logOut = () => (dispatch) => {
-
   try {
     console.log("lout");
     dispatch({ type: "LOG_OUT" });
@@ -35,9 +35,9 @@ export const logOut = () => (dispatch) => {
 
 export const addUserToOrganization = (data) => async (dispatch) => {
   try {
-    // console.log("action add user", data);
+    console.log("action add user", data);
     const response = await api.addUserToOrganization(data);
-    // console.log(response);
+    console.log(response);
     dispatch({ type: "ADD_USER_TO_ORG", payload: response });
   } catch (e) {
     console.log("error action add user to org", e);
