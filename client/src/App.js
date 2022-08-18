@@ -29,6 +29,12 @@ function App() {
                 <Route path="/edit-admin" element={<EditAdmin />} />
                 <Route path="/edit-user" element={<EditUser />} />
                 <Route path="/chat" element={<Chat />} />
+                <Route
+                  path="*"
+                  element={
+                    <p>STOP EMBARASSING YOURSELF! Route doesn't exist</p>
+                  }
+                />
               </Routes>
             </BrowserRouter>
           </div>

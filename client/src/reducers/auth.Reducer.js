@@ -15,6 +15,9 @@ export default function auth(state = [], action) {
       return (state = user);
     case "LOG_OUT":
       localStorage.clear();
+      state = [];
+      return state;
+      break;
     default:
       return state;
   }

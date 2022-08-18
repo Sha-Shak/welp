@@ -9,6 +9,7 @@ import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
   const userJson = localStorage.getItem("data");
 
+
   const user = JSON.parse(userJson);
   console.log(user);
 
@@ -18,6 +19,12 @@ function AddUserForm() {
   // const [user, setUser] = useState(response);
   console.log("changed", response);
 
+
+
+
+
+  // const [user, setUser] = useState(response);
+  console.log("changed", response);
   const dispatch = useDispatch();
   // useEffect(() => {
   //   setTimeout(() => {
