@@ -30,9 +30,9 @@ export const logOut = () => (dispatch) => {
 };
 export const addUserToOrganization = (data) => async (dispatch) => {
   try {
-    // console.log("action add user", data);
+    console.log("action add user", data);
     const response = await api.addUserToOrganization(data);
-    // console.log(response);
+    console.log(response);
     dispatch({ type: "ADD_USER_TO_ORG", payload: response });
   } catch (e) {
     console.log("error action add user to org", e);

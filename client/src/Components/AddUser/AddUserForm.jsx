@@ -7,20 +7,11 @@ import {
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
-  const userJson = localStorage.getItem("data");
-  const user = JSON.parse(userJson);
-  console.log(user);
-
   const response = useSelector((state) => state.users);
   // const [user, setUser] = useState(response);
   console.log("changed", response);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     console.log("timeout");
-  //     dispatch(clearCreateUser());
-  //   }, 2000);
-  // }, [user]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("adduser");
@@ -38,6 +29,7 @@ function AddUserForm() {
       }, 2000);
     });
   };
+
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">
