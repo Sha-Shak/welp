@@ -14,11 +14,11 @@ async function createNewOrganization (req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
-    const validTest = userTest(firstname, lastname, email, password);
-    if (validTest.length > 0) {
-      res.status(401).send('Invalid fields.');
-      return;
-    }
+    // const validTest = userTest(firstname, lastname, email, password);
+    // if (validTest.length > 0) {
+    //   res.status(401).send('Invalid fields.');
+    //   return;
+    // }
 
     const checkUser = await getUserByEmail(req.body.email);
     if (checkUser.length < 1) {
@@ -103,7 +103,8 @@ async function deleteOrganizationUser(req, res) {
 async function addUserToOrganization (req, res) {
   try {
 
-    if (!validEmail(email) || !validPassword(password)) {
+    // if (!validEmail(email) || !validPassword(password)) {
+    if (!email || !password) {
       res.status(401).send('Invalid fields.');
       return;
     }
