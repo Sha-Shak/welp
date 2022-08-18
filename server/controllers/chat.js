@@ -87,7 +87,7 @@ async function getChatInfoById (req, res) {
       const chatId = req.params.id;
       const result = await getChatById(chatId);
       if (result.length === 0) {
-        res.status(400).send('Chat does not exist.');
+        res.status(400).send('Chat does not exist. ID: ' + chatId);
       } else {
         res.status(200).send(result[0]);
       }

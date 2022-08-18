@@ -26,8 +26,8 @@ function Chats() {
             style={{ height: "70vh" }}
             id="journal-scroll"
           >
-            {currentUsersChats && currentUsersChats.map((room)=>(
-                <ContactCard room = {room}/>
+            {currentUsersChats && currentUsersChats.map((room, key)=>(
+                <ContactCard room = {room} key={key} />
             )
             
             )}
