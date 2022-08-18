@@ -102,11 +102,13 @@ async function deleteOrganizationUser(req, res) {
 
 async function addUserToOrganization (req, res) {
   try {
-    
     const email = req.body.email;
     const password = req.body.password;
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+
     // if (!validEmail(email) || !validPassword(password)) {
-    if (!email || !password) {
+    if (!email || !password || !firstname || !lastname) {
       res.status(401).send('Invalid fields.');
       return;
     }
