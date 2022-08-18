@@ -1,13 +1,17 @@
 // helpers
-const lengthFilter = (input) => {
-  return input.length < 25 && input.length > 6
+const lengthFilter = (input, long=25, short=2) => {
+  return input.length < long && input.length > short
 }
 
 // User
+const userName = (first, last) => {
+  return lengthFilter(first) && lengthFilter(last);
+}
+
 //email
 const validEmail = (email) => {
-  const valid = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}$/; 
-  return email.match(valid) && lengthFilter(email);
+  const valid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+  return valid.test(email) && lengthFilter(email, 40, 5);
 }
 
 // password
@@ -16,13 +20,18 @@ const validPassword = (password) => {
   const lower = /[a-z]/.test(password) ? 1 : 0;
   const upper = /[A-Z]/.test(password) ? 1 : 0;
   const digit = /\d/.test(password) ? 1 : 0;
-  const special = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(password) ? 1 : 0;
+  const special = /[~`!#$%\^&*+=\@\-\[\]\\';,/{}|\\":<>\?]/g.test(password) ? 1 : 0;
   const res = lower + upper + digit + special;
-  return res >= 4 && lengthFilter(password);
+  return res >= 4 && lengthFilter(password, 15, 8);
 }
 
-// need to add for other user inputs
-
+const userTest = (first, last, email, password) => {
+  const fails = [];
+  if (!userName(first, last)) {fails.push( first +' '+ last)};
+  if (!validEmail(email)) {fails.push(email)};
+  if (!validPassword(password)) {fails.push(password)}
+  return fails;
+}
 
 // organization
 const validOrgName = (orgName) => {
@@ -33,3 +42,24 @@ const validOrgType = (orgType) => {
   return orgType === 'Institution' || orgType === 'Corporation';
 }
 
+
+//Edit profile
+const fields = ['id', 'firstname', 'lastname', 'email', 'password', 'organization_id', 'type', 'location', 'interests', 'bio', 'img_url', 'orgname'];
+
+const validEditFields = (editFields) => {
+  const editFieldKeys = Object.keys(editFields);
+
+  for(i=0; i<fields.length; i++) {
+    if(editFieldKeys.indexOf(fields[i]) < 0)
+      return false;
+    }
+    
+  return true
+}
+
+module.exports = {
+  validEditFields,
+  validEmail,
+  validPassword,
+  userTest
+};

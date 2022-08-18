@@ -22,5 +22,6 @@ router.get('/suggestion', authMiddleware, userController.getSuggestions);
 //Chat routes
 router.get('/chats', authMiddleware, chatController.getUserChats);
 router.get('/chat/:id', authMiddleware, chatController.getChatMessages);
+router.post('/chats', authMiddleware, chatController.createNewChat);
 
 module.exports = router;
