@@ -1,38 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../actions/users.action.js";
 import Banner from "../Components/Banner/Banner";
+import UserCard from "../Components/UserCard/UserCard";
 
-const orgUsers = [
-  {
-    name: "Alesandro",
-    interest: ["Football", "Code", "CS"],
-    profilePic:
-      "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-  },
-  {
-    name: "Xavier",
-    interest: ["Traveling", "Sports", "CS"],
-    profilePic:
-      "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-  },
+// const orgUsers = [
+//   {
+//     name: "Alesandro1",
+//     interest: ["Football", "Code", "CS"],
+//     profilePic:
+//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
+//   },
+//   {
+//     name: "Xavier",
+//     interest: ["Traveling", "Sports", "CS"],
+//     profilePic:
+//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
+//   },
 
-  {
-    name: "William",
-    interest: ["Movies", "Code", "CS"],
-    profilePic:
-      "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-  },
+//   {
+//     name: "William",
+//     interest: ["Movies", "Code", "CS"],
+//     profilePic:
+//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
+//   },
 
-  {
-    name: "Alex",
-    interest: ["Cars", "Code", "CS"],
-    profilePic:
-      "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
-  },
-];
+//   {
+//     name: "Alex",
+//     interest: ["Cars", "Code", "CS"],
+//     profilePic:
+//       "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png",
+//   },
+// ];
 function Dashboard() {
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("data"));
+
+  useEffect(() => {
+    console.log("use effect");
+    dispatch(getUsers());
+  }, [dispatch]);
+  const fetchUsers = useSelector((state) => state.allUsers);
+  const orgUsers = fetchUsers.filter((fetchUser) => fetchUser.id != user.id);
+  // const [orgUsers, setOrgUsers] = useState(fetchUsers);
+  console.log("object", orgUsers);
   return (
     <div data-theme="light">
-      <Banner />
+      <Banner users={orgUsers} />
       <h1 className="text-3xl mt-3 mb-3 pb-2 border-b-2 border-gray-100">
         Organization User
       </h1>
@@ -47,27 +61,7 @@ function Dashboard() {
             </button>
           </div>
         ) : (
-          orgUsers.map((user) => (
-            <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
-              <figure>
-                <img className="rounded-full w-36 h-36" src={user.profilePic} />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title text-2xl border-b-2 border-gray-200">
-                  {user.name}
-                </h2>
-                <p>JavaScript, Code, CS</p>
-                <div className="flex">
-                  <button className="btn btn-primary mx-1 rounded-full right-0">
-                    CHAT
-                  </button>
-                  <button className="btn btn-error mx-1 rounded-full right-0">
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))
+          orgUsers.map((user) => <UserCard key={user.id} user={user} />)
         )}
       </div>
     </div>

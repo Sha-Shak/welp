@@ -1,37 +1,52 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addUserToOrganization } from "../../actions/users.action.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addUserToOrganization,
+  clearCreateUser,
+} from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
   const userJson = localStorage.getItem("data");
+<<<<<<< HEAD
   const user = JSON.parse(userJson);
   console.log(user);
-<<<<<<< HEAD
+
+=======
+
+  const response = useSelector((state) => state.users);
+  // const [user, setUser] = useState(response);
+  console.log("changed", response);
+>>>>>>> 498e4051137362fb3f054811000739dadf9a3176
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     console.log("timeout");
+  //     dispatch(clearCreateUser());
+  //   }, 2000);
+  // }, [user]);
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("adduser");
     const newUser = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
       password: e.target.password.value,
-      type: user.type,
-      orgId: user.organization_id,
     };
-    dispatch(addUserToOrganization(newUser));
+    console.log("from add user comp: ", newUser);
+    dispatch(addUserToOrganization(newUser)).then(() => {
+      setTimeout(() => {
+        console.log("timeout");
+        dispatch(clearCreateUser());
+      }, 2000);
+    });
   };
+<<<<<<< HEAD
+
+
 =======
-  // const handleSubmit = () => {
-  //   const newUser = {
-  //     firstname: e.target.firstname.value,
-  //     lastname: e.target.lastname.value,
-  //     email: e.target.email.value,
-  //     password: e.target.password
-  //     // orgname: user.
-  //   };
-  // };
->>>>>>> 99a6b81bca96fdaa4359e3dd53c7d5fdd4ce4e23
+>>>>>>> 498e4051137362fb3f054811000739dadf9a3176
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">
@@ -43,11 +58,22 @@ function AddUserForm() {
             </h1>
           </div>
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             className="mt-8 space-y-6"
             action="#"
             method="POST"
           >
+            {response.status &&
+              (response.status > 201 ? (
+                <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                  Something went wrong
+                </h2>
+              ) : (
+                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-[#73aa34]">
+                  User created Successfully!
+                </h2>
+              ))}
+
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
