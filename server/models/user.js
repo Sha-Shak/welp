@@ -1,4 +1,5 @@
 const pool = require("./db");
+const { userTest } = require('../middleware/validate');
 
 async function addUser(user) {
   try {
@@ -16,6 +17,7 @@ async function addUser(user) {
       user.bio,
       user.img_url,
     ]);
+
     return result.rows[0];
   } catch (error) {
     throw new Error(error.message);

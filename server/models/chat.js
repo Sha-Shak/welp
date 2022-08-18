@@ -1,14 +1,26 @@
 const pool = require("./db");
 
-async function newChat (chatId, userId1, userId2) {
+async function newChat (userId1, userId2) {
   try {
-    const sql = 'INSERT INTO chat (id, user_id1, user_id2) VALUES ($1, $2, $3) RETURNING id;'
-    const result = await pool.query(sql, [chatId, userId1, userId2]);
+    const sql = 'INSERT INTO chatrooms (user_id1, user_id2) VALUES ($1, $2) RETURNING *;'
+    const result = await pool.query(sql, [userId1, userId2]);
     return result.rows[0];
   } catch (error) {
     throw new Error(error.message);
   }
 }
+
+
+async function checkForChat (userId1, userId2) {
+  try {
+    const sql = 'SELECT * FROM chatrooms WHERE (user_id1 = $1 AND user_id2 = $2) OR (user_id1 = $2 AND user_id2 = $1);'
+    const result = await pool.query(sql, [userId1, userId2]);
+    return result.rowCount;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 
 async function getChats (user) {
   try {
@@ -47,6 +59,7 @@ async function postMessage (message) {
 
 module.exports = {
   newChat,
+  checkForChat,
   getChats,
   getMessages,
   postMessage
