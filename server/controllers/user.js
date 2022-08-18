@@ -59,10 +59,8 @@ async function getProfile (req, res) {
   try {
     if (req.user) {
       const id = req.params.id;
-      console.log('ID: ', id);
       const userList = await getUserById(id);
       const user = userList[0];
-      console.log('User: ', user);
 
       if (req.user.organization_id === user.organization_id)
         res.status(200).send(user);

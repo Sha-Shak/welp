@@ -21,3 +21,18 @@ const users = [
       }
       return users.filter((user)=>user.id===room.user_id1);
   }
+
+
+  export const getTime = (timestamp) => {
+    const date = new Date(timestamp);
+    let hours = date.getHours();
+    const minutes = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes();
+
+    const amOrPm = hours >= 12 ? 'pm' : 'am';
+
+    if (amOrPm === 'pm') {
+      hours = hours - 12;
+    }
+
+    return hours + ':' + minutes + ' ' + amOrPm;
+  }

@@ -71,7 +71,7 @@ async function postMessage (message) {
     const now = new Date();
     const sql = 'INSERT INTO messages (content, chat_id, sender_id, timestamp) VALUES ($1, $2, $3, $4) RETURNING *;'
     const result = await pool.query(sql, [message.content, message.chat_id, message.sender_id, now]);
-    return result.rows;
+    return result.rows[0];
   } catch (error) {
     throw new Error(error.message);
   }
