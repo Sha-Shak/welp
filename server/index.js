@@ -5,6 +5,7 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 const router = require('./router');
 const pool = require('./models/db');
+const { postMessage } = require('./models/chat');
 const SERVER_PORT = process.env.SERVER_PORT || 3001;
 
 const corsConfig = {
@@ -62,6 +63,7 @@ io.on('connection', (socket) => {
   })
   
   socket.on('send_message', (data) => {
+    postMessage(data);
     socket.to(data.room_id).emit('receive_message', data);
   })
 
