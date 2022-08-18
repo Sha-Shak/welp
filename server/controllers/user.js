@@ -1,4 +1,5 @@
 const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers } = require("../models/user");
+const { validEmail, validPassword, validEditFields } = require("../middleware/validate");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const validate = require("../middleware/validate");
@@ -9,7 +10,7 @@ async function login (req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
-    if (!email || !password) {
+    if (!validEmail(email) || !validPassword(password)) {
       res.status(401).send('Invalid fields.');
       return;
     }
@@ -81,7 +82,7 @@ async function editProfile (req, res) {
       const id = req.user.id;
       const newInfo = req.body;
       
-      if (validate.validEditFields(newInfo)) {
+      if (validEditFields(newInfo)) {
         const result = await editUser(id, newInfo);
         res.status(200).send(result);
       } else {

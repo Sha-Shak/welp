@@ -1,5 +1,6 @@
 const { addOrganization, addAdminToOrganization } = require("../models/organization");
 const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/user");
+const { userTest, validEmail, validPassword } = require("../middleware/validate");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const secret = process.env.JWT_SECRET
@@ -7,18 +8,30 @@ const secret = process.env.JWT_SECRET
 
 async function createNewOrganization (req, res) {
   try {
+
+    const firstname = req.body.firstName;
+    const lastname = req.body.lastName;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const validTest = userTest(firstname, lastname, email, password);
+    if (validTest.length > 0) {
+      res.status(401).send('Invalid fields.');
+      return;
+    }
+
     const checkUser = await getUserByEmail(req.body.email);
     if (checkUser.length < 1) {
       const org = {name: req.body.orgName, type: req.body.type};
       const queryResult = await addOrganization(org);
-
+      
       const salt = bcrypt.genSaltSync(10);
       const password = bcrypt.hashSync(req.body.password, salt);
   
       const user = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
         password: password,
         organization_id: queryResult.id,
         type: 'admin',
@@ -27,7 +40,7 @@ async function createNewOrganization (req, res) {
         bio: '',
         img_url: ''
       }
-  
+      
       const addUserRes = await addUser(user);
       addUserRes.orgname = req.body.orgName;
   
@@ -89,6 +102,12 @@ async function deleteOrganizationUser(req, res) {
 
 async function addUserToOrganization (req, res) {
   try {
+
+    if (!validEmail(email) || !validPassword(password)) {
+      res.status(401).send('Invalid fields.');
+      return;
+    }
+
     if (req.user.type === 'admin') {
       const orgId = req.user.organization_id;
       const salt = bcrypt.genSaltSync(10);
