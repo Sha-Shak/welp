@@ -22,11 +22,18 @@ function ChatWindow() {
   console.log(currentRoomId)
 
   useEffect(() => {
-    socket.emit('join_room', currentRoomId);
-
     socket.on('receive_message', (data) => {
-      setMessages(prevList => [...prevList, data]);
+      console.log('Recieved message: ', data);
+      setMessages(prevList => {
+        const filteredList = prevList.filter(message => message.id != data.id);
+        filteredList.push(data);
+        return filteredList;
+      });
     })
+  }, [])
+
+  useEffect(() => {
+    socket.emit('join_room', currentRoomId);
   }, [currentRoomId])
  
    
@@ -65,6 +72,8 @@ function ChatWindow() {
 
       socket.emit("send_message", message);
 
+      message.timestamp = new Date();
+
       setMessages(prevList => [...prevList, message]);
     }
 
@@ -83,8 +92,8 @@ function ChatWindow() {
                 >
                   {messages.map((msg)=>(
                     <>
-                    { msg.sender_id === user.id && <Sent content={msg.content} /> }
-                    { msg.sender_id !== user.id && <Received content={msg.content}/> }
+                    { msg.sender_id === user.id && <Sent content={msg.content} timestamp={msg.timestamp} /> }
+                    { msg.sender_id !== user.id && <Received content={msg.content} timestamp={msg.timestamp} /> }
                     
                     {/* <Call/> */}
                     </>

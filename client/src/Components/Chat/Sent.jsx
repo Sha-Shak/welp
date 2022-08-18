@@ -1,6 +1,10 @@
 import React from 'react'
+import { getTime } from './services'
 
-function Sent({content}) {
+function Sent({ content, timestamp }) {
+
+  const time = getTime(timestamp);
+  
   return (
     <div>
         <div className="flex justify-end pt-2 p-[1rem]">
@@ -13,7 +17,7 @@ function Sent({content}) {
                     className="text-gray-400 pl-3"
                     style={{ fontSize: "16px" }}
                   >
-                    02.30am
+                    {time}
                   </span>
                 </span>
               </div>

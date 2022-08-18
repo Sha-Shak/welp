@@ -62,9 +62,9 @@ io.on('connection', (socket) => {
     socket.join(room_id);
   })
   
-  socket.on('send_message', (data) => {
-    postMessage(data);
-    socket.to(data.room_id).emit('receive_message', data);
+  socket.on('send_message', async (data) => {
+    const postRes = await postMessage(data);
+    socket.to(data.chat_id).emit('receive_message', postRes);
   })
 
   // video calling points
