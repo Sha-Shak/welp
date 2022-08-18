@@ -25,7 +25,7 @@ const TopBar = () => {
           <div className="ml-1 avatar placeholder">
             <div className="bg-slate-300 text-neutral-content rounded-full w-8 shadow-lg">
               <span className="text-xl text-black cursor-pointer">
-                {user && user.firstname.charAt(0)}
+                {/* {user && user.firstname.charAt(0)} */}
               </span>
             </div>
           </div>
