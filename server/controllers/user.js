@@ -1,4 +1,5 @@
 const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers } = require("../models/user");
+const { validEmail, validPassword } = require("../middleware/validate");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const secret = process.env.JWT_SECRET
@@ -8,7 +9,7 @@ async function login (req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
-    if (!email || !password) {
+    if (!validEmail(email) || !validPassword(password)) {
       res.status(401).send('Invalid fields.');
       return;
     }
