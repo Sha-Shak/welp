@@ -33,10 +33,8 @@ function LoginForm() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    // console.log("component", data);
     await dispatch(logIn(data)).then(() => {
       setTimeout(() => {
-        console.log("timeout");
         dispatch(clearError());
       }, 3000);
     });

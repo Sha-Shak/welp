@@ -1,6 +1,7 @@
 const { addOrganization, addAdminToOrganization } = require("../models/organization");
 const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/user");
 const { deleteChatForUser } = require("../models/chat");
+const sendMail = require('../middleware/welcomeEmail');
 const { userTest, validEmail, validPassword } = require("../middleware/validate");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -53,6 +54,7 @@ async function createNewOrganization (req, res) {
       await addAdminToOrganization(admin);
 
       const token = jwt.sign({id: addUserRes.id}, secret, {expiresIn:'1h'});
+      sendMail(user.email, user.type);
       res.setHeader('Authorization', 'Bearer ' + token);
       res.status(201).send(addUserRes);
     } else {
@@ -154,6 +156,8 @@ async function addUserToOrganization (req, res) {
         res.status(401).send('This email is already in use.');
       }
 
+      sendMail(email, type);
+      res.status(200).send(result);
     } else {
       res.status(403).send('You do not have admin access for this organization.');
     }

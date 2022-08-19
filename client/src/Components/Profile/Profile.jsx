@@ -26,11 +26,18 @@ const Profile = () => {
         </figure>
       </div>
       <div>
-        <h4>{`${user.firstname} ${user.lastname}`}</h4>
-        <h4>{user.bio ? user.bio : "No bio available"}</h4>
-        <h4>{user.email}</h4>
-        <h4>{user.location ? user.location : "Please Add location"}</h4>
-        {user.interest && user.interest.map((inter) => <h4>{inter}</h4>)}
+        <h4 className="text-lg text-left font-normal">
+          Name: {`${user.firstname} ${user.lastname}`}
+        </h4>
+        <h4 className="text-lg text-left font-normal">
+          Bio: {user.bio ? user.bio : "No bio available"}
+        </h4>
+        <h4 className="text-lg text-left font-normal">Email: {user.email}</h4>
+        <h4 className="text-lg text-left font-normal">
+          Location: {user.location ? user.location : "Please Add location"}
+        </h4>
+        {user.interest &&
+          user.interest.map((inter) => <h4>Interests: {inter}</h4>)}
       </div>
     </div>
   );

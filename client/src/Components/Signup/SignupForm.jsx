@@ -11,7 +11,7 @@ function SignupForm() {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     console.log("first from comp");
     e.preventDefault();
 
@@ -24,9 +24,8 @@ function SignupForm() {
       password: e.target.password.value,
     };
     console.log("component", data);
-    dispatch(createOrg(data)).then(() => {
+    await dispatch(createOrg(data)).then(() => {
       setTimeout(() => {
-        console.log("timeout");
         dispatch(clearError());
       }, 3000);
     });
@@ -136,7 +135,7 @@ function SignupForm() {
             <h6 className="text-xl">
               Already have an account?{" "}
               <span
-                onClick={() => navigate('/login')}
+                onClick={() => navigate("/login")}
                 className="text-2xl text-indigo-500 cursor-pointer"
               >
                 Log-in
