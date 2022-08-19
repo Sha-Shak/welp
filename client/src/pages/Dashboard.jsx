@@ -46,11 +46,13 @@ function Dashboard() {
             <h2 className="text-dark text-3xl mt-16 mb-10 items-center">
               You don't have any users yet
             </h2>
-            <Link to="/add-user">
-              <button className="btn btn-primary mx-1 rounded-full right-0">
-                Add your first user
-              </button>
-            </Link>
+            {user.type === "admin" ? (
+              <Link to="/add-user">
+                <button className="btn btn-primary mx-1 rounded-full right-0">
+                  Add your first user
+                </button>
+              </Link>
+            ) : null}
           </div>
         ) : (
           orgUsers.map((user) => <UserCard key={user.id} user={user} />)
