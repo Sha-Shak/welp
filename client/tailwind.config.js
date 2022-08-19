@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         banner:
-          "url('https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660812758/984a46bbc7c91867217a74c2826052ee_y1hzfd.gif')",
+          "url('https://res.cloudinary.com/dgn4bscl4/image/upload/v1660900370/1152-blue-waves_th7lql.gif')",
       },
     },
   },

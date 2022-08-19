@@ -10,7 +10,6 @@ import Chat from "./pages/Chat";
 import Dashboard from "./pages/Dashboard";
 import EditAdmin from "./pages/EditAdmin";
 import EditUser from "./pages/EditUser";
-import Messaging from "./pages/Messaging";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
 
@@ -33,7 +32,9 @@ function App() {
                 <Route path="/edit-user" element={<EditUser />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/:id/dashboard" element={<Dashboard />} />
-                <Route path="/messaging" element={<Messaging />} />
+                {
+                  //<Route path="/messaging" element={<Messaging />} />
+                }
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route
                   path="*"

@@ -43,7 +43,7 @@ const Sidebar = () => {
         </div>
         <div className="my-3 placeholder">
           <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-12 shadow-xl">
-            <Link to="/messaging" className="text-xl text-black cursor-pointer">
+            <Link to="/chat" className="text-xl text-black cursor-pointer">
               <img
                 src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/message_gfibrm.png"
                 height="50px"

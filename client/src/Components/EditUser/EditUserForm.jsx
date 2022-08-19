@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editUser } from "../../actions/users.action.js";
@@ -9,21 +8,29 @@ function EditUserForm() {
   console.log("loop check", user);
   const dispatch = useDispatch();
   const [image, setImage] = useState("");
-  const [url, setUrl] = useState("");
-  const uploadImage = () => {
+  const [showBtn, setShowBtn] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [url, setUrl] = useState(user.img_url);
+  const handleShowBtn = () => {
+    setShowBtn(true);
+  };
+  const uploadImage = async () => {
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "welp");
+    data.append("upload_preset", "WelpImages");
     data.append("api_key", "456122925996564");
     data.append("cloud_name", "dgn4bscln4");
-    axios
-      .post("https://api.cloudinary.com/v1_1/dgn4bscln4/image/upload", data)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setUrl(data.url);
-        console.log(data.url);
-      })
-      .catch((err) => console.log(err));
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/dgn4bscln4/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const dataImg = await response.json();
+    const getUrl = dataImg.secure_url;
+    setUrl(getUrl);
+    setPreviewImage(getUrl);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,11 +41,12 @@ function EditUserForm() {
       bio: e.target.bio.value,
       interests: interestArray,
       location: e.target.location.value,
-      password: e.target.password.value,
+      img_url: url,
     };
     const newData = { ...user, ...data };
     dispatch(editUser(newData)).then(() => {
       e.target.reset();
+      setPreviewImage("");
     });
   };
   return (
@@ -60,11 +68,21 @@ function EditUserForm() {
               <div>
                 <input
                   type="file"
+                  onClick={handleShowBtn}
                   onChange={(e) => setImage(e.target.files[0])}
-                ></input>
+                />
+                {showBtn && (
+                  <button
+                    type="button"
+                    onClick={uploadImage}
+                    className="py-1 px-3 bg-indigo-500 text-white rounded-2xl"
+                  >
+                    Upload
+                  </button>
+                )}
               </div>
               <div>
-                <img src={url} />
+                <img crossOrigin="anonymous" src={previewImage} />
               </div>
             </div>
             <div className="rounded-md shadow-md p-8 ">
@@ -118,20 +136,21 @@ function EditUserForm() {
                   placeholder="Interests"
                 />
               </div>
-              <div className="mb-4">
-                <TextInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  autocomplete="off"
-                  required
-                  placeholder="Password"
-                />
-              </div>
+              {
+                // <div className="mb-4">
+                //   <TextInput
+                //     id="password"
+                //     name="password"
+                //     type="password"
+                //     autocomplete="off"
+                //     required
+                //     placeholder="Password"
+                //   />
+                // </div>
+              }
 
               <div className="flex justify-center items-center">
                 <button
-                  onClick={uploadImage}
                   type="submit"
                   className="btn rounded-full bg-white text-indigo-500 mr-2"
                 >
