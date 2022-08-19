@@ -13,7 +13,7 @@ const socket = io('http://localhost:3001');
 
 function ChatWindow() {
 
-  const msgs = useSelector((state)=>state.messages);
+ 
   const user = JSON.parse(localStorage.getItem("data"));// get current User
 
   const currentRoomId = useSelector((state)=>state.currentChat);
@@ -25,7 +25,7 @@ function ChatWindow() {
     socket.on('receive_message', (data) => {
       console.log('Recieved message: ', data);
       setMessages(prevList => {
-        const filteredList = prevList.filter(message => message.id != data.id);
+        const filteredList = prevList.filter(message => message.id !== data.id);
         filteredList.push(data);
         return filteredList;
       });
@@ -43,7 +43,7 @@ function ChatWindow() {
 
         try{
           if (currentRoomId > 0) {
-            const room = await getChatRoom(currentRoomId)
+            await getChatRoom(currentRoomId)
               .then(()=>{
                 setRoomExists(true);
                 getChatMessages(currentRoomId).then(data => setMessages(data.data)).catch(e => console.log(e));
@@ -80,11 +80,11 @@ function ChatWindow() {
     }
 
   return (
-    <div className="relative h-90vh mr-6 w-2/3">
+    <div className="border-2 border-slate-300 relative h-90vh mr-6 w-2/3">
    
       {  roomExists &&
       <div className="w-100 h-90vh flex items-center">
-          <div className="h-90vh w-full bg-white rounded shadow-2xl">
+          <div className=" h-90vh w-full bg-white rounded shadow-2xl">
            
               <ChatWindowNav />
                 <div

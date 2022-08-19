@@ -29,18 +29,18 @@ function ContactCard({room}) {
   }
   return (
     <div onClick={handleClick} >  
-       <div className="flex w-full p-[1rem]">
-        <span className="w-full flex ml-1 items-center  h-auto bg-gray-900 text-gray-200 text-xs font-normal rounded-sm px-3 p-4 ">
+       <div className="flex w-full p-[5px]">
+        <span className="border-2 border-slate-300 w-full flex ml-1 items-center  h-auto bg-white font-normal rounded-md px-3 p-4 ">
         <img
             src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660568784/WhatsApp_Image_2022-08-15_at_7.01.32_PM_byfnbw.jpg"
             className="rounded-full shadow-xl"
-            width="60"
-            height="60"
+            width="100"
+            height="100"
             alt="propic"
           />
       <div className="">
      
-        <div className="px-3 text-xl">{contact ? contact.firstname : 'Loading...'}</div>
+        <div className="px-3 text-black text-xl">{contact ? contact.firstname : 'Welp User'}</div>
 
         {/* <div
           className="text-gray-400 px-3"

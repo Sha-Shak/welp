@@ -36,7 +36,7 @@ function ChatWindowNav() {
 
   return (
     <div> 
-        <nav className="h-20 bg-gray-900 rounded-tr rounded-tl flex justify-between items-center">
+        <nav className="h-20 bg-white border-b-2 border-slate-300 rounded-tr rounded-tl flex justify-between items-center">
             <div className="flex justify-center items-center">
             <i className="mdi mdi-arrow-left font-normal text-gray-300 ml-1"></i>
             <img
@@ -48,7 +48,7 @@ function ChatWindowNav() {
             />
       
 
-            <span className="text-xl font-medium text-gray-300 ml-1">
+            <span className="text-xl font-medium text-black ml-1">
                 {contact ? (contact.firstname + ' ' + contact.lastname) : null}
             </span>
             </div>
