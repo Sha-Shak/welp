@@ -39,7 +39,7 @@ export const editUser = (data) => axios.put(`${url}/user`, data);
 
 export const createChat = (id) => axios.post(`${url}/chats`, { userId: id });
 
-export const checkChat = (id) => axios.get(`${url}/chat/check`, { userId: id });
+export const checkChat = (id) => axios.post(`${url}/chat/check`, { userId: id });
 
 export const getUserInfo = (id) => axios.get(`${url}/user/${id}`);
 

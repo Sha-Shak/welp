@@ -1,4 +1,4 @@
-const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers } = require("../models/user");
+const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers, setNewPassword } = require("../models/user");
 const { validEmail, validPassword, validEditFields } = require("../middleware/validate");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -19,10 +19,13 @@ async function login (req, res) {
     const checkUser = await getUserByEmail(email);
 
     if (checkUser.length === 1) {
-      if (bcrypt.compareSync(password, checkUser[0].password)) {
-        const token = jwt.sign({id: checkUser[0].id}, secret, {expiresIn:'1h'});
+      const user = checkUser[0];
+      if (bcrypt.compareSync(password, user.password)) {
+        const token = jwt.sign({id: user.id}, secret, {expiresIn:'1h'});
         res.setHeader('Authorization', 'Bearer ' + token);
-        res.status(200).send(checkUser[0]);
+
+        delete user.password;
+        res.status(200).send(user);
       } else {
         res.status(401).send('Incorrect credentials.');
       }
@@ -44,6 +47,7 @@ async function getOwnProfile (req, res) {
       const id = req.user.id;
       const userList = await getUserById(id);
       const user = userList[0];
+      delete user.password;
       res.status(200).send(user);
     } else {
       res.status(401).send('Unauthorized to see this profile.')
@@ -61,6 +65,7 @@ async function getProfile (req, res) {
       const id = req.params.id;
       const userList = await getUserById(id);
       const user = userList[0];
+      delete user.password;
 
       if (req.user.organization_id === user.organization_id)
         res.status(200).send(user);
@@ -82,6 +87,7 @@ async function getOwnProfile (req, res) {
       const id = req.user.id;
       const userList = await getUserById(id);
       const user = userList[0];
+      delete user.password;
       res.status(200).send(user);
     } else {
       res.status(401).send('Unauthorized to see this profile.')
@@ -138,11 +144,68 @@ async function getSuggestions(req, res) {
 }
 
 
+async function getRandomUser (req, res) {
+  try {
+    if (req.user) {
+      const user = req.user;
+      const randomRes = await getRandomUsers(user);
+
+      if (randomRes.length > 0) {
+        const length = randomRes.length;
+        const randomIndex = Math.floor(Math.random() * length);
+        const randomUser = randomRes[randomIndex];
+        res.status(200).send(randomUser);
+      } else {
+        res.status(200).send([]);
+      }
+    } else {
+      res.status(401).send('Unauthorized to get matches.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
+async function changePassword (req, res) {
+  try {
+    if (req.user) {
+      const user = req.user;
+      const oldPassword = req.body.oldPassword;
+      const newPassword = req.body.newPassword;
+
+      if (bcrypt.compareSync(oldPassword, user.password)) {
+        const salt = bcrypt.genSaltSync(10);
+        const password = bcrypt.hashSync(newPassword, salt);
+
+        await setNewPassword(user.id, password);
+        
+        res.status(200).send(user);
+      } else {
+        res.status(401).send('Incorrect password.');
+      }
+
+
+      const randomRes = await getRandomUsers(user);
+        res.status(200).send(randomRes);
+    } else {
+      res.status(401).send('Unauthorized to get matches.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
 module.exports = {
   login,
   getProfile,
   getOwnProfile,
   editProfile,
   getSuggestions,
-  getOwnProfile
+  getOwnProfile,
+  getRandomUser,
+  changePassword
 }

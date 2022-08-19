@@ -97,7 +97,7 @@ async function getMatches(user) {
     }
 
     const sql =
-      "SELECT * FROM users WHERE ($3 = ANY(interests) OR $4 = ANY(interests) OR $5 = ANY(interests) OR $6 = ANY(interests) OR $7 = ANY(interests)) AND organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
+      "SELECT id, firstname, lastname, email, interests, bio, location, organization_id FROM users WHERE ($3 = ANY(interests) OR $4 = ANY(interests) OR $5 = ANY(interests) OR $6 = ANY(interests) OR $7 = ANY(interests)) AND organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
     const result = await pool.query(sql, [
       user.organization_id,
       user.id,
@@ -112,8 +112,19 @@ async function getMatches(user) {
 async function getRandomUsers(user) {
   try {
     const sql =
-      "SELECT * FROM users WHERE organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
+      "SELECT id, firstname, lastname, email, interests, bio, location, organization_id FROM users WHERE organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
     const result = await pool.query(sql, [user.organization_id, user.id]);
+    return result.rows;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
+async function setNewPassword (userId, password) {
+  try {
+    const sql = "UPDATE users SET password = $1 WHERE id = $2;";
+    const result = await pool.query(sql, [password, userId]);
     return result.rows;
   } catch (error) {
     throw new Error(error.message);
@@ -129,4 +140,5 @@ module.exports = {
   editUser,
   getMatches,
   getRandomUsers,
+  setNewPassword
 };

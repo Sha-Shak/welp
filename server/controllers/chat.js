@@ -7,7 +7,6 @@ async function createNewChat (req, res) {
       const userId2 = req.body.userId;
 
       const checkForChatRes = await checkForChat(userId1, userId2);
-      console.log('createNewChat(): ', checkForChatRes.length);
 
       if (checkForChatRes.length === 0) {
         const newChatRes = await newChat(userId1, userId2);
@@ -64,7 +63,6 @@ async function checkIfChatExists (req, res) {
       const userId2 = req.body.userId;
 
       const checkForChatRes = await checkForChat(userId1, userId2);
-      console.log('checkIfChat(): ', checkForChatRes.length);
 
       if (checkForChatRes.length === 0) {
         res.status(200).send(false);
