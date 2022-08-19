@@ -8,6 +8,7 @@ export default function currentUsersChatsReducer(state=[], action){
             state = action.payload
             return state;   
         }
+       
         default : {
             return state
         }

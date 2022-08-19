@@ -6,9 +6,7 @@ function ContactCard({room}) {
 
   const currentUser = JSON.parse(localStorage.getItem("data"));
   const otherUserId = room.user_id1 === currentUser.id ? room.user_id2 : room.user_id1;
-
   const [contact, setContact] = useState();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,12 +40,7 @@ function ContactCard({room}) {
      
         <div className="px-3 text-black text-xl">{contact ? contact.firstname : 'Welp User'}</div>
 
-        {/* <div
-          className="text-gray-400 px-3"
-          style={{ fontSize: "16px" }}
-        >
-         Last Message
-        </div> */}
+        
       </div>
     </span>
   </div></div>

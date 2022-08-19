@@ -1,6 +1,18 @@
-import React from 'react'
+import { Action } from 'history';
+import React from 'react';
+import {useDispatch} from 'react-redux';
 
 function ChatSearch() {
+  
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    dispatch({
+      type: 'SET_SEARCH_INPUT',
+      payload : e.target.value
+    })
+  }
+
   return (
     <div>
         <nav className="w-full h-20 bg-white rounded-tr rounded-tl flex justify-between items-center">
@@ -12,6 +24,7 @@ function ChatSearch() {
                   className="border-2 border-slate-300 rounded-full pl-6 pr-12 py-2 focus:outline-none  h-auto placeholder-black bg-white text-black"
                   style={{ fontSize: "1rem", width: "100%" }}
                   placeholder="Search..."
+                  onChange={handleChange}
                   id="typemsg"
                 />
               
