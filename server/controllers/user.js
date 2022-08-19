@@ -1,4 +1,4 @@
-const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers } = require("../models/user");
+const { getUserByEmail, getUserById, editUser, getMatches, getRandomUsers, setNewPassword } = require("../models/user");
 const { validEmail, validPassword, validEditFields } = require("../middleware/validate");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -144,11 +144,68 @@ async function getSuggestions(req, res) {
 }
 
 
+async function getRandomUser (req, res) {
+  try {
+    if (req.user) {
+      const user = req.user;
+      const randomRes = await getRandomUsers(user);
+
+      if (randomRes.length > 0) {
+        const length = randomRes.length;
+        const randomIndex = Math.floor(Math.random() * length);
+        const randomUser = randomRes[randomIndex];
+        res.status(200).send(randomUser);
+      } else {
+        res.status(200).send([]);
+      }
+    } else {
+      res.status(401).send('Unauthorized to get matches.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
+async function changePassword (req, res) {
+  try {
+    if (req.user) {
+      const user = req.user;
+      const oldPassword = req.body.oldPassword;
+      const newPassword = req.body.newPassword;
+
+      if (bcrypt.compareSync(oldPassword, user.password)) {
+        const salt = bcrypt.genSaltSync(10);
+        const password = bcrypt.hashSync(newPassword, salt);
+
+        await setNewPassword(user.id, password);
+        
+        res.status(200).send(user);
+      } else {
+        res.status(401).send('Incorrect password.');
+      }
+
+
+      const randomRes = await getRandomUsers(user);
+        res.status(200).send(randomRes);
+    } else {
+      res.status(401).send('Unauthorized to get matches.');
+    }
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+  }
+}
+
+
 module.exports = {
   login,
   getProfile,
   getOwnProfile,
   editProfile,
   getSuggestions,
-  getOwnProfile
+  getOwnProfile,
+  getRandomUser,
+  changePassword
 }

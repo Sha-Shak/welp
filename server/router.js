@@ -17,6 +17,8 @@ router.get('/user', authMiddleware, userController.getOwnProfile);
 router.get('/user/:id', authMiddleware, userController.getProfile);
 router.put('/user', authMiddleware, userController.editProfile);
 router.get('/suggestion', authMiddleware, userController.getSuggestions);
+router.get('/random', authMiddleware, userController.getRandomUser);
+router.put('/password', authMiddleware, userController.changePassword);
 
 
 //Chat routes

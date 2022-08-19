@@ -120,6 +120,17 @@ async function getRandomUsers(user) {
   }
 }
 
+
+async function setNewPassword (userId, password) {
+  try {
+    const sql = "UPDATE users SET password = $1 WHERE id = $2;";
+    const result = await pool.query(sql, [password, userId]);
+    return result.rows;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 module.exports = {
   addUser,
   getUserByEmail,
@@ -129,4 +140,5 @@ module.exports = {
   editUser,
   getMatches,
   getRandomUsers,
+  setNewPassword
 };
