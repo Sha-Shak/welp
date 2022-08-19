@@ -2,7 +2,7 @@ import React from 'react'
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
 
-function ChatInput({ handleSocketSubmit }) {
+function ChatInput({ handleSocketSubmit, justForView }) {
 
   const [content, setContent] = useState("")
   const dispatch = useDispatch()
@@ -28,14 +28,16 @@ function ChatInput({ handleSocketSubmit }) {
         }
       })
       setContent("");
-
+      
     }
+    
     
   }
 
   const handleEnterKey =(e) => {
 
- if(e.key === 'Enter'){   if(content.length){
+ if(e.key === 'Enter'){  
+   if(content.length){
       handleSocketSubmit(content);
       dispatch({
         type: 'SEND_MESSAGE',
@@ -48,8 +50,10 @@ function ChatInput({ handleSocketSubmit }) {
         }
       })
       setContent("");
+      
+    }
+  }
 
-    }}
   } 
 
   return (

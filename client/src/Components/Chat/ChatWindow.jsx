@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import Call from "./Call";
 import './chat.css'
 import ChatInput from "./ChatInput";
@@ -13,27 +13,34 @@ const socket = io('http://localhost:3001');
 
 function ChatWindow() {
 
- 
   const user = JSON.parse(localStorage.getItem("data"));// get current User
 
   const currentRoomId = useSelector((state)=>state.currentChat);
   const [roomExists, setRoomExists] = useState(false);
   const [messages, setMessages] = useState([]);
-  console.log(currentRoomId)
+  const justForViewRef = useRef();
+ 
+  const justForView = () => {
+    if (justForViewRef.current) {
+      justForViewRef.current.scrollIntoView();
+    }
+  }
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
-      console.log('Recieved message: ', data);
+      
       setMessages(prevList => {
         const filteredList = prevList.filter(message => message.id !== data.id);
         filteredList.push(data);
         return filteredList;
       });
     })
+    
   }, [])
 
   useEffect(() => {
     socket.emit('join_room', currentRoomId);
+    
   }, [currentRoomId])
  
    
@@ -59,6 +66,7 @@ function ChatWindow() {
       }
   
       iffy();
+      
     },[currentRoomId]); 
 
 
@@ -70,15 +78,18 @@ function ChatWindow() {
         sender_id: user.id,
       }
 
-      console.log('Posted message: ', message);
+      
 
       socket.emit("send_message", message);
 
       message.timestamp = new Date();
 
       setMessages(prevList => [...prevList, message]);
+
+      
     }
 
+  
   return (
     <div className="border-2 border-slate-300 relative h-90vh mr-6 w-2/3">
    
@@ -101,9 +112,11 @@ function ChatWindow() {
                     </>
                   ))  
                   }
+                   <div ref={justForViewRef}></div>
                     </div>
+                   
 
-          <ChatInput handleSocketSubmit = {handleSocketSubmit}/>
+          <ChatInput handleSocketSubmit = {handleSocketSubmit} justForView={justForView}/>
             </div>
          </div>
         }
@@ -122,7 +135,7 @@ function ChatWindow() {
                   <div style={{margin:"auto 0 "}}>Chat Away</div>
            </div>
 
-          
+          <div ref={justForViewRef}></div>
           </div>
           
         </div>

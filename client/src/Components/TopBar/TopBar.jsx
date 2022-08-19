@@ -18,7 +18,7 @@ const TopBar = () => {
   // );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("topbar", stateUser);
+  // console.log("topbar", stateUser);
   const handleClick = async () => {
     await dispatch(getOwnProfile());
     navigate("/edit-user");
