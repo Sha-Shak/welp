@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
   const user = JSON.parse(localStorage.getItem("data"));
   const [stateUser, setStateUser] = useState(user);
-  // useEffect(() => {
-  //   setStateUser(user);
-  // }, [user]);
+  console.log("b4 effect", user);
+  useEffect(
+    function runAfterIntialRenderAndOnDependecyChange() {
+      console.log("after", user);
+      console.log("EFFECT");
+
+      setStateUser(user);
+    },
+    [user]
+    //{a:"1"}==={a:"1"}
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log("topbar", stateUser);
@@ -24,7 +32,6 @@ const TopBar = () => {
     <div data-theme="light" className="p-4 flex justify-end items-center">
       {stateUser ? (
         <div>
-          {" "}
           {user.type === "admin" && (
             <Link to="/add-user">
               <button
