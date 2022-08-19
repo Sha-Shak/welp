@@ -150,14 +150,12 @@ async function addUserToOrganization (req, res) {
           
           await addAdminToOrganization(admin);  
         }
-  
+        
+        sendMail(email, type);
         res.status(200).send(result);
       } else {
         res.status(401).send('This email is already in use.');
       }
-
-      sendMail(email, type);
-      res.status(200).send(result);
     } else {
       res.status(403).send('You do not have admin access for this organization.');
     }
