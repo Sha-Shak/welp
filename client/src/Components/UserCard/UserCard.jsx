@@ -70,22 +70,24 @@ const UserCard = ({ user }) => {
           alt="propic"
         />
       </figure>
-      <div className="card-body">
+      <div className={deleteBox && "bg-error p-2 mx-2 rounded" + " card-body"}>
         {deleteBox ? (
           <div>
-            <h2 className="card-title text-3xl pb-3 ">Confirm Delete?</h2>
+            <h2 className="card-title text-3xl pb-3 mb-2 mt-3 text-white ">
+              Confirm Delete?
+            </h2>
             <div className="flex">
+              <button
+                onClick={(e) => handleDelete(user.id)}
+                className="btn bg-white text-error border-r-2 border-gray-200 mx-1 rounded-full right-0"
+              >
+                Delete
+              </button>
               <button
                 onClick={handleCancel}
                 className="btn btn-primary mx-1 rounded-full right-0"
               >
                 CANCEL
-              </button>
-              <button
-                onClick={(e) => handleDelete(user.id)}
-                className="btn btn-error mx-1 rounded-full right-0"
-              >
-                Delete
               </button>
             </div>
           </div>
