@@ -4,12 +4,11 @@ const nodemailer = require('nodemailer');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
   auth: {
     user: 'hello.welper@gmail.com',
     pass: process.env.EMAIL_PASSWORD 
-    //pass : welper123123
   }
 });
   
