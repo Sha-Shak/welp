@@ -35,14 +35,12 @@ export const deleteUser = (id) =>
 
 export const editUser = (data) => axios.put(`${url}/user`, data);
 
-
 export const createChat = (id) => axios.post(`${url}/chats`, { userId: id });
 
 export const checkChat = (id) => axios.get(`${url}/chat/check`, { userId: id });
 
 export const getUserInfo = (id) => axios.get(`${url}/user/${id}`);
 
-export const getChatRoom = (id) => axios.get(`${url}/chatroom/${id}`)
+export const getChatRoom = (id) => axios.get(`${url}/chatroom/${id}`);
 
 export const getChatMessages = (id) => axios.get(`${url}/chat/${id}`);
-

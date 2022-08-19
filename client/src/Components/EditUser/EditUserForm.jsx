@@ -1,15 +1,33 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editUser } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function EditUserForm() {
   const user = JSON.parse(localStorage.getItem("data"));
+  console.log("loop check", user);
   const dispatch = useDispatch();
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "welp");
+    data.append("api_key", "456122925996564");
+    data.append("cloud_name", "dgn4bscln4");
+    axios
+      .post("https://api.cloudinary.com/v1_1/dgn4bscln4/image/upload", data)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setUrl(data.url);
+        console.log(data.url);
+      })
+      .catch((err) => console.log(err));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const interestArray = e.target.interest.value.split(",");
-    console.log("object", interestArray);
     const data = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
@@ -19,7 +37,6 @@ function EditUserForm() {
       password: e.target.password.value,
     };
     const newData = { ...user, ...data };
-    console.log("edited data", newData);
     dispatch(editUser(newData)).then(() => {
       e.target.reset();
     });
@@ -39,6 +56,17 @@ function EditUserForm() {
             action="#"
             method="POST"
           >
+            <div>
+              <div>
+                <input
+                  type="file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                ></input>
+              </div>
+              <div>
+                <img src={url} />
+              </div>
+            </div>
             <div className="rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
@@ -103,6 +131,7 @@ function EditUserForm() {
 
               <div className="flex justify-center items-center">
                 <button
+                  onClick={uploadImage}
                   type="submit"
                   className="btn rounded-full bg-white text-indigo-500 mr-2"
                 >

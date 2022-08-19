@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUsers, recommendUsers } from "../actions/users.action.js";
 import Banner from "../Components/Banner/Banner";
 import UserCard from "../Components/UserCard/UserCard";
@@ -8,7 +8,13 @@ import UserCard from "../Components/UserCard/UserCard";
 function Dashboard() {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("data"));
-
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (!user.id) {
+  //     console.log("no user");
+  //     navigate("/login");
+  //   }
+  // }, [user]);
   useEffect(() => {
     // console.log("use effect");
     dispatch(getUsers());
