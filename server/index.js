@@ -49,6 +49,8 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
 
+  socket.emit("me", socket.id);
+
   socket.on('join_room', (room_id) => {
     if (socket.rooms.size > 1) {
       const iterator = socket.rooms.values();
@@ -72,8 +74,12 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('callEnded');
   });
 
+  socket.on('endCall', (chat_id) => {
+    socket.to(chat_id).emit('endCall');
+  });
+
   socket.on('callUser', (data) => {
-    io.to(data.userToCall).emit('callUser', {signal: data.signalData, from: data.from, name: data.name});
+    socket.to(data.userToCall).emit('callUser', {signal: data.signalData, from: data.from, name: data.name});
   });
 
   socket.on('answerCall', (data) => {
