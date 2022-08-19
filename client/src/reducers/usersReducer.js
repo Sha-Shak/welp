@@ -22,6 +22,9 @@ export default function users(state = {}, action) {
     case "EDIT_PROFILE":
       console.log("reduce edit profile", action.payload);
       return action.payload;
+    case "CHANGE_PASSWORD":
+      console.log("change password", action.payload);
+      return action.payload;
     default:
       return state;
   }

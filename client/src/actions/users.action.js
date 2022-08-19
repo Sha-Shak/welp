@@ -139,3 +139,13 @@ export const editUser = (data) => async (dispatch) => {
     console.log(e);
   }
 };
+export const changePassword = (data) => async (dispatch) => {
+  try {
+    console.log("changePass", data);
+    const response = await api.changePassword(data);
+    console.log("from server", response);
+    dispatch({ type: "CHANGE_PASSWORD", payload: response.data });
+  } catch (e) {
+    console.log(e);
+  }
+};
