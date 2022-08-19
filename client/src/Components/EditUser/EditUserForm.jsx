@@ -199,6 +199,7 @@ function EditUserForm() {
                       required
                       placeholder="First Name"
                       half
+                      value={user.firstname}
                     />
 
                     <TextInput
@@ -209,6 +210,7 @@ function EditUserForm() {
                       required
                       placeholder="Last Name"
                       half
+                      value={user.lastname}
                     />
                   </div>
                 </div>
@@ -219,6 +221,7 @@ function EditUserForm() {
                     type="text"
                     required
                     placeholder="Bio"
+                    value={user?.bio}
                   />
                 </div>
                 <div className="mb-4">
@@ -228,6 +231,7 @@ function EditUserForm() {
                     type="text"
                     required
                     placeholder="Location"
+                    value={user?.location}
                   />
                 </div>
                 <div className="mb-4">
