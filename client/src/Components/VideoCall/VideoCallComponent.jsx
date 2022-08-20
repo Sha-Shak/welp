@@ -106,7 +106,7 @@ function VideoCallComponent({ chat_id }) {
     socket.emit('endCall', chat_id);
 		setCallAccepted(false)
 		connectionRef.current = null;
-    navigate('/chat');
+    window.close();
 	}
 
 

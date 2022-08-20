@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getChatRoom, getUserInfo } from '../../utils/apiClientService'
+import { Link } from 'react-router-dom'
 
 
 function ChatWindowNav() {
@@ -51,6 +52,7 @@ function ChatWindowNav() {
             <span className="text-xl font-medium text-black ml-1">
                 {contact ? (contact.firstname + ' ' + contact.lastname) : null}
             </span>
+
             </div>
 
             <div className="flex items-center">
@@ -58,6 +60,9 @@ function ChatWindowNav() {
                 <i className="mdi mdi-phone text-gray-300 mr-2"></i>
                 <i className="mdi mdi-dots-vertical text-gray-300 mr-2"></i>
             </div>
+            <Link to={`/video/${currentRoomId}`} target='_blank'>
+                <button>Video</button>
+            </Link>
         </nav>
   </div>
   )

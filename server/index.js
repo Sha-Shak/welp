@@ -69,10 +69,20 @@ io.on('connection', (socket) => {
     socket.to(data.chat_id).emit('receive_message', postRes);
   })
 
+
+
   // video calling points
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded');
   });
+
+  socket.on('check_user', (room_id) => {
+    socket.to(room_id).emit('get_user');
+  })
+
+  socket.on('join_call', (room_id) => {
+    socket.to(room_id).emit('join_call');
+  })
 
   socket.on('endCall', (chat_id) => {
     socket.to(chat_id).emit('endCall');
@@ -83,7 +93,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('answerCall', (data) => {
-    io.to(data.to).emit('callAccepted', data.signal)
+    socket.to(data.to).emit('callAccepted', data.signal)
   });
 })
 
