@@ -19,6 +19,9 @@ const authMiddleware = async (req, res, next) => {
     }
 
   } catch (error) {
+    if(error instanceof jwt.TokenExpiredError) {
+      res.status(401).send('Access token has expired.')
+    }
     res.status(500);
     console.log(error);
   }
