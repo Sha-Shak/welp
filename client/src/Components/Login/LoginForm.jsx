@@ -10,14 +10,8 @@ function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
-  // const [errorMsg, setErrorMsg] = useState(error);
-  console.log("error comp state", error);
-  const user = useSelector((state) => state.users);
-
   useEffect(() => {
-    console.log("changed", error);
     setTimeout(() => {
-      console.log("timeout");
       dispatch(clearError());
     }, 3000);
   }, [error]);
@@ -38,9 +32,9 @@ function LoginForm() {
         dispatch(clearError());
       }, 3000);
     });
-    const user = JSON.parse(localStorage.getItem("data"));
-    console.log(user.id);
-    navigate(`/${user.id}/dashboard`);
+    // const user = localStorage.getItem("data");
+    // console.log(user.id);
+    navigate(`/`);
   };
   return (
     <>

@@ -1,15 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const user = JSON.parse(localStorage.getItem("data"));
   const location = useLocation();
-  console.log(location.pathname)
-  
 
   return (
-    <div className="h-screen flex flex-col items-center p-3 justify-between shadow-lg border-r-2">
+    <div className="h-screen sticky flex flex-col items-center p-3 justify-between shadow-lg border-r-2">
       <div className="avatar placeholder">
         <div className="bg-slate-300 text-neutral-content w-14 shadow-xl">
           <Link to="/" className="text-xl text-black cursor-pointer">
@@ -24,7 +20,13 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col justify-between">
         <div className="my-3 placeholder">
-          <div className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${location.pathname.includes("/dashboard") ? "shadow-black shadow" : "shadow-xl"}`}>
+          <div
+            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+              location.pathname.includes("/dashboard")
+                ? "bg-indigo-500"
+                : "shadow-xl"
+            }`}
+          >
             {user ? (
               <Link
                 to={`/${user.id}/dashboard`}
@@ -50,7 +52,13 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="my-3 placeholder">
-          <div className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${location.pathname.includes("/chat") ? "shadow-black shadow" : "shadow-xl"}`}>
+          <div
+            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+              location.pathname.includes("/chat")
+                ? "bg-indigo-500 text-white"
+                : "shadow-xl"
+            }`}
+          >
             <Link to="/chat" className="text-xl text-black cursor-pointer">
               <img
                 src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/message_gfibrm.png"
@@ -62,7 +70,13 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="my-3 placeholder">
-          <div className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${location.pathname.includes("/random") ? "shadow-black shadow" : "shadow-xl"}`}>
+          <div
+            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+              location.pathname.includes("/random")
+                ? "shadow-black shadow"
+                : "shadow-xl"
+            }`}
+          >
             <Link to="/random" className=" text-black cursor-pointer">
               <img
                 src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852522/dice_ptda6e.png"

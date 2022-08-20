@@ -32,14 +32,13 @@ export const getOwnProfile = () => axios.get(`${url}/user`);
 export const getOtherProfile = (id) => axios.get(`${url}/user/${id}`);
 export const deleteUser = (id) =>
   axios.delete(`${url}/organization/user/${id}`);
-export const changePassword = (data) => {
-  console.log("action data");
-};
+export const changePassword = (data) => axios.put(`${url}/password`);
 export const editUser = (data) => axios.put(`${url}/user`, data);
 
 export const createChat = (id) => axios.post(`${url}/chats`, { userId: id });
 
-export const checkChat = (id) => axios.post(`${url}/chat/check`, { userId: id });
+export const checkChat = (id) =>
+  axios.post(`${url}/chat/check`, { userId: id });
 
 export const getUserInfo = (id) => axios.get(`${url}/user/${id}`);
 
