@@ -89,8 +89,8 @@ const UserCard = ({ loggedInUser, user }) => {
             >
               {user.firstname}
             </h2>
-            {user.interest &&
-              user.interest.map((interest) => <p>{interest}</p>)}
+            
+            <p className="mb-5">{user.interests.join(', ')}</p>
 
             <div className="flex">
               <button
