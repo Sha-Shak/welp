@@ -16,9 +16,9 @@ module.exports = {
       'font-red': '#d7263d',
       'bg-green': '#9ef01a',
       'font-green': '#008000',
-      'gray-dark': '#273444',
-      'gray': '#8492a6',
-      'gray-light': '#d3dce6',
+      'gray-dark': '#111827',
+      'gray': '#6B7280',
+      'gray-light': '#E5E7EB',
     },
     extend: {
       backgroundImage: {
