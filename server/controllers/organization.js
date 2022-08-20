@@ -141,7 +141,6 @@ async function addUserToOrganization (req, res) {
         }
         
         const orgName = await getOrgName(user.organization_id);
-        console.log(orgName);
         const result = await addUser(user);
   
         if (req.body.type == 'admin') {

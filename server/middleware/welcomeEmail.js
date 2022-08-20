@@ -8,7 +8,6 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 //   transporter.verify().then(console.log).catch(console.error);
 const sendMail = async (user, org, flag, password='') => {
-  console.log(flag);
   const filePath = path.join(__dirname, `../emailAssets/${flag}.html`);
   const source = fs.readFileSync(filePath, 'utf-8').toString();
   const emailTemplate = handlebars.compile(source);
