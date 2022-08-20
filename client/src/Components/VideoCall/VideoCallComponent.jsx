@@ -128,43 +128,34 @@ function VideoCallComponent({ chat_id }) {
   return (
     <div className="flex justify-around">
       <div className="w-full lg:pl-20">
-      <div className="video-container">
-				<div className="video">
-					<video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />
-				</div>
-				<div className="video">
-					{callAccepted ?
-					<video playsInline ref={userVideo} autoPlay style={{ width: "300px"}} />:
-					null}
-				</div>
-			</div>
-
-      <div className="call-button">
-					{callAccepted ? (
-						<button variant="contained" color="secondary" onClick={leaveCall}>
-							End Call
-						</button>
-					) : (
-						<button color="primary" aria-label="call" onClick={() => callUser(room_id)}>
-							Call 
-						</button>
-					)}
-				</div>
-      </div>
-
-
-      <div>
-				{receivingCall && !callAccepted ? (
-						<div className="caller">
-						<h1 >{name} is calling...</h1>
-						<button variant="contained" color="primary" onClick={answerCall}>
-							Answer
-						</button>
+				<div className="video-container flex justify-around">
+					<div className="video" style={{ border: "grey solid 1px", margin: "20px" }}>
+						<video playsInline muted ref={myVideo} autoPlay style={{ width: "900px" }} />
 					</div>
-				) : null}
-			</div>
+					<div className="video" style={{ border: "grey solid 1px", margin: "20px" }}>
+						<video playsInline ref={userVideo} autoPlay style={{ width: "900px" }} />
+					</div>
+				</div>
 
-      
+				<div className="call-button">
+						{callAccepted ? (
+							<button variant="contained" color="secondary" onClick={leaveCall}>
+								End Call
+							</button>
+						) : "Waiting for participant to join..."}
+				</div>
+
+				<div>
+					{receivingCall && !callAccepted ? (
+							<div className="caller">
+							<h1 >{name} is calling...</h1>
+							<button variant="contained" color="primary" onClick={answerCall}>
+								Answer
+							</button>
+						</div>
+					) : null}
+				</div>
+			</div>
     </div>
   );
 }
