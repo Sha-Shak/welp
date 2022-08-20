@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
   const user = useSelector((state) => state.auth);
-  console.log("object", user);
+
   const [stateUser, setStateUser] = useState();
-  console.log("b4 effect", stateUser);
+
   //for reference================
   // useEffect(
   //   function runAfterIntialRenderAndOnDependecyChange() {
@@ -36,16 +36,26 @@ const TopBar = () => {
   return (
     <div data-theme="light" className="p-4 flex justify-end items-center">
       {stateUser ? (
-        <div>
+        <div className="flex justify-end">
           {user.type === "admin" && (
-            <Link to="/add-user">
-              <button
-                type="submit"
-                className="py-1 px-2 mr-1 rounded-2xl  bg-indigo-600 text-white"
-              >
-                Add User
-              </button>
-            </Link>
+            <div className="flex justify-end">
+              <Link to="/add-user">
+                <button
+                  type="submit"
+                  className="py-1 px-2 mr-1 rounded-2xl  bg-indigo-600 text-white"
+                >
+                  Add User
+                </button>
+              </Link>
+              <Link to="/add-admin">
+                <button
+                  type="submit"
+                  className="py-1 px-2 mr-1 rounded-2xl  bg-indigo-600 text-white"
+                >
+                  Add admin
+                </button>
+              </Link>
+            </div>
           )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
             <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">

@@ -3,35 +3,28 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addUserToOrganization,
   clearCreateUser,
+  clearError,
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddUserForm() {
-  const userJson = localStorage.getItem("data");
-
-  const user = JSON.parse(userJson);
-  console.log(user);
-
+  const user = useSelector((state) => state.auth);
   const response = useSelector((state) => state.users);
-
-  console.log("changed", response);
-
-  console.log("changed", response);
+  const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("adduser");
+
     const newUser = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    console.log("from add user comp: ", newUser);
     dispatch(addUserToOrganization(newUser)).then(() => {
       setTimeout(() => {
-        console.log("timeout");
+        dispatch(clearError());
         dispatch(clearCreateUser());
       }, 2000);
     });
@@ -55,6 +48,11 @@ function AddUserForm() {
               action="#"
               method="POST"
             >
+              {error && (
+                <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                  {error}
+                </h2>
+              )}
               {response.status &&
                 (response.status > 201 ? (
                   <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
@@ -65,7 +63,6 @@ function AddUserForm() {
                     User created Successfully!
                   </h2>
                 ))}
-
               <div className="rounded-md shadow-md p-8 ">
                 <div className="mx-8">
                   <div className="flex mb-4 justify-between">

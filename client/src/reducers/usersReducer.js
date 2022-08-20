@@ -7,7 +7,6 @@ export default function users(state = {}, action) {
       // console.log("add admin reduce", action.payload);
       return action.payload;
     case "CLEAR_USER_RES":
-      console.log("clear user reduce");
       state = {};
       return state;
     case "CLEAR_ADMIN_RES":
@@ -24,6 +23,7 @@ export default function users(state = {}, action) {
       return action.payload;
     case "CHANGE_PASSWORD":
       console.log("change password", action.payload);
+      localStorage.clear();
       return action.payload;
     default:
       return state;

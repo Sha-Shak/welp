@@ -7,8 +7,12 @@ import UserCard from "../Components/UserCard/UserCard";
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("data"));
+  const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  useEffect(() => {
+    console.log("useEFFECT");
+    if (!user) navigate("/login");
+  }, [user]);
   // useEffect(() => {
   //   if (!user.id) {
   //     console.log("no user");
@@ -16,24 +20,19 @@ function Dashboard() {
   //   }
   // }, [user]);
   useEffect(() => {
-    // console.log("use effect");
-    dispatch(getUsers());
-  }, [dispatch]);
-  const fetchUsers = useSelector((state) => state.allUsers);
-
-  const [userList, setUserList] = useState(fetchUsers);
-
-  useEffect(() => {
     if (user.type === "admin") {
       dispatch(getUsers());
     } else {
       dispatch(recommendUsers());
     }
-  }, [userList, dispatch]);
+  }, [dispatch]);
+  const fetchUsers = useSelector((state) => state.allUsers);
+
+  const [userList, setUserList] = useState(fetchUsers);
 
   const orgUsers = fetchUsers.filter((fetchUser) => fetchUser.id !== user.id);
   // const [orgUsers, setOrgUsers] = useState(fetchUsers);
-  // console.log("object", orgUsers);
+  console.log("map object", orgUsers);
   return (
     <div data-theme="light">
       <Banner user={user} />
@@ -55,7 +54,9 @@ function Dashboard() {
             ) : null}
           </div>
         ) : (
-          orgUsers.map((user) => <UserCard key={user.id} user={user} />)
+          orgUsers.map((orgUser) => (
+            <UserCard key={orgUser.id} loggedInUser={user} user={orgUser} />
+          ))
         )}
       </div>
     </div>

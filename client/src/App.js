@@ -23,7 +23,9 @@ function App() {
             <TopBar />
             <div className="container mx-auto">
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                {
+                  // <Route path="/" element={<Dashboard />} />
+                }
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/add-user" element={<AddUser />} />
@@ -31,7 +33,7 @@ function App() {
                 <Route path="/edit-admin" element={<EditAdmin />} />
                 <Route path="/edit-user" element={<EditUser />} />
                 <Route path="/chat" element={<Chat />} />
-                <Route path="/:id/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 {
                   //<Route path="/messaging" element={<Messaging />} />
                 }

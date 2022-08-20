@@ -23,13 +23,12 @@ function SignupForm() {
       type: "Admin",
       password: e.target.password.value,
     };
-    console.log("component", data);
-    await dispatch(createOrg(data)).then(() => {
+
+    await dispatch(createOrg(data, navigate)).then(() => {
       setTimeout(() => {
         dispatch(clearError());
       }, 3000);
     });
-    navigate(`/`);
   };
 
   const handleChangePassword = (e) => {

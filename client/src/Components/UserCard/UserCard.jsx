@@ -6,8 +6,8 @@ import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
 
 import { checkChat, createChat } from "../../utils/apiClientService.js";
 
-const UserCard = ({ user }) => {
-  console.log();
+const UserCard = ({ loggedInUser, user }) => {
+  console.log("props loggedIn", loggedInUser);
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
   const handleProfile = async (id) => {
@@ -15,28 +15,18 @@ const UserCard = ({ user }) => {
     navigate("/profile");
   };
   const navigate = useNavigate();
-  // console.log("before change deleteBox val is", deleteBox);
 
   const handleConfirmDelete = () => {
-    // console.log("Confirm delete? ");
     setDeleteBox((prevDeleteBox) => !deleteBox);
-    // console.log("deleteBox val is", deleteBox);
   };
 
   const handleDelete = (id) => {
-    // console.log("from compo: ", id);
     dispatch(deleteUser(id));
   };
-
   const handleCancel = () => {
     setDeleteBox(false);
   };
-
   const handleChatClick = (id) => {
-    // dispatch({
-    //   type: "SET_CHAT",
-    //   payload : id
-    // })
     checkChat(id)
       .then((data) => {
         console.log("From handleChatClick: ", data.data);
@@ -109,12 +99,14 @@ const UserCard = ({ user }) => {
               >
                 CHAT
               </button>
-              <button
-                onClick={handleConfirmDelete}
-                className="btn btn-error mx-1 rounded-full right-0"
-              >
-                Delete
-              </button>
+              {loggedInUser.type === "admin" && (
+                <button
+                  onClick={handleConfirmDelete}
+                  className="btn btn-error mx-1 rounded-full right-0"
+                >
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         )}

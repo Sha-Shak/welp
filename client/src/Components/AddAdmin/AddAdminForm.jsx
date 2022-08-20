@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addAdminToOrganization,
   clearCreateAdmin,
+  clearError,
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddAdminForm() {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.users);
+  const error = useSelector((state) => state.errors);
   console.log("addAdmin", response.status);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,12 +21,13 @@ function AddAdminForm() {
       type: "admin",
       password: e.target.password.value,
     };
-    console.log("from add user comp: ", newAdmin);
     dispatch(addAdminToOrganization(newAdmin)).then(() => {
       setTimeout(() => {
+        dispatch(clearError());
         dispatch(clearCreateAdmin());
       }, 2000);
     });
+    e.target.reset();
   };
   return (
     <>
@@ -42,6 +45,11 @@ function AddAdminForm() {
             method="POST"
             onSubmit={handleSubmit}
           >
+            {error && (
+              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                {error}
+              </h2>
+            )}
             {response.status &&
               (response.status > 201 ? (
                 <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">

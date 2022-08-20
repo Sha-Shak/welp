@@ -9,7 +9,7 @@ const Profile = () => {
   useEffect(() => {
     if (!user.id) {
       console.log("no user");
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [user]);
   const dummyImg =

@@ -10,6 +10,7 @@ function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
+  console.log("compo : first ", error);
   useEffect(() => {
     setTimeout(() => {
       dispatch(clearError());
@@ -27,14 +28,11 @@ function LoginForm() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    await dispatch(logIn(data)).then(() => {
+    await dispatch(logIn(data, navigate)).then(() => {
       setTimeout(() => {
         dispatch(clearError());
       }, 3000);
     });
-    // const user = localStorage.getItem("data");
-    // console.log(user.id);
-    navigate(`/`);
   };
   return (
     <>
