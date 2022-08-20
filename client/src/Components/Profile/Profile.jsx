@@ -20,7 +20,7 @@ const Profile = () => {
       <div className="mb-5 flex items-center justify-center">
         <figure className="">
           <img
-            className="border-4 border-indigo-500 rounded-full w-36 h-36"
+            className="border-4 border-indigo rounded-full w-36 h-36"
             src={user.img_url ? user.img_url : dummyImg}
           />
         </figure>

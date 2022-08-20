@@ -12,6 +12,7 @@ import EditAdmin from "./pages/EditAdmin";
 import EditUser from "./pages/EditUser";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
+import VideoCall from "./pages/VideoCall";
 
 function App() {
   return (
@@ -33,7 +34,12 @@ function App() {
                 <Route path="/edit-admin" element={<EditAdmin />} />
                 <Route path="/edit-user" element={<EditUser />} />
                 <Route path="/chat" element={<Chat />} />
+<<<<<<< HEAD
                 <Route path="/dashboard" element={<Dashboard />} />
+=======
+                <Route path="/:id/dashboard" element={<Dashboard />} />
+                <Route path="/video/:id" element={<VideoCall />} />
+>>>>>>> adce6824d1026db46b8b27a1d6f338ce24efbaab
                 {
                   //<Route path="/messaging" element={<Messaging />} />
                 }

@@ -31,11 +31,11 @@ function AddAdminForm() {
   };
   return (
     <>
-      <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-300 ">
+      <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-light ">
         <div className="max-w-md w-full space-y-8">
           <div>
             <h6 className="text-xl left">Make Managing Easier</h6>
-            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-dark">
               Create An Admin
             </h2>
           </div>
@@ -56,7 +56,7 @@ function AddAdminForm() {
                   Something went wrong
                 </h2>
               ) : (
-                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-[#73aa34]">
+                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-bg-green">
                   Admin created Successfully!
                 </h2>
               ))}

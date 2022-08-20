@@ -21,7 +21,7 @@ function ChatSearch() {
               
                 <input
                   type="text"
-                  className="border-2 border-slate-300 rounded-full pl-6 pr-12 py-2 focus:outline-none  h-auto placeholder-black bg-white text-black"
+                  className="border-2 border-gray-xlight rounded-full pl-6 pr-12 py-2 focus:outline-none  h-auto placeholder-black bg-white text-black"
                   style={{ fontSize: "1rem", width: "100%" }}
                   placeholder="Search..."
                   onChange={handleChange}

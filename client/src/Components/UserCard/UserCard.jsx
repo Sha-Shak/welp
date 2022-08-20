@@ -52,7 +52,7 @@ const UserCard = ({ loggedInUser, user }) => {
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (
-    <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
+    <div className="card border-2 border-gray-xlight card-side bg-base-100 shadow-xl p-2 my-2">
       <figure>
         <img
           className="rounded-full w-36 h-36"
@@ -69,7 +69,7 @@ const UserCard = ({ loggedInUser, user }) => {
             <div className="flex">
               <button
                 onClick={(e) => handleDelete(user.id)}
-                className="btn bg-white text-error border-r-2 border-gray-200 mx-1 rounded-full right-0"
+                className="btn bg-white text-error border-r-2 border-gray-light mx-1 rounded-full right-0"
               >
                 Delete
               </button>
@@ -85,7 +85,7 @@ const UserCard = ({ loggedInUser, user }) => {
           <div>
             <h2
               onClick={(e) => handleProfile(user.id)}
-              className="card-title text-2xl border-b-2 border-gray-200 mb-1 "
+              className="card-title text-2xl border-b-2 border-gray-light mb-1 "
             >
               {user.firstname}
             </h2>

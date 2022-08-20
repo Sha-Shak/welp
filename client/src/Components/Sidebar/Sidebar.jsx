@@ -6,10 +6,17 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
+<<<<<<< HEAD
     <div className="h-screen fixed flex flex-col items-center p-3 justify-between shadow-lg border-r-2">
       <div className="avatar placeholder">
         <div className="bg-slate-300 text-neutral-content w-14 shadow-xl">
           <Link to="/dashboard" className="text-xl text-black cursor-pointer">
+=======
+    <div className="h-screen sticky flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-gray-xlight">
+      <div className="avatar placeholder">
+        <div className="bg-gray-light text-neutral-content w-14 shadow-xl">
+          <Link to="/" className="text-xl text-black cursor-pointer">
+>>>>>>> adce6824d1026db46b8b27a1d6f338ce24efbaab
             <img
               src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660568784/WhatsApp_Image_2022-08-15_at_7.01.32_PM_byfnbw.jpg"
               height="50px"
@@ -22,7 +29,7 @@ const Sidebar = () => {
       <div className="flex flex-col justify-between">
         <div className="my-3 placeholder">
           <div
-            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/dashboard")
                 ? "border-2  border-indigo-500 shadow-lg"
                 : "shadow-xl"
@@ -54,7 +61,7 @@ const Sidebar = () => {
         </div>
         <div className="my-3 placeholder">
           <div
-            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/chat")
                 ? "border-2  border-indigo-500 shadow-lg"
                 : "shadow-xl"
@@ -74,7 +81,7 @@ const Sidebar = () => {
         </div>
         <div className="my-3 placeholder">
           <div
-            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/random")
                 ? "border-2  border-indigo-500 shadow-lg"
                 : "shadow-xl"
@@ -94,7 +101,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="my-3 placeholder">
-        <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-12 shadow-xl">
+        <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-12 shadow-xl">
           <span className="text-xl text-black cursor-pointer">D</span>
         </div>
       </div>

@@ -16,12 +16,12 @@ function Received({ content, timestamp }) {
                   alt="propic"
                 />
                 <span
-                  className="flex ml-1  h-auto bg-white border-2 border-slate-300 text-black font-normal rounded-md px-3 p-4 items-end"
+                  className="flex ml-1  h-auto bg-white border-2 border-gray-xlight text-black font-normal rounded-md px-3 p-4 items-end"
                   style={{ fontSize: "1rem" }}
                 >
                   {content}{" "}
                   <span
-                    className="text-gray-400 pl-3"
+                    className="text-gray pl-3"
                     style={{ fontSize: "1rem" }}
                   >
                     {time}
