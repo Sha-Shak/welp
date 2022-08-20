@@ -44,7 +44,7 @@ const validOrgType = (orgType) => {
 
 
 //Edit profile
-const fields = ['id', 'firstname', 'lastname', 'email', 'password', 'organization_id', 'type', 'location', 'interests', 'bio', 'img_url', 'orgname'];
+const fields = ['id', 'firstname', 'lastname', 'email', 'organization_id', 'type', 'location', 'interests', 'bio', 'img_url', 'orgname'];
 
 const validEditFields = (editFields) => {
   const editFieldKeys = Object.keys(editFields);
