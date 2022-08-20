@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 const Profile = () => {
   const user = useSelector((state) => state.users);
   const navigate = useNavigate();
-  console.log("no user", user);
+  console.log("Profile", user);
   useEffect(() => {
     if (!user.id) {
       console.log("no user");
@@ -17,10 +17,10 @@ const Profile = () => {
 
   return (
     <div className="items-center justify-center p-10 lg:p-20 ">
-      <div className="mb-5 flex items-center">
-        <figure className="border-2 border-gray-200">
+      <div className="mb-5 flex items-center justify-center">
+        <figure className="">
           <img
-            className="rounded-full w-36 h-36"
+            className="border-4 border-indigo-500 rounded-full w-36 h-36"
             src={user.img_url ? user.img_url : dummyImg}
           />
         </figure>
@@ -36,8 +36,16 @@ const Profile = () => {
         <h4 className="text-2xl text-left font-normal">
           Location: {user.location ? user.location : "Please Add location"}
         </h4>
-        {user.interest &&
-          user.interest.map((inter) => <h4>Interests: {inter}</h4>)}
+
+        <h4 className="text-2xl text-left font-normal">
+          Interests:{" "}
+          {user.interests &&
+            user.interests.map((interest) => (
+              <p className="bg-slate-100 py-2 px-3 mx-2 my-3 text-center">
+                {interest}
+              </p>
+            ))}
+        </h4>
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePassword, editUser } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function EditUserForm() {
-  const user = JSON.parse(localStorage.getItem("data"));
+  const user = useSelector((state) => state.auth);
   console.log("loop check", user);
   const dispatch = useDispatch();
   const [image, setImage] = useState("");
@@ -41,10 +41,10 @@ function EditUserForm() {
     setShowPasswordBox(false);
   };
 
-  const [latestFirstname, setLatestFirstname] = useState("");
-  const [latestLastname, setLatestLastname] = useState("");
-  const [latestBio, setLatestBio] = useState("");
-  const [latestLocation, setLatestLocation] = useState("");
+  const [latestFirstname, setLatestFirstname] = useState(user.firstname);
+  const [latestLastname, setLatestLastname] = useState(user.lastname);
+  const [latestBio, setLatestBio] = useState(user.bio);
+  const [latestLocation, setLatestLocation] = useState(user.location);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -205,7 +205,7 @@ function EditUserForm() {
                       required
                       placeholder="First Name"
                       half
-                      value={user.firstname}
+                      value={latestFirstname}
                       onChange={(e) => setLatestFirstname(e.target.value)}
                     />
 
@@ -217,7 +217,7 @@ function EditUserForm() {
                       required
                       placeholder="Last Name"
                       half
-                      value={user.lastname}
+                      value={latestLastname}
                       onChange={(e) => setLatestLastname(e.target.value)}
                     />
                   </div>
@@ -230,7 +230,7 @@ function EditUserForm() {
                     required
                     placeholder="Bio"
                     onChange={(e) => setLatestBio(e.target.value)}
-                    value={user?.bio}
+                    value={latestBio}
                   />
                 </div>
                 <div className="mb-4">
@@ -241,7 +241,7 @@ function EditUserForm() {
                     required
                     placeholder="Location"
                     onChange={(e) => setLatestLocation(e.target.value)}
-                    value={user?.location}
+                    value={latestLocation}
                   />
                 </div>
                 <div className="mb-4">
