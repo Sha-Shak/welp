@@ -63,6 +63,11 @@ io.on('connection', (socket) => {
 
     socket.join(room_id);
   })
+
+  socket.on('join_video_room', (room_id) => {
+
+    socket.join(room_id);
+  })
   
   socket.on('send_message', async (data) => {
     const postRes = await postMessage(data);
@@ -86,6 +91,7 @@ io.on('connection', (socket) => {
 
   socket.on('endCall', (chat_id) => {
     socket.to(chat_id).emit('endCall');
+    socket.leave(chat_id);
   });
 
   socket.on('callUser', (data) => {

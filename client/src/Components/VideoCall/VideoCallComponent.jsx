@@ -14,13 +14,13 @@ function VideoCallComponent({ chat_id }) {
 	const [ caller, setCaller ] = useState("")
 	const [ callerSignal, setCallerSignal ] = useState()
 	const [ callAccepted, setCallAccepted ] = useState(false)
-	const [ idToCall, setIdToCall ] = useState("")
 	const [ callEnded, setCallEnded] = useState(false)
 	const [ name, setName ] = useState(user.firstname + ' ' + user.lastname)
 	const myVideo = useRef()
 	const userVideo = useRef()
 	const connectionRef= useRef()
   const navigate = useNavigate();
+	const room_id = 'video_' + chat_id;
 
   useEffect(() => {
 
@@ -33,9 +33,7 @@ function VideoCallComponent({ chat_id }) {
 				myVideo.current.srcObject = stream
 		})
 
-    socket.emit('join_room', chat_id);
-
-    getUserId();
+    socket.emit('join_video_room', room_id);
 
     socket.on("me", (id) => {
 			setMe(id)
@@ -103,21 +101,11 @@ function VideoCallComponent({ chat_id }) {
 	}
 
 	const leaveCall = () => {
-    socket.emit('endCall', chat_id);
+    socket.emit('endCall', room_id);
 		setCallAccepted(false)
 		connectionRef.current = null;
     window.close();
 	}
-
-
-  const getUserId = async () => {
-    try {
-      const chatRoomInfo = await getChatRoom(chat_id);
-      setIdToCall(JSON.stringify(chatRoomInfo.data.id));
-    } catch (error) {
-      console.log('Error from getUserId(): ', error);
-    }
-  }
 
 
 
@@ -142,7 +130,7 @@ function VideoCallComponent({ chat_id }) {
 							End Call
 						</button>
 					) : (
-						<button color="primary" aria-label="call" onClick={() => callUser(idToCall)}>
+						<button color="primary" aria-label="call" onClick={() => callUser(room_id)}>
 							Call 
 						</button>
 					)}
