@@ -1,4 +1,4 @@
-const { addOrganization, addAdminToOrganization } = require("../models/organization");
+const { addOrganization, addAdminToOrganization, getOrgName } = require("../models/organization");
 const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/user");
 const { deleteChatForUser } = require("../models/chat");
 const sendMail = require('../middleware/welcomeEmail');
@@ -54,7 +54,7 @@ async function createNewOrganization (req, res) {
       await addAdminToOrganization(admin);
 
       const token = jwt.sign({id: addUserRes.id}, secret, {expiresIn:'1h'});
-      sendMail(user.email, user.type);
+      sendMail(user, org.name, 'firstUser');
       res.setHeader('Authorization', 'Bearer ' + token);
       res.status(201).send(addUserRes);
     } else {
@@ -139,7 +139,9 @@ async function addUserToOrganization (req, res) {
           bio: '',
           img_url: ''
         }
-    
+        
+        const orgName = await getOrgName(user.organization_id);
+        console.log(orgName);
         const result = await addUser(user);
   
         if (req.body.type == 'admin') {
@@ -151,7 +153,7 @@ async function addUserToOrganization (req, res) {
           await addAdminToOrganization(admin);  
         }
         
-        sendMail(email, type);
+        sendMail(user, orgName.name, 'addedUsers', password);
         res.status(200).send(result);
       } else {
         res.status(401).send('This email is already in use.');
