@@ -22,42 +22,18 @@ function VideoCallComponent({ chat_id }) {
   const navigate = useNavigate();
 	const room_id = 'video_' + chat_id;
 
-  useEffect(() => {
-
-    if (!user || !user.id) {
-      navigate("/login");
-    }
-
-		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-			setStream(stream)
-				myVideo.current.srcObject = stream
-		})
-
-    socket.emit('join_video_room', room_id);
-
-    socket.on("me", (id) => {
-			setMe(id)
-		})
-
-		socket.on("callUser", (data) => {
-      console.log(data);
-			setReceivingCall(true)
-			setCaller(data.from)
-			setName(data.name)
-			setCallerSignal(data.signal)
-		})
-
-    socket.on('endCall', leaveCall);
-	}, [])
+  
 
 
   const callUser = (id) => {
+		console.log('callUser(): ');
 		const peer = new Peer({
 			initiator: true,
 			trickle: false,
 			stream: stream
 		})
 		peer.on("signal", (data) => {
+			console.log('signalData: ', data);
 			socket.emit("callUser", {
 				userToCall: id,
 				signalData: data,
@@ -66,7 +42,7 @@ function VideoCallComponent({ chat_id }) {
 			})
 		})
 		peer.on("stream", (stream) => {
-			
+				console.log('stream: ', stream);
 				userVideo.current.srcObject = stream
 			
 		})
@@ -90,9 +66,11 @@ function VideoCallComponent({ chat_id }) {
 			stream: stream
 		})
 		peer.on("signal", (data) => {
-			socket.emit("answerCall", { signal: data, to: caller })
+			console.log('signalData: ', data);
+			socket.emit("answerCall", { signal: data, to: room_id })
 		})
 		peer.on("stream", (stream) => {
+			console.log('stream: ', stream);
 			userVideo.current.srcObject = stream
 		})
 
@@ -108,6 +86,43 @@ function VideoCallComponent({ chat_id }) {
 	}
 
 
+	useEffect(() => {
+
+    if (!user || !user.id) {
+      navigate("/login");
+    }
+
+		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+				setStream(stream)
+					myVideo.current.srcObject = stream
+		})
+
+    socket.emit('join_video_room', room_id);
+		socket.emit('check_user', room_id);
+
+    socket.on("me", (id) => {
+			setMe(id)
+		})
+
+
+
+
+		socket.on("callUser", (data) => {
+			setReceivingCall(true)
+			setCaller(data.from)
+			setName(data.name)
+			setCallerSignal(data.signal)
+		})
+
+    socket.on('endCall', leaveCall);
+	}, [])
+
+
+
+	socket.on("get_user", () => {
+		callUser(room_id);
+	});
+
 
 
   return (
@@ -115,7 +130,7 @@ function VideoCallComponent({ chat_id }) {
       <div className="w-full lg:pl-20">
       <div className="video-container">
 				<div className="video">
-					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />}
+					<video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />
 				</div>
 				<div className="video">
 					{callAccepted ?

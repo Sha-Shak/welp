@@ -82,7 +82,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('check_user', (room_id) => {
-    socket.to(room_id).emit('get_user');
+    const clients = io.sockets.adapter.rooms.get(room_id);
+    if (clients.size > 1) {
+      socket.to(room_id).emit('get_user');
+    }
   })
 
   socket.on('join_call', (room_id) => {
