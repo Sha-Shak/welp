@@ -22,7 +22,7 @@ function Dashboard() {
   const fetchUsers = useSelector((state) => state.allUsers);
 
   const [userList, setUserList] = useState(fetchUsers);
-  // console.log("fetch users", fetchUsers);
+
   useEffect(() => {
     if (user.type === "admin") {
       dispatch(getUsers());

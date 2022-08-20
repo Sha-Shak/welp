@@ -29,9 +29,7 @@ function SignupForm() {
         dispatch(clearError());
       }, 3000);
     });
-    const user = JSON.parse(localStorage.getItem("data"));
-    console.log(user.id);
-    navigate(`/${user.id}/dashboard`);
+    navigate(`/`);
   };
 
   const handleChangePassword = (e) => {

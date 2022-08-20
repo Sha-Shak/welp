@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
-  const user = JSON.parse(localStorage.getItem("data"));
-  const [stateUser, setStateUser] = useState(user);
-  console.log("b4 effect", user);
+  const user = useSelector((state) => state.auth);
+  console.log("object", user);
+  const [stateUser, setStateUser] = useState();
+  console.log("b4 effect", stateUser);
+  //for reference================
   // useEffect(
   //   function runAfterIntialRenderAndOnDependecyChange() {
   //     console.log("after", user);
@@ -14,8 +16,11 @@ const TopBar = () => {
   //     setStateUser(user);
   //   },
   //   [user]
-  //   //{a:"1"}==={a:"1"}
   // );
+  useEffect(() => {
+    setStateUser(user);
+  }, [user]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // console.log("topbar", stateUser);
