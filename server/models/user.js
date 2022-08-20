@@ -122,9 +122,9 @@ async function getRandomUsers(user) {
 
 async function setNewPassword (userId, password) {
   try {
-    const sql = "UPDATE users SET password = $1 WHERE id = $2;";
+    const sql = "UPDATE users SET password = $1 WHERE id = $2 RETURNING *;";
     const result = await pool.query(sql, [password, userId]);
-    return result.rows;
+    return result.rows[0];
   } catch (error) {
     throw new Error(error.message);
   }
