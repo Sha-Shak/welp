@@ -38,11 +38,11 @@ function LoginForm() {
   };
   return (
     <>
-      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-300">
+      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-light">
         <div className="w-full relative">
           <div className="">
             <h6 className="text-center">Welcome Back!</h6>
-            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-dark">
               Sign in to your account
             </h2>
           </div>
@@ -85,7 +85,7 @@ function LoginForm() {
               Don't have an account?{" "}
               <span
                 onClick={handleSwitch}
-                className="text-2xl text-indigo-500 cursor-pointer"
+                className="text-2xl text-indigo cursor-pointer"
               >
                 Sign Up{" "}
               </span>

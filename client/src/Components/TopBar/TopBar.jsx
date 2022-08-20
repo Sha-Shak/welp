@@ -55,7 +55,7 @@ const TopBar = () => {
           <div className="ml-1 avatar placeholder">
             <div
               onClick={handleClick}
-              className="bg-indigo-500 text-white p-2 rounded-full w-9 shadow-xl"
+              className="bg-indigo text-white p-2 rounded-full w-9 shadow-xl"
             >
               <span className="text-xl text-white cursor-pointer">
                 {user && user.firstname.charAt(0)}

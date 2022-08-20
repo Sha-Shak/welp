@@ -84,14 +84,14 @@ function EditUserForm() {
               <h2 className="absolute left-0 text-xl ">
                 <div className=" mr-3 avatar placeholder">
                   <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">
-                    <span className="text-indigo-500">{"< "}</span>
+                    <span className="text-indigo">{"< "}</span>
                   </div>
                 </div>
                 Edit Profile
               </h2>
             </div>
             <div className="mt-16">
-              <h2 className="mt-10 text-center text-3xl tracking-tight font-bold text-gray-900">
+              <h2 className="mt-10 text-center text-3xl tracking-tight font-bold text-gray-dark">
                 Change Password
               </h2>
             </div>
@@ -134,7 +134,7 @@ function EditUserForm() {
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="btn rounded-full bg-white text-indigo-500 mr-2"
+                    className="btn rounded-full bg-white text-indigo mr-2"
                   >
                     Save
                   </button>
@@ -153,13 +153,13 @@ function EditUserForm() {
                 Change Password
                 <div className=" ml-3 avatar placeholder">
                   <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">
-                    <span className="text-indigo-500">{">"}</span>
+                    <span className="text-indigo">{">"}</span>
                   </div>
                 </div>
               </h2>
             </div>
             <div>
-              <h2 className="mt-16 text-center text-3xl tracking-tight font-bold text-gray-900">
+              <h2 className="mt-16 text-center text-3xl tracking-tight font-bold text-gray-dark">
                 Edit User
               </h2>
             </div>
@@ -179,7 +179,7 @@ function EditUserForm() {
                   <button
                     type="button"
                     onClick={uploadImage}
-                    className="py-1 px-3 bg-indigo-500 text-white rounded-2xl"
+                    className="py-1 px-3 bg-indigo text-white rounded-2xl"
                   >
                     Upload
                   </button>
@@ -257,7 +257,7 @@ function EditUserForm() {
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="btn rounded-full bg-white text-indigo-500 mr-2"
+                    className="btn rounded-full bg-white text-indigo mr-2"
                   >
                     Save
                   </button>

@@ -23,7 +23,7 @@ const Sidebar = () => {
           <div
             className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/dashboard")
-                ? "bg-indigo-500"
+                ? "bg-indigo"
                 : "shadow-xl"
             }`}
           >
@@ -55,7 +55,7 @@ const Sidebar = () => {
           <div
             className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/chat")
-                ? "bg-indigo-500 text-white"
+                ? "bg-indigo text-white"
                 : "shadow-xl"
             }`}
           >

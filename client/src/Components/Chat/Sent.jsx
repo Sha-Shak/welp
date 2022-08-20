@@ -14,7 +14,7 @@ function Sent({ content, timestamp }) {
                 >
                   {content}{" "}
                   <span
-                    className="text-gray-900 pl-3"
+                    className="text-gray-dark pl-3"
                     style={{ fontSize: "13px" }}
                   >
                     {time}

@@ -41,11 +41,11 @@ function AddUserForm() {
   return (
     <>
       {user.type === "admin" ? (
-        <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-200">
+        <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-light">
           <div className="max-w-md w-full space-y-8">
             <div>
               <h6 className="text-xl left">Add people to your community</h6>
-              <h1 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+              <h1 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-dark">
                 Create User
               </h1>
             </div>
@@ -61,7 +61,7 @@ function AddUserForm() {
                     Something went wrong
                   </h2>
                 ) : (
-                  <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-[#73aa34]">
+                  <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-bg-green">
                     User created Successfully!
                   </h2>
                 ))}

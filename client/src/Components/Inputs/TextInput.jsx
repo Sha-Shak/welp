@@ -19,7 +19,7 @@ function TextInput({
       name={name}
       className={
         (half ? "w-1/2 mx-1 " : "w-full ") +
-        "rounded-none input max-w-xs input-bordered focus:ring-indigo-500 focus:border-indigo-500 focus:z-10  placeholder-gray-500"
+        "rounded-none input max-w-xs input-bordered focus:ring-indigo focus:border-indigo focus:z-10  placeholder-gray"
       }
       required={required && "required"}
       placeholder={placeholder}

@@ -2,6 +2,24 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
+    colors: {
+      'main': '#2F71C7',
+      'indigo': '#6366F1',
+      'prpl-button': '#7e5bef',
+      'bg-red': '#e39695',
+      'font-red': '#d7263d',
+      'bg-green': '#9ef01a',
+      'font-green': '#008000',
+      'gray-dark': '#273444',
+      'gray': '#8492a6',
+      'gray-light': '#d3dce6',
+    },
     extend: {
       backgroundImage: {
         banner:

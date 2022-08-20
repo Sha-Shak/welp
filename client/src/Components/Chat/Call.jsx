@@ -5,7 +5,7 @@ function Call() {
     <div>
       <div className="flex justify-center">
           <span
-            className="text-gray-500 text-s pt-3"
+            className="text-gray text-s pt-3"
             style={{ fontSize: "1rem" }}
           >
             Call started at 02:33 am
@@ -14,7 +14,7 @@ function Call() {
       
       <div className="flex justify-center">
           <span
-            className="text-gray-500 text-s pt-3"
+            className="text-gray text-s pt-3"
             style={{ fontSize: "1rem" }}
           >
             Call ended at 02:33 am

@@ -79,7 +79,7 @@ const UserCard = ({ user }) => {
             <div className="flex">
               <button
                 onClick={(e) => handleDelete(user.id)}
-                className="btn bg-white text-error border-r-2 border-gray-200 mx-1 rounded-full right-0"
+                className="btn bg-white text-error border-r-2 border-gray-light mx-1 rounded-full right-0"
               >
                 Delete
               </button>
@@ -95,7 +95,7 @@ const UserCard = ({ user }) => {
           <div>
             <h2
               onClick={(e) => handleProfile(user.id)}
-              className="card-title text-2xl border-b-2 border-gray-200 mb-1 "
+              className="card-title text-2xl border-b-2 border-gray-light mb-1 "
             >
               {user.firstname}
             </h2>
