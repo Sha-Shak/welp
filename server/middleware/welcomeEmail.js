@@ -1,41 +1,40 @@
 require("dotenv").config();
 const nodemailer = require('nodemailer');
+const handlebars = require('handlebars');
+const path = require('path');
+const fs = require('fs');
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  auth: {
-    user: 'hello.welper@gmail.com',
-    pass: process.env.EMAIL_PASSWORD 
-  }
-});
-  
-const options = {
-  from: 'hello.welper@gmail.com',
-  to: '',
-  subject: 'Welcome to Welp!', 
-  text: '' // probably replace with html
-  // html: 
-}
-
 //   transporter.verify().then(console.log).catch(console.error);
-const sendMail = (userEmail, userType) => {
-  const targetText = userType == 'admin' ? 
-    'Thanks for signing up. Welcome to Welp!' :
-    'Your company admin has added you. Welcome to Welp!';
-
-  options.to = userEmail;
-  options.text = targetText;
-  
-  transporter.sendMail(options, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
+const sendMail = async (user, org, flag, password='') => {
+  console.log(flag);
+  const filePath = path.join(__dirname, `../emailAssets/${flag}.html`);
+  const source = fs.readFileSync(filePath, 'utf-8').toString();
+  const emailTemplate = handlebars.compile(source);
+  const replacements = {
+    userName: user.firstname,
+    orgName: org,
+    userEmail: user.email,
+    userPassword: password
+  }
+  const emailHtml = emailTemplate(replacements);
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    auth: {
+      user: 'hello.welper@gmail.com',
+      pass: process.env.EMAIL_PASSWORD 
     }
-  })
+  });
+  const options = {
+    from: 'hello.welper@gmail.com',
+    to: user.email,
+    subject: 'Welcome to Welp!', 
+    html: emailHtml
+  }
+  const res = await transporter.sendMail(options);
+  console.log(`Message sent: ${res.messageId}`);
 };
 
 module.exports = sendMail;
