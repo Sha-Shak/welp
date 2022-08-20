@@ -68,7 +68,7 @@ async function getUserById(id) {
 async function editUser(id, newInfo) {
   try {
     const sql =
-      "UPDATE users SET firstName = $1, lastName = $2, email = $3, organization_id = $5, type = $6, location = $7, interests = $8, bio = $9, img_url = $10 WHERE id = $11 RETURNING *;";
+      "UPDATE users SET firstName = $1, lastName = $2, email = $3, organization_id = $4, type = $5, location = $6, interests = $7, bio = $8, img_url = $9 WHERE id = $10 RETURNING *;";
     const result = await pool.query(sql, [
       newInfo.firstname,
       newInfo.lastname,
