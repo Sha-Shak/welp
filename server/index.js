@@ -49,6 +49,8 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
 
+  socket.emit("me", socket.id);
+
   socket.on('join_room', (room_id) => {
     if (socket.rooms.size > 1) {
       const iterator = socket.rooms.values();
@@ -61,23 +63,46 @@ io.on('connection', (socket) => {
 
     socket.join(room_id);
   })
+
+  socket.on('join_video_room', (room_id) => {
+
+    socket.join(room_id);
+  })
   
   socket.on('send_message', async (data) => {
     const postRes = await postMessage(data);
     socket.to(data.chat_id).emit('receive_message', postRes);
   })
 
+
+
   // video calling points
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded');
   });
 
+  socket.on('check_user', (room_id) => {
+    const clients = io.sockets.adapter.rooms.get(room_id);
+    if (clients.size > 1) {
+      socket.to(room_id).emit('get_user');
+    }
+  })
+
+  socket.on('join_call', (room_id) => {
+    socket.to(room_id).emit('join_call');
+  })
+
+  socket.on('endCall', (chat_id) => {
+    socket.to(chat_id).emit('endCall');
+    socket.leave(chat_id);
+  });
+
   socket.on('callUser', (data) => {
-    io.to(data.userToCall).emit('callUser', {signal: data.signalData, from: data.from, name: data.name});
+    socket.to(data.userToCall).emit('callUser', {signal: data.signalData, from: data.from, name: data.name});
   });
 
   socket.on('answerCall', (data) => {
-    io.to(data.to).emit('callAccepted', data.signal)
+    socket.to(data.to).emit('callAccepted', data.signal)
   });
 })
 
