@@ -48,7 +48,7 @@ const TopBar = () => {
             </Link>
           )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
-            <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">
+            <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-9 shadow-xl">
               <img src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/logout_fasmjv.png" />
             </div>
           </div>

@@ -18,7 +18,7 @@ function Chats() {
   return (
     <div className=" h-90vh ml-6 mr-3 w-1/3">
       <div className="h-90vh w-full flex items-center h-100">
-        <div className="border-2 border-slate-300 h-90vh w-full h-100 bg-white rounded shadow-2xl">
+        <div className="border-2 border-gray-xlight h-90vh w-full h-100 bg-white rounded shadow-2xl">
           <ChatSearch/>
 
           <div

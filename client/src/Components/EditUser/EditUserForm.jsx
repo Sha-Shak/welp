@@ -83,7 +83,7 @@ function EditUserForm() {
             >
               <h2 className="absolute left-0 text-xl ">
                 <div className=" mr-3 avatar placeholder">
-                  <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">
+                  <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-9 shadow-xl">
                     <span className="text-indigo">{"< "}</span>
                   </div>
                 </div>
@@ -152,7 +152,7 @@ function EditUserForm() {
               <h2 className="absolute right-0 text-xl ">
                 Change Password
                 <div className=" ml-3 avatar placeholder">
-                  <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">
+                  <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-9 shadow-xl">
                     <span className="text-indigo">{">"}</span>
                   </div>
                 </div>

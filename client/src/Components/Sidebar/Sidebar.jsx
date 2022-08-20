@@ -5,9 +5,9 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-screen sticky flex flex-col items-center p-3 justify-between shadow-lg border-r-2">
+    <div className="h-screen sticky flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-gray-xlight">
       <div className="avatar placeholder">
-        <div className="bg-slate-300 text-neutral-content w-14 shadow-xl">
+        <div className="bg-gray-light text-neutral-content w-14 shadow-xl">
           <Link to="/" className="text-xl text-black cursor-pointer">
             <img
               src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660568784/WhatsApp_Image_2022-08-15_at_7.01.32_PM_byfnbw.jpg"
@@ -21,7 +21,7 @@ const Sidebar = () => {
       <div className="flex flex-col justify-between">
         <div className="my-3 placeholder">
           <div
-            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/dashboard")
                 ? "bg-indigo"
                 : "shadow-xl"
@@ -53,7 +53,7 @@ const Sidebar = () => {
         </div>
         <div className="my-3 placeholder">
           <div
-            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/chat")
                 ? "bg-indigo text-white"
                 : "shadow-xl"
@@ -71,7 +71,7 @@ const Sidebar = () => {
         </div>
         <div className="my-3 placeholder">
           <div
-            className={`bg-slate-50 p-2 text-neutral-content rounded-full w-12 ${
+            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/random")
                 ? "shadow-black shadow"
                 : "shadow-xl"
@@ -89,7 +89,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="my-3 placeholder">
-        <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-12 shadow-xl">
+        <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-12 shadow-xl">
           <span className="text-xl text-black cursor-pointer">D</span>
         </div>
       </div>

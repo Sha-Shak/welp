@@ -9,7 +9,7 @@ module.exports = {
       xl: '1440px',
     },
     colors: {
-      'main': '#2F71C7',
+      'main': '#699BF7',
       'indigo': '#6366F1',
       'prpl-button': '#7e5bef',
       'bg-red': '#e39695',
@@ -19,6 +19,7 @@ module.exports = {
       'gray-dark': '#111827',
       'gray': '#6B7280',
       'gray-light': '#E5E7EB',
+      'gray-xlight': '#F9FAFB'
     },
     extend: {
       backgroundImage: {
