@@ -34,7 +34,7 @@ function ContactCard({room}) {
       {!searchInput && 
           <div onClick={handleClick} >  
                 <div className="flex w-full p-[5px]">
-                  <span className="border-2 border-slate-300 w-full flex ml-1 items-center  h-auto bg-white font-normal rounded-md px-3 p-4 ">
+                  <span className="border-2 border-gray-xlight w-full flex ml-1 items-center  h-auto bg-white font-normal rounded-md px-3 p-4 ">
                   { contact && contact.img_url &&
                         <img
                         // src={contact ? contact.img_url ? contact.img_url : contact.firstname.charAt(0) : "WU"}

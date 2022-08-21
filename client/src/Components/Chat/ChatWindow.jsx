@@ -74,7 +74,7 @@ function ChatWindow() {
     <div className="border-2 border-gray-xlight relative h-90vh mr-6 w-2/3">
       {roomExists && (
         <div className="w-100 h-90vh flex items-center">
-          <div className=" h-90vh w-full bg-white rounded shadow-2xl">
+          <div className=" h-90vh w-full bg-white rounded border-gray-light shadow-2xl">
            
               <ChatWindowNav />
                 <div

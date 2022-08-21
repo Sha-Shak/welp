@@ -64,7 +64,7 @@ function ChatInput({ handleSocketSubmit }) {
               
                 <input
                   type="text"
-                  className="border-2 border-slate-300 rounded-full pl-6 pr-12 py-2 focus:outline-none h-auto placeholder-gray-dark bg-white text-black"
+                  className="border-2 rounded-full border-gray-light pl-6 pr-12 py-2 focus:outline-none h-auto placeholder-gray-dark bg-white text-black"
                   style={{ fontSize: "1rem", width: "100%" }}
                   onChange = {handleChange}
                   value={content}
