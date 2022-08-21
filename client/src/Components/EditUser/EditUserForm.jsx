@@ -194,7 +194,7 @@ function EditUserForm() {
                   )}
                 </div>
               </div>
-              <div className="rounded-md shadow-md p-8 ">
+              <div className="text-center rounded-md shadow-md p-8 ">
                 <div className="mx-8">
                   <div className="flex mb-4 justify-between">
                     <TextInput
@@ -257,7 +257,7 @@ function EditUserForm() {
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="btn rounded-full bg-white text-indigo mr-2"
+                    className="btn rounded-full bg-gray-xlight text-indigo mr-2"
                   >
                     Save
                   </button>

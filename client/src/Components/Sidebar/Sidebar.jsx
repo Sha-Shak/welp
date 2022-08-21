@@ -6,7 +6,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-screen sticky flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-gray-xlight">
+    <div className="h-screen sticky top-0 flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-x-gray-light">
       <div className="avatar placeholder">
         <div className="bg-gray-light text-neutral-content w-14 shadow-xl">
           <Link to="/" className="text-xl text-black cursor-pointer">
@@ -24,7 +24,7 @@ const Sidebar = () => {
           <div
             className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/dashboard")
-                ? "border-2  border-indigo-500 shadow-lg"
+                ? "border-2  border-indigo shadow-lg"
                 : "shadow-xl"
             }`}
           >
@@ -56,7 +56,7 @@ const Sidebar = () => {
           <div
             className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/chat")
-                ? "border-2  border-indigo-500 shadow-lg"
+                ? "border-2  border-indigo shadow-lg"
                 : "shadow-xl"
             }`}
           >
@@ -76,7 +76,7 @@ const Sidebar = () => {
           <div
             className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
               location.pathname.includes("/random")
-                ? "border-2  border-indigo-500 shadow-lg"
+                ? "border-2  border-indigo shadow-lg"
                 : "shadow-xl"
             }`}
           >

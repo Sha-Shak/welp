@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
   const user = useSelector((state) => state.auth);
+  console.log(user);
 
   const [stateUser, setStateUser] = useState();
 
@@ -34,8 +35,11 @@ const TopBar = () => {
     navigate("/login");
   };
   return (
-    <div data-theme="light" className="p-4 flex justify-end items-center">
-      {stateUser ? (
+    <div
+      data-theme="light"
+      className="p-4 flex justify-end items-center sticky top-0"
+    >
+      {user ? (
         <div className="flex justify-end">
           {user.type === "admin" && (
             <div className="flex justify-end">
@@ -65,11 +69,19 @@ const TopBar = () => {
           <div className="ml-1 avatar placeholder">
             <div
               onClick={handleClick}
-              className="bg-indigo text-white p-2 rounded-full w-9 shadow-xl"
+              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl"
             >
-              <span className="text-xl text-white cursor-pointer">
-                {user && user.firstname.charAt(0)}
-              </span>
+              {user && user.img_url ? (
+                <img
+                  className="rounded-full"
+                  src={user.img_url}
+                  alt="user-pro-pic"
+                />
+              ) : (
+                <span className="text-xl text-white cursor-pointer">
+                  {user && user.firstname.charAt(0)}
+                </span>
+              )}
             </div>
           </div>
         </div>
