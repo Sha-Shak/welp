@@ -89,6 +89,8 @@ const UserCard = ({ loggedInUser, user }) => {
             >
               {user.firstname}
             </h2>
+
+            <p className="mb-5 text-xs">{user.interests.join(', ')}</p>
             {user.interest &&
               user.interest.map((interest) => <p>{interest}</p>)}
 
