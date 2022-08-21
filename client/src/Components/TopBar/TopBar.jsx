@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
   const user = useSelector((state) => state.auth);
-  console.log(user);
-
   const [stateUser, setStateUser] = useState();
 
   //for reference================
@@ -24,16 +22,20 @@ const TopBar = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log("topbar", stateUser);
+
   const handleClick = async () => {
     await dispatch(getOwnProfile());
     navigate("/edit-user");
   };
+
   const handleLogOut = () => {
     dispatch(logOut());
     setStateUser(null);
     navigate("/login");
   };
+
+  console.log(user)
+
   return (
     <div
       data-theme="light"
