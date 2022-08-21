@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-
+import ProtectedRoutes from "./ProtectedRoutes";
 import Login from "../src/pages/Login";
 import AddAdmin from "./pages/AddAdmin";
 import AddUser from "./pages/AddUser";
@@ -25,12 +25,14 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/add-user" element={<AddUser />} />
-          <Route path="/add-admin" element={<AddAdmin />} />
-          <Route path="/edit-admin" element={<EditAdmin />} />
-          <Route path="/edit-user" element={<EditUser />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/add-user" element={<AddUser />} />
+            <Route path="/add-admin" element={<AddAdmin />} />
+            <Route path="/edit-admin" element={<EditAdmin />} />
+            <Route path="/edit-user" element={<EditUser />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
           {
             //<Route path="/messaging" element={<Messaging />} />
           }
