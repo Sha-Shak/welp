@@ -113,7 +113,7 @@ function ChatWindow() {
                 style={{ height: "67vh" }}
                 id="journal-scroll"
               >
-                <div style={{ margin: "auto 0 " }}>Chat Away</div>
+                <div className="text-gray pl-2 pt-6" style={{ margin: "auto 0 " }}>Chat Away</div>
               </div>
 
    
