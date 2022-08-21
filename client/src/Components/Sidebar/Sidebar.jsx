@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div className="h-screen sticky top-0 flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-x-gray-light">
       <div className="avatar placeholder">
         <div className="bg-gray-light text-neutral-content w-14 shadow-xl">
-          <Link to="/" className="text-xl text-black cursor-pointer">
+          <Link to="/dashboard" className="text-xl text-black cursor-pointer">
             <img
               src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660568784/WhatsApp_Image_2022-08-15_at_7.01.32_PM_byfnbw.jpg"
               height="50px"
