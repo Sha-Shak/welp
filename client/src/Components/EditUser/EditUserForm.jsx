@@ -181,7 +181,7 @@ function EditUserForm() {
                   <button
                     type="button"
                     onClick={uploadImage}
-                    className="py-1 px-3 bg-indigo text-white rounded-2xl"
+                    className="py-1 px-3 bg-indigo/75 text-gray-xlight rounded-2xl"
                   >
                     Upload
                   </button>

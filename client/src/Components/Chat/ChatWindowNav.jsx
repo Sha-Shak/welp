@@ -31,7 +31,7 @@ function ChatWindowNav() {
 
   return (
     <div>
-      <nav className="h-20 bg-white border-b-2 border-gray-xlight rounded-tr rounded-tl flex justify-between items-center">
+      <nav className="h-20 bg-indigo text-gray-xlight border-b-2 border-gray-xlight rounded-tr rounded-tl flex justify-between items-center">
         <div className="flex justify-center items-center">
           <i className="mdi mdi-arrow-left font-normal text-gray-light ml-1"></i>
           <img
