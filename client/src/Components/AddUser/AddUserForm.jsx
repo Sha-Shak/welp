@@ -37,7 +37,9 @@ function AddUserForm() {
         <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-light">
           <div className="max-w-md w-full space-y-8">
             <div>
-              <h6 className="text-xl text-gray left">Add people to your community</h6>
+              <h6 className="text-xl text-gray left">
+                Add people to your community
+              </h6>
               <h1 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray">
                 Create User
               </h1>
@@ -63,7 +65,7 @@ function AddUserForm() {
                     User created Successfully!
                   </h2>
                 ))}
-              <div className="rounded-md shadow-md p-8 ">
+              <div className="text-center rounded-md shadow-md p-8 ">
                 <div className="mx-8">
                   <div className="flex mb-4 justify-between">
                     <TextInput

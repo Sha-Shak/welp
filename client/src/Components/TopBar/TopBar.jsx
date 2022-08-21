@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
   const user = useSelector((state) => state.auth);
+  console.log(user);
 
   const [stateUser, setStateUser] = useState();
 
@@ -35,7 +36,7 @@ const TopBar = () => {
   };
   return (
     <div data-theme="light" className="p-4 flex justify-end items-center">
-      {stateUser ? (
+      {user ? (
         <div className="flex justify-end">
           {user.type === "admin" && (
             <div className="flex justify-end">

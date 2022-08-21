@@ -58,7 +58,7 @@ function SignupForm() {
                 {error}
               </h2>
             )}
-            <div className="rounded-md shadow-md p-8 ">
+            <div className="text-center rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput
@@ -129,7 +129,7 @@ function SignupForm() {
               ></Button>
             </div>
 
-            <h6 className="text-xl">
+            <h6 className="text-xl text-center">
               Already have an account?{" "}
               <span
                 onClick={() => navigate("/login")}

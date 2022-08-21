@@ -6,7 +6,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-screen sticky flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-gray-xlight">
+    <div className="h-screen flex flex-col items-center p-3 justify-between shadow-lg border-r-2">
       <div className="avatar placeholder">
         <div className="bg-gray-light text-neutral-content w-14 shadow-xl">
           <Link to="/" className="text-xl text-black cursor-pointer">

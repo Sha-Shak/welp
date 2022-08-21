@@ -1,6 +1,8 @@
 import lottie from "lottie-web";
 import React, { useEffect, useRef } from "react";
 import AddUserForm from "../Components/AddUser/AddUserForm";
+import Sidebar from "../Components/Sidebar/Sidebar";
+import TopBar from "../Components/TopBar/TopBar";
 
 function AddUser() {
   const lottieContainer = useRef();
@@ -14,9 +16,17 @@ function AddUser() {
     });
   }, []);
   return (
-    <div className="flex justify-around">
-      <AddUserForm />
-      <div ref={lottieContainer} className="w-full p-20"></div>
+    <div className="flex">
+      <Sidebar />
+      <div className="w-full">
+        <TopBar />
+        <div className="container mx-auto">
+          <div className="flex justify-around">
+            <AddUserForm />
+            <div ref={lottieContainer} className="w-full p-20"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
