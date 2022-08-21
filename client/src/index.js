@@ -9,10 +9,18 @@ import "./index.css";
 import rootReducer from "./reducers";
 
 
+
+
+
+
+
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

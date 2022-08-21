@@ -12,6 +12,7 @@ import EditAdmin from "./pages/EditAdmin";
 import EditUser from "./pages/EditUser";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
+import DummyForm from "./Components/Inputs/DummyForm";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/edit-user" element={<EditUser />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/:id/dashboard" element={<Dashboard />} />
+                <Route path="/dummyform" element={<DummyForm />} />
                 {
                   //<Route path="/messaging" element={<Messaging />} />
                 }
