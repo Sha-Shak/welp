@@ -25,10 +25,10 @@ const server = http.createServer(app);
   try {
 
     await pool.connect();
-    console.log('Connected to Postgress!');
+    console.log('Connected to Postgres!');
   
     server.listen(SERVER_PORT, () => {
-      console.log('Server is listening on port 3001.');
+      console.log(`Server is listening on port ${SERVER_PORT}.`);
     });
 
   } catch (error) {
