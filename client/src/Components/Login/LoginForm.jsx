@@ -46,7 +46,7 @@ function LoginForm() {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="mt-8 space-y-6"
+            className="text-center mt-8 space-y-6"
             action="#"
             method="POST"
           >
