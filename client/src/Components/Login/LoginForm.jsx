@@ -7,23 +7,26 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function LoginForm() {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
-  console.log("compo : first ", error);
+  
   useEffect(() => {
     setTimeout(() => {
       dispatch(clearError());
     }, 3000);
   }, [error]);
 
+
   const handleSwitch = (e) => {
     console.log(e.target);
     navigate("/signup");
   };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     let data = {
       email: e.target.email.value,
       password: e.target.password.value,
@@ -34,6 +37,8 @@ function LoginForm() {
       }, 3000);
     });
   };
+
+  
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-light">

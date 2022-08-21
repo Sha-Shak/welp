@@ -2,7 +2,7 @@ import React from 'react'
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
 
-function ChatInput({ handleSocketSubmit, justForView }) {
+function ChatInput({ handleSocketSubmit }) {
 
   const [content, setContent] = useState("")
   const dispatch = useDispatch()

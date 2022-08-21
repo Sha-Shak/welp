@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Call from "./Call";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
@@ -17,13 +17,7 @@ function ChatWindow() {
   const currentRoomId = useSelector((state) => state.currentChat);
   const [roomExists, setRoomExists] = useState(false);
   const [messages, setMessages] = useState([]);
-  const justForViewRef = useRef();
 
-  const justForView = () => {
-    if (justForViewRef.current) {
-      justForViewRef.current.scrollIntoView();
-    }
-  };
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -97,35 +91,15 @@ function ChatWindow() {
                     </>
                   ))  
                   }
-                   <div ref={justForViewRef}></div>
+               
                     </div>
                    
 
-            <ChatWindowNav />
-            <div
-              className="overflow-auto px-1 py-1"
-              style={{ height: "67vh" }}
-              id="journal-scroll"
-            >
-              {messages.map((msg) => (
-                <>
-                  {msg.sender_id === user.id && (
-                    <Sent content={msg.content} timestamp={msg.timestamp} />
-                  )}
-                  {msg.sender_id !== user.id && (
-                    <Received content={msg.content} timestamp={msg.timestamp} />
-                  )}
-
-
-                  {/* <Call/> */}
-                </>
-              ))}
-              <div ref={justForViewRef}></div>
-            </div>
+            
 
             <ChatInput
               handleSocketSubmit={handleSocketSubmit}
-              justForView={justForView}
+            
             />
           </div>
         </div>
@@ -142,7 +116,7 @@ function ChatWindow() {
                 <div style={{ margin: "auto 0 " }}>Chat Away</div>
               </div>
 
-              <div ref={justForViewRef}></div>
+   
             </div>
           </div>
         </>

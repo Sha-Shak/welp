@@ -27,19 +27,35 @@ function ContactCard({room}) {
     })
   }
 
+  console.log(contact ? contact.firstname.charAt(0) : undefined)
+  
   return (
       <>
       {!searchInput && 
           <div onClick={handleClick} >  
                 <div className="flex w-full p-[5px]">
                   <span className="border-2 border-slate-300 w-full flex ml-1 items-center  h-auto bg-white font-normal rounded-md px-3 p-4 ">
-                  <img
-                      src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660568784/WhatsApp_Image_2022-08-15_at_7.01.32_PM_byfnbw.jpg"
-                      className="rounded-full shadow-xl"
-                      width="100"
-                      height="100"
-                      alt="propic"
-                    />
+                  { contact && contact.img_url &&
+                        <img
+                        // src={contact ? contact.img_url ? contact.img_url : contact.firstname.charAt(0) : "WU"}
+                        src = {contact.img_url}
+                        className="rounded-full shadow-xl"
+                        width="100"
+                        height="100"
+                        alt="propic"
+                        />
+
+                  }
+                  {
+                      contact && !contact.img_url &&
+                      <span 
+                      className="text-2xl flex align-center justify-center text-white cursor-pointer rounded-full shadow-xl"
+                      style={{width:"100px",height:"100px", fontSize:"50px"}}>
+                        <span style={{marginTop:"30%"}} className='flex align-center justify-center'>{contact.firstname.charAt(0)}</span>
+                      
+                    </span>
+                  }
+                 
                 <div className="">
               
                   <div className="px-3 text-black text-xl">
