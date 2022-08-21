@@ -42,7 +42,7 @@ const TopBar = () => {
               <Link to="/add-user">
                 <button
                   type="submit"
-                  className="py-1 px-2 mr-1 rounded-2xl  bg-indigo-600 text-white"
+                  className="py-1 px-2 mr-1 rounded-2xl border border-main bg-white text-main"
                 >
                   Add User
                 </button>
@@ -50,9 +50,9 @@ const TopBar = () => {
               <Link to="/add-admin">
                 <button
                   type="submit"
-                  className="py-1 px-2 mr-1 rounded-2xl  bg-indigo-600 text-white"
+                  className="py-1 px-2 mr-1 rounded-2xl border border-main bg-white text-main"
                 >
-                  Add admin
+                  Add Admin
                 </button>
               </Link>
             </div>

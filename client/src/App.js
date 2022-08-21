@@ -34,12 +34,9 @@ function App() {
                 <Route path="/edit-admin" element={<EditAdmin />} />
                 <Route path="/edit-user" element={<EditUser />} />
                 <Route path="/chat" element={<Chat />} />
-<<<<<<< HEAD
+                <Route path="/random" element={<Chat />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-=======
-                <Route path="/:id/dashboard" element={<Dashboard />} />
                 <Route path="/video/:id" element={<VideoCall />} />
->>>>>>> adce6824d1026db46b8b27a1d6f338ce24efbaab
                 {
                   //<Route path="/messaging" element={<Messaging />} />
                 }
