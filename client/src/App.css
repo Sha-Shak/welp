@@ -17,3 +17,7 @@
 .custom-shape-divider-bottom-1661065439 .shape-fill {
   fill: #ffffff;
 }
+svg {
+  color: blue;
+  height: 600px;
+}
