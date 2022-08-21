@@ -6,7 +6,7 @@ const cors = require('cors');
 const router = require('./router');
 const pool = require('./models/db');
 const { postMessage } = require('./models/chat');
-const SERVER_PORT = process.env.SERVER_PORT || 3001;
+const SERVER_PORT = process.env.PORT || 3001;
 
 const corsConfig = {
   //origin: 'http://localhost:3000',
