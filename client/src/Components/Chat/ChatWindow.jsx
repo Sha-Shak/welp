@@ -99,11 +99,11 @@ function ChatWindow() {
            
               <ChatWindowNav />
                 <div
-                  className="overflow-auto px-1 py-1"
+                  className="overflow-auto px-1 flex flex-col-reverse py-1"
                   style={{ height: "67vh" }}
                   id="journal-scroll"
                 >
-                  {messages.map((msg)=>(
+                  {messages.reverse().map((msg)=>(
                     <>
                     { msg.sender_id === user.id && <Sent content={msg.content} timestamp={msg.timestamp} /> }
                     { msg.sender_id !== user.id && <Received content={msg.content} timestamp={msg.timestamp} /> }
