@@ -34,7 +34,7 @@ function AddAdminForm() {
       <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-300 ">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <h6 className="text-xl left">Make Managing Easier</h6>
+            <h6 className="text-xl text-center">Make Managing Easier</h6>
             <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
               Create An Admin
             </h2>
@@ -60,7 +60,7 @@ function AddAdminForm() {
                   Admin created Successfully!
                 </h2>
               ))}
-            <div className="rounded-md shadow-lg p-8 ">
+            <div className="text-center rounded-md shadow-lg p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput

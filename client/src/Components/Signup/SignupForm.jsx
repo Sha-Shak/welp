@@ -42,7 +42,7 @@ function SignupForm() {
       <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-200 ">
         <div className="max-w-md space-y-8">
           <div>
-            <h6 className="text-xl left">Welcome to Welp!</h6>
+            <h6 className="text-xl text-center">Welcome to Welp!</h6>
             <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
               Sign up for an account
             </h2>
@@ -58,7 +58,7 @@ function SignupForm() {
                 {error}
               </h2>
             )}
-            <div className="rounded-md shadow-md p-8 ">
+            <div className="text-center rounded-md shadow-md p-8 ">
               <div className="mx-8">
                 <div className="flex mb-4 justify-between">
                   <TextInput
@@ -129,7 +129,7 @@ function SignupForm() {
               ></Button>
             </div>
 
-            <h6 className="text-xl">
+            <h6 className="text-xl text-center">
               Already have an account?{" "}
               <span
                 onClick={() => navigate("/login")}
