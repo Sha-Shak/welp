@@ -56,7 +56,7 @@ function AddAdminForm() {
                   Something went wrong
                 </h2>
               ) : (
-                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-bg-green">
+                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-font-green bg-bg-green">
                   Admin created Successfully!
                 </h2>
               ))}
