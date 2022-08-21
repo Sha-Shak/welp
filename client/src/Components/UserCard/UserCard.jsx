@@ -91,8 +91,8 @@ const UserCard = ({ loggedInUser, user }) => {
             </h2>
 
             <p className="mb-5 text-xs">{user.interests.join(', ')}</p>
-            {user.interest &&
-              user.interest.map((interest) => <p>{interest}</p>)}
+
+            <p className="text-s">{user.type === 'admin' ? 'Admin' : null}</p>
 
             <div className="flex">
               <button
@@ -103,8 +103,8 @@ const UserCard = ({ loggedInUser, user }) => {
               </button>
               {loggedInUser.type === "admin" && (
                 <button
-                  onClick={handleConfirmDelete}
-                  className="btn btn-error mx-1 rounded-full right-0"
+                onClick={handleConfirmDelete}
+                className="btn btn-error mx-1 rounded-full right-0"
                 >
                   Delete
                 </button>
