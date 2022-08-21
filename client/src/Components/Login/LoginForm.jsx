@@ -10,14 +10,9 @@ function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
-  // const [errorMsg, setErrorMsg] = useState(error);
-  console.log("error comp state", error);
-  const user = useSelector((state) => state.users);
-
+  console.log("compo : first ", error);
   useEffect(() => {
-    console.log("changed", error);
     setTimeout(() => {
-      console.log("timeout");
       dispatch(clearError());
     }, 3000);
   }, [error]);
@@ -33,22 +28,19 @@ function LoginForm() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    await dispatch(logIn(data)).then(() => {
+    await dispatch(logIn(data, navigate)).then(() => {
       setTimeout(() => {
         dispatch(clearError());
       }, 3000);
     });
-    const user = JSON.parse(localStorage.getItem("data"));
-    console.log(user.id);
-    navigate(`/${user.id}/dashboard`);
   };
   return (
     <>
-      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-300">
-        <div className="w-full">
-          <div>
-            <h6 className=" left">Welcome Back!</h6>
-            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-light">
+        <div className="w-full relative">
+          <div className="">
+            <h6 className="text-center text-gray">Welcome Back!</h6>
+            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray">
               Sign in to your account
             </h2>
           </div>
@@ -91,7 +83,7 @@ function LoginForm() {
               Don't have an account?{" "}
               <span
                 onClick={handleSwitch}
-                className="text-2xl text-indigo-500 cursor-pointer"
+                className="text-2xl text-indigo cursor-pointer"
               >
                 Sign Up{" "}
               </span>

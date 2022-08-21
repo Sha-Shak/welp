@@ -1,4 +1,6 @@
-export default function auth(state = [], action) {
+const getUser = localStorage.getItem("data");
+const user = getUser ? JSON.parse(getUser) : null;
+export default function auth(state = user, action) {
   switch (action.type) {
     case "CREATE_ORG":
       const authUser = action.payload.headers.authorization;
@@ -15,7 +17,7 @@ export default function auth(state = [], action) {
       return (state = user);
     case "LOG_OUT":
       localStorage.clear();
-      state = [];
+      state = null;
       return state;
       break;
     default:

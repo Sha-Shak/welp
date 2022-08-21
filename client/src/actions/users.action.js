@@ -1,23 +1,25 @@
 import * as api from "../utils/apiClientService";
 
-export const createOrg = (data) => async (dispatch) => {
+export const createOrg = (data, navigate) => async (dispatch) => {
   try {
     console.log("action", data);
     const user = await api.createOrg(data);
     console.log("from backend", user);
     dispatch({ type: "CREATE_ORG", payload: user });
+    navigate("/dashboard");
   } catch (e) {
     dispatch({ type: "ERROR", payload: e.response.data });
     console.log("createOrg", e);
   }
 };
 
-export const logIn = (data) => async (dispatch) => {
+export const logIn = (data, navigate) => async (dispatch) => {
   try {
     console.log("action", data);
     const user = await api.logIn(data);
     console.log("from backend", user);
     dispatch({ type: "LOG_IN", payload: user });
+    navigate("/dashboard");
   } catch (e) {
     console.log("Error action LogIn", e);
     dispatch({ type: "ERROR", payload: e.response.data });
@@ -40,6 +42,7 @@ export const addUserToOrganization = (data) => async (dispatch) => {
     console.log(response);
     dispatch({ type: "ADD_USER_TO_ORG", payload: response });
   } catch (e) {
+    dispatch({ type: "ERROR", payload: e.response.data });
     console.log("error action add user to org", e);
   }
 };
@@ -51,12 +54,14 @@ export const addAdminToOrganization = (data) => async (dispatch) => {
     // console.log(data);
     dispatch({ type: "ADD_ADMIN_TO_ORG", payload: response });
   } catch (e) {
+    dispatch({ type: "ERROR", payload: e.response.data });
     console.log("error action add admin to org", e);
   }
 };
 
 export const clearError = () => (dispatch) => {
   try {
+    console.log("adduser");
     dispatch({ type: "CLEAR_ERROR" });
   } catch (e) {
     console.log("action LogOut", e);
@@ -83,7 +88,7 @@ export const getUsers = () => async (dispatch) => {
   try {
     // console.log("form action get users: ");
     const users = await api.getUsers();
-    // console.log("form action get users: ", users.data);
+    console.log("form action get NOT users: ", users.data);
     dispatch({ type: "GET_ALL_USERS", payload: users.data });
   } catch (e) {
     console.log("error get all users", e);
@@ -103,7 +108,7 @@ export const deleteUser = (id) => async (dispatch) => {
 export const recommendUsers = () => async (dispatch) => {
   try {
     const { data } = await api.recommendUser();
-    // console.log("recomme object", data);
+    console.log("recommended object", data);
     dispatch({ type: "RECOM_USERS", payload: data });
   } catch (e) {
     console.log("recommended user error", e);

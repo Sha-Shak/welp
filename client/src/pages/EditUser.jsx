@@ -5,10 +5,12 @@ import Profile from "../Components/Profile/Profile";
 const EditUser = () => {
   return (
     <div className="flex justify-center">
-      <div>
+      <div className="flex flex-col w-full border-r-2 border-gray-light items-center justify-center">
         <Profile />
       </div>
-      <EditUserForm />
+      <div className="w-full">
+        <EditUserForm />
+      </div>
     </div>
   );
 };

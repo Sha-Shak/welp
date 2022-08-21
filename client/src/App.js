@@ -12,7 +12,11 @@ import EditAdmin from "./pages/EditAdmin";
 import EditUser from "./pages/EditUser";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
+
 import DummyForm from "./Components/Inputs/DummyForm";
+
+import VideoCall from "./pages/VideoCall";
+
 
 function App() {
   return (
@@ -24,7 +28,9 @@ function App() {
             <TopBar />
             <div className="container mx-auto">
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                {
+                  // <Route path="/" element={<Dashboard />} />
+                }
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/add-user" element={<AddUser />} />
@@ -32,8 +38,14 @@ function App() {
                 <Route path="/edit-admin" element={<EditAdmin />} />
                 <Route path="/edit-user" element={<EditUser />} />
                 <Route path="/chat" element={<Chat />} />
+
                 <Route path="/:id/dashboard" element={<Dashboard />} />
                 <Route path="/dummyform" element={<DummyForm />} />
+
+                <Route path="/random" element={<Chat />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/video/:id" element={<VideoCall />} />
+
                 {
                   //<Route path="/messaging" element={<Messaging />} />
                 }

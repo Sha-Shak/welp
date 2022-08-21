@@ -6,8 +6,8 @@ import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
 
 import { checkChat, createChat } from "../../utils/apiClientService.js";
 
-const UserCard = ({ user }) => {
-  console.log();
+const UserCard = ({ loggedInUser, user }) => {
+  console.log("props loggedIn", loggedInUser);
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
   const handleProfile = async (id) => {
@@ -15,28 +15,18 @@ const UserCard = ({ user }) => {
     navigate("/profile");
   };
   const navigate = useNavigate();
-  // console.log("before change deleteBox val is", deleteBox);
 
   const handleConfirmDelete = () => {
-    // console.log("Confirm delete? ");
     setDeleteBox((prevDeleteBox) => !deleteBox);
-    // console.log("deleteBox val is", deleteBox);
   };
 
   const handleDelete = (id) => {
-    // console.log("from compo: ", id);
     dispatch(deleteUser(id));
   };
-
   const handleCancel = () => {
     setDeleteBox(false);
   };
-
   const handleChatClick = (id) => {
-    // dispatch({
-    //   type: "SET_CHAT",
-    //   payload : id
-    // })
     checkChat(id)
       .then((data) => {
         console.log("From handleChatClick: ", data.data);
@@ -62,7 +52,7 @@ const UserCard = ({ user }) => {
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (
-    <div className="card border-2 card-side bg-base-100 shadow-xl p-2 my-2">
+    <div className="card border-2 border-gray-xlight card-side bg-base-100 shadow-xl p-2 my-2">
       <figure>
         <img
           className="rounded-full w-36 h-36"
@@ -79,7 +69,7 @@ const UserCard = ({ user }) => {
             <div className="flex">
               <button
                 onClick={(e) => handleDelete(user.id)}
-                className="btn bg-white text-error border-r-2 border-gray-200 mx-1 rounded-full right-0"
+                className="btn bg-white text-error border-r-2 border-gray-light mx-1 rounded-full right-0"
               >
                 Delete
               </button>
@@ -95,12 +85,12 @@ const UserCard = ({ user }) => {
           <div>
             <h2
               onClick={(e) => handleProfile(user.id)}
-              className="card-title text-2xl border-b-2 border-gray-200 mb-1 "
+              className="card-title text-2xl border-b-2 border-gray-light mb-1 "
             >
               {user.firstname}
             </h2>
-            {user.interest &&
-              user.interest.map((interest) => <p>{interest}</p>)}
+            
+            <p className="mb-5">{user.interests.join(', ')}</p>
 
             <div className="flex">
               <button
@@ -109,12 +99,14 @@ const UserCard = ({ user }) => {
               >
                 CHAT
               </button>
-              <button
-                onClick={handleConfirmDelete}
-                className="btn btn-error mx-1 rounded-full right-0"
-              >
-                Delete
-              </button>
+              {loggedInUser.type === "admin" && (
+                <button
+                  onClick={handleConfirmDelete}
+                  className="btn btn-error mx-1 rounded-full right-0"
+                >
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         )}

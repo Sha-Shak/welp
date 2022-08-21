@@ -23,15 +23,12 @@ function SignupForm() {
       type: "Admin",
       password: e.target.password.value,
     };
-    console.log("component", data);
-    await dispatch(createOrg(data)).then(() => {
+
+    await dispatch(createOrg(data, navigate)).then(() => {
       setTimeout(() => {
         dispatch(clearError());
       }, 3000);
     });
-    const user = JSON.parse(localStorage.getItem("data"));
-    console.log(user.id);
-    navigate(`/${user.id}/dashboard`);
   };
 
   const handleChangePassword = (e) => {
@@ -42,11 +39,11 @@ function SignupForm() {
 
   return (
     <>
-      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-200 ">
+      <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-light ">
         <div className="max-w-md space-y-8">
           <div>
             <h6 className="text-xl left">Welcome to Welp!</h6>
-            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-dark">
               Sign up for an account
             </h2>
           </div>
@@ -136,7 +133,7 @@ function SignupForm() {
               Already have an account?{" "}
               <span
                 onClick={() => navigate("/login")}
-                className="text-2xl text-indigo-500 cursor-pointer"
+                className="text-2xl text-indigo cursor-pointer"
               >
                 Log-in
               </span>

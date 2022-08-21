@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addAdminToOrganization,
   clearCreateAdmin,
+  clearError,
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function AddAdminForm() {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.users);
+  const error = useSelector((state) => state.errors);
   console.log("addAdmin", response.status);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,20 +21,21 @@ function AddAdminForm() {
       type: "admin",
       password: e.target.password.value,
     };
-    console.log("from add user comp: ", newAdmin);
     dispatch(addAdminToOrganization(newAdmin)).then(() => {
       setTimeout(() => {
+        dispatch(clearError());
         dispatch(clearCreateAdmin());
       }, 2000);
     });
+    e.target.reset();
   };
   return (
     <>
-      <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-300 ">
+      <div className="w-full flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 border-r-2 border-gray-light ">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <h6 className="text-xl left">Make Managing Easier</h6>
-            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
+            <h6 className="text-xl text-gray left">Make Managing Easier</h6>
+            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray">
               Create An Admin
             </h2>
           </div>
@@ -42,13 +45,18 @@ function AddAdminForm() {
             method="POST"
             onSubmit={handleSubmit}
           >
+            {error && (
+              <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                {error}
+              </h2>
+            )}
             {response.status &&
               (response.status > 201 ? (
                 <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
                   Something went wrong
                 </h2>
               ) : (
-                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-[#73aa34]">
+                <h2 className="text-center text-2xl tracking-tight font-normal p-2 rounded-lg text-white bg-bg-green">
                   Admin created Successfully!
                 </h2>
               ))}

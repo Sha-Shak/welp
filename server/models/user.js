@@ -68,12 +68,11 @@ async function getUserById(id) {
 async function editUser(id, newInfo) {
   try {
     const sql =
-      "UPDATE users SET firstName = $1, lastName = $2, email = $3, password = $4, organization_id = $5, type = $6, location = $7, interests = $8, bio = $9, img_url = $10 WHERE id = $11 RETURNING *;";
+      "UPDATE users SET firstName = $1, lastName = $2, email = $3, organization_id = $4, type = $5, location = $6, interests = $7, bio = $8, img_url = $9 WHERE id = $10 RETURNING *;";
     const result = await pool.query(sql, [
       newInfo.firstname,
       newInfo.lastname,
       newInfo.email,
-      newInfo.password,
       newInfo.organization_id,
       newInfo.type,
       newInfo.location,
@@ -97,7 +96,7 @@ async function getMatches(user) {
     }
 
     const sql =
-      "SELECT id, firstname, lastname, email, interests, bio, location, organization_id FROM users WHERE ($3 = ANY(interests) OR $4 = ANY(interests) OR $5 = ANY(interests) OR $6 = ANY(interests) OR $7 = ANY(interests)) AND organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
+      "SELECT id, firstname, lastname, email, interests, bio, location, organization_id, type, img_url FROM users WHERE ($3 = ANY(interests) OR $4 = ANY(interests) OR $5 = ANY(interests) OR $6 = ANY(interests) OR $7 = ANY(interests)) AND organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
     const result = await pool.query(sql, [
       user.organization_id,
       user.id,
@@ -112,7 +111,7 @@ async function getMatches(user) {
 async function getRandomUsers(user) {
   try {
     const sql =
-      "SELECT id, firstname, lastname, email, interests, bio, location, organization_id FROM users WHERE organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
+      "SELECT id, firstname, lastname, email, interests, bio, location, organization_id, type, img_url FROM users WHERE organization_id = $1 AND id != $2 AND id NOT IN (SELECT user_id1 as id from chatrooms where user_id2 = $2) AND id NOT IN (SELECT user_id2 as id from chatrooms where user_id1 = $2);";
     const result = await pool.query(sql, [user.organization_id, user.id]);
     return result.rows;
   } catch (error) {
@@ -123,9 +122,9 @@ async function getRandomUsers(user) {
 
 async function setNewPassword (userId, password) {
   try {
-    const sql = "UPDATE users SET password = $1 WHERE id = $2;";
+    const sql = "UPDATE users SET password = $1 WHERE id = $2 RETURNING *;";
     const result = await pool.query(sql, [password, userId]);
-    return result.rows;
+    return result.rows[0];
   } catch (error) {
     throw new Error(error.message);
   }

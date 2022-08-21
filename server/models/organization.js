@@ -21,8 +21,18 @@ async function addAdminToOrganization (admin) {
   }
 }
 
+async function getOrgName (orgId) {
+  try {
+    const sql = "SELECT * FROM organizations WHERE id = $1"
+    const result = await pool.query(sql, [orgId]);
+    return result.rows[0];
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
 
 module.exports = { 
   addOrganization,
-  addAdminToOrganization
+  addAdminToOrganization,
+  getOrgName
  }

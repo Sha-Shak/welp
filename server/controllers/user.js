@@ -179,16 +179,12 @@ async function changePassword (req, res) {
         const salt = bcrypt.genSaltSync(10);
         const password = bcrypt.hashSync(newPassword, salt);
 
-        await setNewPassword(user.id, password);
+        const newUserInfo = await setNewPassword(user.id, password);
         
-        res.status(200).send(user);
+        res.status(200).send(newUserInfo);
       } else {
         res.status(401).send('Incorrect password.');
       }
-
-
-      const randomRes = await getRandomUsers(user);
-        res.status(200).send(randomRes);
     } else {
       res.status(401).send('Unauthorized to get matches.');
     }

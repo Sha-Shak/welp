@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePassword, editUser } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 function EditUserForm() {
-  const user = JSON.parse(localStorage.getItem("data"));
+  const user = useSelector((state) => state.auth);
   console.log("loop check", user);
   const dispatch = useDispatch();
   const [image, setImage] = useState("");
@@ -41,15 +41,20 @@ function EditUserForm() {
     setShowPasswordBox(false);
   };
 
+  const [latestFirstname, setLatestFirstname] = useState(user.firstname);
+  const [latestLastname, setLatestLastname] = useState(user.lastname);
+  const [latestBio, setLatestBio] = useState(user.bio);
+  const [latestLocation, setLatestLocation] = useState(user.location);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const interestArray = e.target.interest.value.split(",");
     const data = {
-      firstname: e.target.firstname.value,
-      lastname: e.target.lastname.value,
-      bio: e.target.bio.value,
+      firstname: latestFirstname,
+      lastname: latestLastname,
+      bio: latestBio,
       interests: interestArray,
-      location: e.target.location.value,
+      location: latestLocation,
       img_url: url,
     };
     const newData = { ...user, ...data };
@@ -59,15 +64,16 @@ function EditUserForm() {
     });
   };
   const handlePassSubmit = (e) => {
+    e.preventDefault();
     const data = {
       oldPassword: e.target.oldPassword.value,
       newPassword: e.target.confirmPassword.value,
     };
-    dispatch(changePassword(data));
     console.log("trigger");
+    dispatch(changePassword(data));
   };
   return (
-    <div className="grow justify-center">
+    <div className=" justify-center">
       <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
         {showPasswordBox ? (
           <div className="max-w-md w-full ">
@@ -77,15 +83,15 @@ function EditUserForm() {
             >
               <h2 className="absolute left-0 text-xl ">
                 <div className=" mr-3 avatar placeholder">
-                  <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">
-                    <span className="text-indigo-500">{"< "}</span>
+                  <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-9 shadow-xl">
+                    <span className="text-indigo">{"< "}</span>
                   </div>
                 </div>
                 Edit Profile
               </h2>
             </div>
             <div className="mt-16">
-              <h2 className="mt-10 text-center text-3xl tracking-tight font-bold text-gray-900">
+              <h2 className="mt-10 text-center text-3xl tracking-tight font-bold text-gray-dark">
                 Change Password
               </h2>
             </div>
@@ -128,7 +134,7 @@ function EditUserForm() {
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="btn rounded-full bg-white text-indigo-500 mr-2"
+                    className="btn rounded-full bg-white text-indigo mr-2"
                   >
                     Save
                   </button>
@@ -146,14 +152,14 @@ function EditUserForm() {
               <h2 className="absolute right-0 text-xl ">
                 Change Password
                 <div className=" ml-3 avatar placeholder">
-                  <div className="bg-slate-50 p-2 text-neutral-content rounded-full w-9 shadow-xl">
-                    <span className="text-indigo-500">{">"}</span>
+                  <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-9 shadow-xl">
+                    <span className="text-indigo">{">"}</span>
                   </div>
                 </div>
               </h2>
             </div>
             <div>
-              <h2 className="mt-16 text-center text-3xl tracking-tight font-bold text-gray-900">
+              <h2 className="mt-16 text-center text-3xl tracking-tight font-bold text-gray-dark">
                 Edit User
               </h2>
             </div>
@@ -173,7 +179,7 @@ function EditUserForm() {
                   <button
                     type="button"
                     onClick={uploadImage}
-                    className="py-1 px-3 bg-indigo-500 text-white rounded-2xl"
+                    className="py-1 px-3 bg-indigo text-white rounded-2xl"
                   >
                     Upload
                   </button>
@@ -199,7 +205,8 @@ function EditUserForm() {
                       required
                       placeholder="First Name"
                       half
-                      value={user.firstname}
+                      value={latestFirstname}
+                      onChange={(e) => setLatestFirstname(e.target.value)}
                     />
 
                     <TextInput
@@ -210,7 +217,8 @@ function EditUserForm() {
                       required
                       placeholder="Last Name"
                       half
-                      value={user.lastname}
+                      value={latestLastname}
+                      onChange={(e) => setLatestLastname(e.target.value)}
                     />
                   </div>
                 </div>
@@ -221,7 +229,8 @@ function EditUserForm() {
                     type="text"
                     required
                     placeholder="Bio"
-                    value={user?.bio}
+                    onChange={(e) => setLatestBio(e.target.value)}
+                    value={latestBio}
                   />
                 </div>
                 <div className="mb-4">
@@ -231,7 +240,8 @@ function EditUserForm() {
                     type="text"
                     required
                     placeholder="Location"
-                    value={user?.location}
+                    onChange={(e) => setLatestLocation(e.target.value)}
+                    value={latestLocation}
                   />
                 </div>
                 <div className="mb-4">
@@ -243,23 +253,11 @@ function EditUserForm() {
                     placeholder="Interests"
                   />
                 </div>
-                {
-                  // <div className="mb-4">
-                  //   <TextInput
-                  //     id="password"
-                  //     name="password"
-                  //     type="password"
-                  //     autocomplete="off"
-                  //     required
-                  //     placeholder="Password"
-                  //   />
-                  // </div>
-                }
 
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="btn rounded-full bg-white text-indigo-500 mr-2"
+                    className="btn rounded-full bg-white text-indigo mr-2"
                   >
                     Save
                   </button>

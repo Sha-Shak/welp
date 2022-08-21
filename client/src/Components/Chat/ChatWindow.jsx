@@ -91,7 +91,7 @@ function ChatWindow() {
 
   
   return (
-    <div className="border-2 border-slate-300 relative h-90vh mr-6 w-2/3">
+    <div className="border-2 border-gray-xlight relative h-90vh mr-6 w-2/3">
    
       {  roomExists &&
       <div className="w-100 h-90vh flex items-center">
