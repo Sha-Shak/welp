@@ -88,11 +88,13 @@ const UserCard = ({ loggedInUser, user }) => {
               className="card-title text-2xl border-b-2 border-gray-200 mb-1 "
             >
               {user.firstname}
+              {user.type === 'admin' ? 
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admin</span> 
+                : null
+              }
             </h2>
 
-            <p className="mb-5 text-xs">{user.interests.join(', ')}</p>
-            {user.interest &&
-              user.interest.map((interest) => <p>{interest}</p>)}
+            <p className="mb-5 ml-5 text-xs">{user.interests.join(', ')}</p>
 
             <div className="flex">
               <button
@@ -103,8 +105,8 @@ const UserCard = ({ loggedInUser, user }) => {
               </button>
               {loggedInUser.type === "admin" && (
                 <button
-                  onClick={handleConfirmDelete}
-                  className="btn btn-error mx-1 rounded-full right-0"
+                onClick={handleConfirmDelete}
+                className="btn btn-error mx-1 rounded-full right-0"
                 >
                   Delete
                 </button>

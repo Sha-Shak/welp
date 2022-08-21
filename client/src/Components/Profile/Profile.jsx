@@ -26,6 +26,10 @@ const Profile = () => {
         </figure>
       </div>
       <div className="space-y-4">
+        {(user.type === 'admin' ? 
+            <span class="bg-blue-100 text-blue-800 text-s font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admin</span> 
+              : null) 
+        }
         <h4 className="text-2xl text-left font-normal">
           Name: {`${user.firstname} ${user.lastname}`}
         </h4>
