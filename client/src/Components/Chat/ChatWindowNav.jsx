@@ -5,9 +5,9 @@ import { getChatRoom, getUserInfo } from "../../utils/apiClientService";
 
 function ChatWindowNav() {
   const currentRoomId = useSelector((state) => state.currentChat);
-  console.log(currentRoomId);
+
   const [contact, setContact] = useState();
-  console.log(currentRoomId);
+  
 
   useEffect(() => {
     const iffy = async () => {
@@ -26,7 +26,7 @@ function ChatWindowNav() {
     iffy();
   }, [currentRoomId]);
 
-  console.log(contact)
+
 
 
   return (

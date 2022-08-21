@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import Call from "./Call";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import { getChatMessages, getChatRoom } from "../../utils/apiClientService";
@@ -14,8 +13,10 @@ const socket = io("http://localhost:3001");
 function ChatWindow() {
   const user = JSON.parse(localStorage.getItem("data")); // get current User
 
-  const currentRoomId = useSelector((state) => state.currentChat);
-  const [roomExists, setRoomExists] = useState(false);
+ const currentRoomId = useSelector((state) => state.currentChat);
+ console.log(currentRoomId)
+ // const currentRoomId = localStorage.getItem("currentChatId")
+ const [roomExists, setRoomExists] = useState(false);
   const [messages, setMessages] = useState([]);
 
 
