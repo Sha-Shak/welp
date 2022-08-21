@@ -7,9 +7,10 @@ import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
 import { checkChat, createChat } from "../../utils/apiClientService.js";
 
 const UserCard = ({ loggedInUser, user }) => {
-  console.log("props loggedIn", loggedInUser);
+
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
+
   const handleProfile = async (id) => {
     await dispatch(getOtherProfile(id));
     navigate("/profile");
@@ -26,13 +27,20 @@ const UserCard = ({ loggedInUser, user }) => {
   const handleCancel = () => {
     setDeleteBox(false);
   };
+  
   const handleChatClick = (id) => {
     checkChat(id)
       .then((data) => {
-        console.log("From handleChatClick: ", data.data);
+
         if (data.data === false) {
           createChat(id)
-            .then(() => {
+            .then((data) => {
+
+              dispatch({
+                type:"SET_CHAT",
+                payload : data.data.id
+              })
+              
               navigate("/chat");
             })
             .catch(() => {
@@ -40,6 +48,10 @@ const UserCard = ({ loggedInUser, user }) => {
               navigate("/chat");
             });
         } else {
+          dispatch({
+            type:"SET_CHAT",
+            payload : data.data.id
+          })
           navigate("/chat");
         }
       })
