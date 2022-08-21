@@ -53,7 +53,8 @@ function ChatWindowNav() {
             </span>
             { contact ? (contact.type === 'admin' ? 
                 <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 ml-3 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admin</span> 
-                : null) : null
+                    : null)
+                : null
             }
             </div>
 
