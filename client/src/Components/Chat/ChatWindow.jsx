@@ -81,6 +81,26 @@ function ChatWindow() {
       {roomExists && (
         <div className="w-100 h-90vh flex items-center">
           <div className=" h-90vh w-full bg-white rounded shadow-2xl">
+           
+              <ChatWindowNav />
+                <div
+                  className="overflow-auto px-1 flex flex-col-reverse py-1"
+                  style={{ height: "67vh" }}
+                  id="journal-scroll"
+                >
+                  {messages.reverse().map((msg)=>(
+                    <>
+                    { msg.sender_id === user.id && <Sent content={msg.content} timestamp={msg.timestamp} /> }
+                    { msg.sender_id !== user.id && <Received content={msg.content} timestamp={msg.timestamp} /> }
+                    
+                    {/* <Call/> */}
+                    </>
+                  ))  
+                  }
+                   <div ref={justForViewRef}></div>
+                    </div>
+                   
+
             <ChatWindowNav />
             <div
               className="overflow-auto px-1 py-1"
@@ -95,6 +115,7 @@ function ChatWindow() {
                   {msg.sender_id !== user.id && (
                     <Received content={msg.content} timestamp={msg.timestamp} />
                   )}
+
 
                   {/* <Call/> */}
                 </>
