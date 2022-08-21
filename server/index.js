@@ -81,11 +81,15 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('callEnded');
   });
 
-  socket.on('check_user', (room_id) => {
+  socket.on('check_user', ({room_id, id}) => {
     const clients = io.sockets.adapter.rooms.get(room_id);
     if (clients.size > 1) {
-      socket.to(room_id).emit('get_user');
+      socket.to(room_id).emit('get_user', id);
     }
+  })
+
+  socket.on('connect_users', (room_id) => {
+    socket.to(room_id).emit('connect_users');
   })
 
   socket.on('join_call', (room_id) => {
