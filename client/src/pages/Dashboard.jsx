@@ -44,7 +44,7 @@ function Dashboard() {
           <div data-theme="light">
             <Banner user={user} />
             <h1 className="text-3xl mt-3 mb-3 pb-2 border-b-2 border-gray-100">
-              Organization User
+              { user.type === 'admin' ? "Organization Members" : "Suggestions"}
             </h1>
             <div className="mt-1 flex flex-wrap  justify-evenly">
               {!orgUsers.length ? (

@@ -11,6 +11,7 @@ import EditUser from "./pages/EditUser";
 import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
+import VideoCall from "./pages/VideoCall"
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             //<Route path="/messaging" element={<Messaging />} />
           }
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/video/:id" element={<VideoCall />} />
           <Route
             path="*"
             element={<p>STOP EMBARASSING YOURSELF! Route doesn't exist</p>}
