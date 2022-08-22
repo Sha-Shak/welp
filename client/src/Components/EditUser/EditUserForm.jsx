@@ -50,7 +50,7 @@ function EditUserForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const interestArray = e.target.interest.value.split(",");
+    const interestArray = e.target.interest.value.split(", ");
     const data = {
       firstname: latestFirstname,
       lastname: latestLastname,
