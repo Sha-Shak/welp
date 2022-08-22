@@ -7,6 +7,7 @@ import {
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
+
 function AddAdminForm() {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.users);
@@ -14,12 +15,12 @@ function AddAdminForm() {
   console.log("addAdmin", response.status);
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newAdmin = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
       type: "admin",
-      password: e.target.password.value,
     };
     dispatch(addAdminToOrganization(newAdmin)).then(() => {
       setTimeout(() => {
@@ -92,26 +93,6 @@ function AddAdminForm() {
                   autocomplete="email"
                   required
                   placeholder="Email address"
-                />
-              </div>
-              <div className="mb-4">
-                <TextInput
-                  id="password"
-                  name="password"
-                  type="password"
-                  autocomplete="off"
-                  required
-                  placeholder="Password"
-                />
-              </div>
-              <div className="mb-4">
-                <TextInput
-                  id="confirmPassword"
-                  name="confirm-password"
-                  type="password"
-                  autocomplete="off"
-                  required
-                  placeholder="Confirm Password"
                 />
               </div>
               <Button type="submit" buttonText="Add Admin"></Button>
