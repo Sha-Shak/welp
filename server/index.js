@@ -6,7 +6,7 @@ const cors = require('cors');
 const router = require('./router');
 const pool = require('./models/db');
 const { postMessage } = require('./models/chat');
-const SERVER_PORT = process.env.SERVER_PORT || 3001;
+const SERVER_PORT = process.env.PORT || 3001;
 
 const corsConfig = {
   //origin: 'http://localhost:3000',
@@ -25,10 +25,10 @@ const server = http.createServer(app);
   try {
 
     await pool.connect();
-    console.log('Connected to Postgress!');
+    console.log('Connected to Postgres!');
   
     server.listen(SERVER_PORT, () => {
-      console.log('Server is listening on port 3001.');
+      console.log(`Server is listening on port ${SERVER_PORT}.`);
     });
 
   } catch (error) {
@@ -106,7 +106,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('answerCall', (data) => {
-    socket.to(data.to).emit('callAccepted', data.signal)
+    socket.to(data.to).emit('callAccepted', data)
   });
 })
 

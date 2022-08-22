@@ -50,6 +50,7 @@ const userSql = `
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
         REFERENCES organizations(id)
+        ON DELETE CASCADE
   );`
     
 const orgSql = `
@@ -68,10 +69,12 @@ const orgUserSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_orgId
       FOREIGN KEY (organization_id)
-        REFERENCES organizations(id),
+        REFERENCES organizations(id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_adminId
       FOREIGN KEY (admin_id)
         REFERENCES users(id)
+        ON DELETE CASCADE
   );`
 
 const chatSql = `
@@ -82,10 +85,12 @@ const chatSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_userid1
       FOREIGN KEY (user_id1)
-        REFERENCES users(id),
+        REFERENCES users(id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_userid2
       FOREIGN KEY (user_id2)
         REFERENCES users(id)
+        ON DELETE CASCADE
   );`
 
 const messageSql = `
@@ -98,10 +103,12 @@ const messageSql = `
     PRIMARY KEY ("id"),
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
-        REFERENCES chatrooms(id),
+        REFERENCES chatrooms(id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_senderId
       FOREIGN KEY (sender_id)
         REFERENCES users(id)
+        ON DELETE CASCADE
   );`
 
 async function dropConstraints () {

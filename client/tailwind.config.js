@@ -10,7 +10,7 @@ module.exports = {
     },
     colors: {
       "main": "#699BF7",
-      "indigo": "#6366F1",
+      "indigo": "#125ec0",
       "prpl-button": "#7e5bef",
       "bg-red": "#e39695",
       "font-red": "#d7263d",

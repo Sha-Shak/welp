@@ -40,7 +40,7 @@ function ContactCard({room}) {
                         // src={contact ? contact.img_url ? contact.img_url : contact.firstname.charAt(0) : "WU"}
                         src = {contact.img_url}
                         className="rounded-full shadow-xl"
-                        width="100"
+                        width="100px"
                         height="100"
                         alt="propic"
                         />
@@ -49,8 +49,8 @@ function ContactCard({room}) {
                   {
                       contact && !contact.img_url &&
                       <span 
-                      className="text-2xl flex align-center justify-center text-white cursor-pointer rounded-full shadow-xl"
-                      style={{width:"100px",height:"100px", fontSize:"50px"}}>
+                      className="text-2xl flex align-center justify-center bg-main/75 text-gray-xlight cursor-pointer rounded-full shadow-xl"
+                      style={{width:"80px",height:"80px", fontSize:"50px"}}>
                         <span style={{marginTop:"30%"}} className='flex align-center justify-center'>{contact.firstname.charAt(0)}</span>
                       
                     </span>
@@ -61,7 +61,7 @@ function ContactCard({room}) {
                   <div className="px-3 text-black text-xl">
                     {contact ? contact.firstname : 'Welp User'}
                     { contact ? (contact.type === 'admin' ? 
-                      <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 ml-3 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admin</span> 
+                      <span class="bg-indigo/50 text-gray-dark text-xs font-semibold mr-2 ml-3 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admin</span> 
                         : null) 
                       : null
                     }

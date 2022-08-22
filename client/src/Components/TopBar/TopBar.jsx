@@ -39,7 +39,7 @@ const TopBar = () => {
   return (
     <div
       data-theme="light"
-      className="p-4 flex justify-end items-center sticky top-0"
+      className="p-4 flex justify-end items-center sticky top-0 z-10"
     >
       {user ? (
         <div className="flex justify-end">
@@ -48,7 +48,7 @@ const TopBar = () => {
               <Link to="/add-user">
                 <button
                   type="submit"
-                  className="py-1 px-2 mr-1 rounded-2xl border border-main bg-white text-main"
+                  className="py-1 px-2 mr-3 rounded-2xl border border-prpl-button bg-prpl-button text-gray-xlight"
                 >
                   Add User
                 </button>
@@ -56,7 +56,7 @@ const TopBar = () => {
               <Link to="/add-admin">
                 <button
                   type="submit"
-                  className="py-1 px-2 mr-1 rounded-2xl border border-main bg-white text-main"
+                  className="py-1 px-2 mr-3 rounded-2xl border-prpl-button bg-prpl-button text-gray-xlight"
                 >
                   Add Admin
                 </button>
@@ -64,14 +64,14 @@ const TopBar = () => {
             </div>
           )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
-            <div className="bg-gray-xlight p-2 text-neutral-content rounded-full w-9 shadow-xl">
+            <div className="bg-gray-xlight p-2 mr-3 text-neutral-content rounded-full w-9 shadow-xl cursor-pointer">
               <img src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/logout_fasmjv.png" alt="logout"/>
             </div>
           </div>
           <div className="ml-1 avatar placeholder">
             <div
               onClick={handleClick}
-              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl"
+              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl cursor-pointer"
             >
               {user && user.img_url ? (
                 <img

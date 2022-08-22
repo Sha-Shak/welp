@@ -2,5 +2,9 @@
   "dependencies": {
     "react-tag-input": "^6.8.0",
     "redux-persist": "^6.0.0"
+  },
+
+  "scripts": {
+    "start": "cd server && npm install && node index.js"
   }
 }

@@ -16,6 +16,7 @@ function VideoCallComponent({ chat_id }) {
 	const [ callAccepted, setCallAccepted ] = useState(false)
 	const [ callEnded, setCallEnded] = useState(false)
 	const [ name, setName ] = useState(user.firstname + ' ' + user.lastname)
+	const [ callerName, setCallerName ] = useState(null)
 	const myVideo = useRef()
 	const userVideo = useRef()
 	const connectionRef= useRef()
@@ -46,9 +47,10 @@ function VideoCallComponent({ chat_id }) {
 				userVideo.current.srcObject = stream
 			
 		})
-		socket.on("callAccepted", (signal) => {
+		socket.on("callAccepted", (data) => {
 			setCallAccepted(true)
-			peer.signal(signal)
+			peer.signal(data.signal)
+			setCallerName(data.name);
 		})
 
 		connectionRef.current = peer
@@ -67,7 +69,7 @@ function VideoCallComponent({ chat_id }) {
 		})
 		peer.on("signal", (data) => {
 			console.log('signalData: ', data);
-			socket.emit("answerCall", { signal: data, to: room_id })
+			socket.emit("answerCall", { signal: data, to: room_id, name: name })
 		})
 		peer.on("stream", (stream) => {
 			console.log('stream: ', stream);
@@ -107,7 +109,7 @@ function VideoCallComponent({ chat_id }) {
 		socket.on("callUser", (data) => {
 			setReceivingCall(true)
 			setCaller(data.from)
-			setName(data.name)
+			setCallerName(data.name)
 			setCallerSignal(data.signal)
 		})
 
@@ -141,7 +143,7 @@ function VideoCallComponent({ chat_id }) {
 					<div className="relative" style={{ border: "grey solid 1px", margin: "20px", width: "1100px", height: "412px" }}>
 						{callAccepted ? <>
 							<h3 className="absolute lleft-0 bottom-0 px-2 bg-gray-dark/50 text-gray-xlight">
-								{name}
+								{callerName}
 							</h3>
 							<video playsInline ref={userVideo} autoPlay style={{ width: "900px" }} />
 							</>
@@ -161,7 +163,7 @@ function VideoCallComponent({ chat_id }) {
 				<div className="w-full flex justify-center">
 					{receivingCall && !callAccepted ? (
 							<div className="flex flex-col items-center justify-around max-w-fit">
-							<h1 className="my-5 text-xl">{name} is waiting for a video call...</h1>
+							<h1 className="my-5 text-xl">{callerName} is waiting for a video call...</h1>
 							<button className="bg-prpl-button rounded-md text-gray-xlight py-2 px-5 max-w-fit" onClick={answerCall}>
 								Accept
 							</button>

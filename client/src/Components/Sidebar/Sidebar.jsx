@@ -8,10 +8,10 @@ const Sidebar = () => {
   return (
     <div className="h-screen sticky top-0 flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-x-gray-light">
       <div className="avatar placeholder">
-        <div className="bg-gray-light text-neutral-content w-14 shadow-xl">
+        <div className="rounded-full text-neutral-content w-12 shadow-xl">
           <Link to="/dashboard" className="text-xl text-black cursor-pointer">
             <img
-              src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660568784/WhatsApp_Image_2022-08-15_at_7.01.32_PM_byfnbw.jpg"
+              src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661151765/cover-modified_g7i5cz.png"
               height="50px"
               width="50px"
               alt="home"
@@ -34,7 +34,7 @@ const Sidebar = () => {
                 className="text-xl text-black cursor-pointer"
               >
                 <img
-                  src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852521/home_a9omko.png"
+                  src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661151765/cover-modified_g7i5cz.png"
                   height="30px"
                   width="30px"
                   alt="home"

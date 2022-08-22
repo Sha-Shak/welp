@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon index.js",
-    "builddb": "node ./scripts/migrate.js"
+    "builddb": "node ./scripts/migrate.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

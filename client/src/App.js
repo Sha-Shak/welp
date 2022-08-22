@@ -33,13 +33,16 @@ function App() {
             <Route path="/edit-user" element={<EditUser />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/dashboard" element={<Dashboard />} />
+
             <Route path="/dummyform" element={<DummyForm />} />
+
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/video/:id" element={<VideoCall />} />
+
           </Route>
           {
             //<Route path="/messaging" element={<Messaging />} />
           }
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/video/:id" element={<VideoCall />} />
           <Route
             path="*"
             element={<p>STOP EMBARASSING YOURSELF! Route doesn't exist</p>}

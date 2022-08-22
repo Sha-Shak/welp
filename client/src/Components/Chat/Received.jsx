@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getUserInfo } from '../../utils/apiClientService';
 import { getTime } from './services'
 
+
 function Received({ sender_id, content, timestamp }) {
 
   const time = getTime(timestamp);
@@ -19,9 +20,11 @@ function Received({ sender_id, content, timestamp }) {
   }, [sender_id]);
 
 
+
   return (
     <div>
                 <div className="flex items-center p-[1rem]">
+
                 <img
                   src={contact ? (contact.img_url ? contact.img_url : "https://res.cloudinary.com/dl2tsdbcf/image/upload/v1661089877/pngwing.com_koueol.png") : undefined}
                   className="rounded-full shadow-xl"
@@ -29,8 +32,17 @@ function Received({ sender_id, content, timestamp }) {
                   height="40"
                   alt="propic"
                 />
+{/* =======
+                  <div className='h-10 w-10 rounded-full'>
+                    <img
+                      src={imgSrc ? imgSrc : default_url}
+                      className="rounded-full h-10 w-10 w-min-10 h-min-10"
+                      alt="propic"
+                    />
+                  </div>
+>>>>>>> f54b900a8c9820daba423f479da10cb92f709ec4 */}
                 <span
-                  className="flex ml-1  h-auto bg-white border-2 border-gray-xlight text-black font-normal rounded-md px-3 p-4 items-end"
+                  className="flex ml-1 h-auto bg-white border-2 border-gray-light text-black font-normal rounded-md px-3 p-4 items-end"
                   style={{ fontSize: "1rem" }}
                 >
                   {content}{" "}
