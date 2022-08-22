@@ -42,8 +42,8 @@ function SignupForm() {
       <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-light ">
         <div className="max-w-md space-y-8">
           <div>
-            <h6 className="text-xl left">Welcome to Welp!</h6>
-            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-dark">
+            <h6 className="text-xl text-center left">Welcome to Welp!</h6>
+            <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-indigo">
               Sign up for an account
             </h2>
           </div>
