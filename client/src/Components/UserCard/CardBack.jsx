@@ -66,12 +66,15 @@ const CardBack = ({ loggedInUser, user }) => {
     <div className="card border-2 border-gray-xlight card-side bg-base-100 shadow-xl p-2 my-2">
       <figure>
         <img
-          className="rounded-full w-36 h-36"
+          className="rounded-full w-32 h-32 p-2"
           src={!user.img_url ? dummyImage : user.img_url}
           alt="propic"
         />
       </figure>
-      <ActionsBox />
+      <ActionsBox 
+        loggedInUser={loggedInUser}
+        user={user}
+      />
     </div>
   );
 };
