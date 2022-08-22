@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
 
 import { checkChat, createChat } from "../../utils/apiClientService.js";
-const dispatch = useDispatch();
+
+
+const ActionsBox = ({ loggedInUser, user }) => {
+  const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
 
   const handleProfile = async (id) => {
@@ -24,47 +27,9 @@ const dispatch = useDispatch();
   const handleCancel = () => {
     setDeleteBox(false);
   };
-
-const ActionsBox = () => {
-  const handleChatClick = (id) => {
-    checkChat(id)
-      .then((data) => {
-
-        if (data.data === false) {
-          createChat(id)
-            .then((data) => {
-
-              dispatch({
-                type:"SET_CHAT",
-                payload : data.data.id
-              })
-              
-              navigate("/chat");
-            })
-            .catch(() => {
-              console.log("Error in createChat");
-              navigate("/chat");
-            });
-        } else {
-          dispatch({
-            type:"SET_CHAT",
-            payload : data.data.id
-          })
-          navigate("/chat");
-        }
-      })
-      .catch((e) => {
-        console.log("Error in checkChat");
-        navigate("/chat");
-      });
-  };
-  
-  const dummyImage =
-    "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
-  
   
   return (
-    <div className={deleteBox && "bg-error p-2 mx-2 rounded" + " card-body"}>
+    <div className={deleteBox && "bg-error p-2 mx-2 rounded card-body"}>
         {deleteBox ? (
           <div>
             <h2 className="card-title text-3xl pb-3 mb-2 mt-3 text-white ">
@@ -101,15 +66,7 @@ const ActionsBox = () => {
               </button>
             </div>
 
-            <p className="mb-5 ml-5 text-xs">{user.interests.join(", ")}</p>
-
             <div className="flex">
-              <button
-                onClick={() => handleChatClick(user.id)}
-                className="btn btn-primary mx-1 rounded-full right-0"
-              >
-                CHAT
-              </button>
               {loggedInUser.type === "admin" && (
                 <button
                   onClick={handleConfirmDelete}
