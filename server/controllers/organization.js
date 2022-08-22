@@ -111,6 +111,7 @@ async function addUserToOrganization (req, res) {
     const password = passwordGenerator();
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
+    console.log(`Auto-generated password ${password}`);
 
     // if (!validEmail(email) || !validPassword(password)) {
     if (!email || !password || !firstname || !lastname) {
