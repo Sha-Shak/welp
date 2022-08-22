@@ -25,6 +25,7 @@ module.exports = {
       backgroundImage: {
         banner:
           "url('https://res.cloudinary.com/dgn4bscl4/image/upload/v1660900370/1152-blue-waves_th7lql.gif')",
+        gradient: "url('https://tailwindcss.com/_next/static/media/docs@30.beeb08605f12f699c5abc3814763b65e.avif')"
       },
     },
   },

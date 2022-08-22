@@ -13,11 +13,11 @@ function Error404() {
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("../assets/lottieFiles/77620-404-website-error-animation.json"),
+      animationData: require("../assets/lottieFiles/lf30_editor_sfkmtctd.json"),
     });
   }, []);
   return (
-    <div className="flex">
+    <div className="flex bg-gradient bg-no-repeat">
       <Sidebar />
       <div className="w-full h-full">
         <TopBar />
