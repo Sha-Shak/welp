@@ -12,10 +12,12 @@ import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
 import VideoCall from "./pages/VideoCall"
+import Error404 from "./pages/Error404";
+import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
 
 function App() {
   return (
-    <div data-theme="light" className="App">
+    <div data-theme="light" className="App bg-gradient bg-no-repeat">
       <BrowserRouter>
         <Routes>
           <Route path="/land" element={<LandingPage />} />
@@ -32,15 +34,19 @@ function App() {
             <Route path="/edit-user" element={<EditUser />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/dashboard" element={<Dashboard />} />
+
+            <Route path="/dummyform" element={<DummyForm />} />
+
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/video/:id" element={<VideoCall />} />
+
           </Route>
           {
             //<Route path="/messaging" element={<Messaging />} />
           }
           <Route
             path="*"
-            element={<p>STOP EMBARASSING YOURSELF! Route doesn't exist</p>}
+            element={<Error404 />}
           />
         </Routes>
       </BrowserRouter>

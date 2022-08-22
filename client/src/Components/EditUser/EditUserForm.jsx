@@ -93,7 +93,7 @@ function EditUserForm() {
               </h2>
             </div>
             <div className="mt-16">
-              <h2 className="mt-10 text-center text-3xl tracking-tight font-bold text-gray-dark">
+              <h2 className="mt-10 text-center text-3xl tracking-tight font-bold text-indigo">
                 Change Password
               </h2>
             </div>
@@ -136,7 +136,7 @@ function EditUserForm() {
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="btn rounded-full bg-white text-indigo mr-2"
+                    className="btn rounded-full bg-gray-xlight text-indigo mr-2"
                   >
                     Save
                   </button>
@@ -161,7 +161,7 @@ function EditUserForm() {
               </h2>
             </div>
             <div>
-              <h2 className="mt-16 text-center text-3xl tracking-tight font-bold text-gray-dark">
+              <h2 className="mt-16 text-center text-3xl tracking-tight font-bold text-indigo">
                 Edit User
               </h2>
             </div>

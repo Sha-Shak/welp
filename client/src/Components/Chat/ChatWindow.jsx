@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
-import { getChatMessages, getChatRoom } from "../../utils/apiClientService";
+import { getChatMessages, getChatRoom, getOtherProfile } from "../../utils/apiClientService";
 import "./chat.css";
 import ChatInput from "./ChatInput";
 import ChatWindowNav from "./ChatWindowNav";
@@ -11,13 +11,13 @@ import Sent from "./Sent";
 const socket = io("http://localhost:3001");
 
 function ChatWindow() {
+
   const user = JSON.parse(localStorage.getItem("data")); // get current User
 
- const currentRoomId = useSelector((state) => state.currentChat);
- console.log(currentRoomId)
- // const currentRoomId = localStorage.getItem("currentChatId")
- const [roomExists, setRoomExists] = useState(false);
+  const currentRoomId = useSelector((state) => state.currentChat);
+  const [roomExists, setRoomExists] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [reciever, setReciever] = useState(null);
 
 
   useEffect(() => {
@@ -41,11 +41,18 @@ function ChatWindow() {
       try {
         if (currentRoomId > 0) {
           await getChatRoom(currentRoomId)
-            .then(() => {
+            .then((data) => {
               setRoomExists(true);
               getChatMessages(currentRoomId)
                 .then((data) => setMessages(data.data))
                 .catch((e) => console.log(e));
+              
+              const recieverId = data.data.user_id1 === user.id ? data.data.user_id2 : data.data.user_id1;
+
+              getOtherProfile(recieverId)
+                .then((data) => setReciever(data.data))
+                .catch((e) => console.log(e));
+
             })
             .catch((err) => console.log(err));
         }
@@ -86,7 +93,11 @@ function ChatWindow() {
                   {messages.reverse().map((msg)=>(
                     <>
                     { msg.sender_id === user.id && <Sent content={msg.content} timestamp={msg.timestamp} /> }
-                    { msg.sender_id !== user.id && <Received content={msg.content} timestamp={msg.timestamp} /> }
+
+                    { msg.sender_id !== user.id && <Received sender_id={msg.sender_id} content={msg.content} timestamp={msg.timestamp} /> }
+{/* // =======
+//                     { msg.sender_id !== user.id && <Received content={msg.content} timestamp={msg.timestamp} imgSrc={reciever ? reciever.img_url : null}/> }
+// >>>>>>> f54b900a8c9820daba423f479da10cb92f709ec4 */}
                     
                     {/* <Call/> */}
                     </>

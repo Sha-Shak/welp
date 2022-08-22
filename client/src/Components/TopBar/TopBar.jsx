@@ -39,7 +39,7 @@ const TopBar = () => {
   return (
     <div
       data-theme="light"
-      className="p-4 flex justify-end items-center sticky top-0"
+      className="p-4 flex justify-end items-center sticky top-0 z-10 drop-shadow-lg"
     >
       {user ? (
         <div className="flex justify-end">
@@ -64,14 +64,14 @@ const TopBar = () => {
             </div>
           )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
-            <div className="bg-gray-xlight p-2 mr-3 text-neutral-content rounded-full w-9 shadow-xl">
+            <div className="bg-gray-xlight p-2 mr-3 text-neutral-content rounded-full w-9 shadow-xl cursor-pointer">
               <img src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/logout_fasmjv.png" alt="logout"/>
             </div>
           </div>
           <div className="ml-1 avatar placeholder">
             <div
               onClick={handleClick}
-              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl"
+              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl cursor-pointer"
             >
               {user && user.img_url ? (
                 <img

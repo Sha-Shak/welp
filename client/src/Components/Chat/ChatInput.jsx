@@ -76,7 +76,7 @@ function ChatInput({ handleSocketSubmit }) {
               </div>
         
               <div className="w-10 h-10 rounded-full bg-blue-300 text-center items-center flex justify-center">
-                <button onClick={handleSubmit} className="w-10 h-10 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-gray-dark hover:text-white">
+                <button onClick={handleSubmit} className="bg-main w-10 h-10 pl-1 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-prpl-button hover:text-white">
                  <img width="25px" height="25px" src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660901858/right-arrow_h5nysa.png" alt="send-button"/>
                 </button>
               </div>
