@@ -133,21 +133,21 @@ function VideoCallComponent({ chat_id }) {
     <div className="flex justify-around">
       <div className="w-full lg:pl-20">
 
-				<div className="video-container flex justify-around">
-					<div className="relative text-gray-xlight" style={{ border: "grey solid 1px", margin: "20px" }}>
+				<div className="video-container flex justify-around items-end">
+					<div className="relative text-gray-xlight bg-gray-dark" style={{ margin: "20px" }}>
 						<h3 className="absolute left-0 bottom-0 px-2 bg-gray-dark/50">{
 							user.firstname + ' ' + user.lastname}
 						</h3>
-						<video playsInline muted ref={myVideo} autoPlay style={{ width: "1100px" }}/>
+						<video playsInline muted ref={myVideo} autoPlay style={{ width: "300px", height: "150px", border: "grey solid 1px" }}/>
 					</div>
-					<div className="relative" style={{ border: "grey solid 1px", margin: "20px", width: "1100px", height: "412px" }}>
+					<div className="relative bg-gray-dark text-center" style={{ border: "grey solid 1px", margin: "20px", width: "1100px", height: "500px" }}>
 						{callAccepted ? <>
-							<h3 className="absolute lleft-0 bottom-0 px-2 bg-gray-dark/50 text-gray-xlight">
+							<h3 className="absolute left-0 bottom-0 px-2 bg-gray-dark/50 text-gray-xlight">
 								{callerName}
 							</h3>
-							<video playsInline ref={userVideo} autoPlay style={{ width: "900px" }} />
+							<video playsInline ref={userVideo} autoPlay style={{ width: "1100px", height: "500px" }} />
 							</>
-							: <p className="absolute top-1/2 left-1/3">Waiting for participant...</p>
+							: <p className="text-gray-xlight my-auto">Waiting for participant...</p>
 						}
 					</div>
 				</div>
