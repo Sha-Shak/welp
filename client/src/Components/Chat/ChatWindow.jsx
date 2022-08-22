@@ -121,11 +121,14 @@ function ChatWindow() {
           <div className="w-100 h-90vh flex items-center ">
             <div className="h-90vh w-full bg-white rounded shadow-2xl">
               <div
-                className="overflow-auto px-1 py-1 text-xl items-center"
+                className="overflow-auto px-1 py-1 text-xl text-center flex justify-center items-center"
                 style={{ height: "67vh" }}
                 id="journal-scroll"
               >
-                <div className="text-gray pl-2 pt-6" style={{ margin: "auto 0 " }}>Chat Away</div>
+                <div className="bg-gray-xlight w-fit h-fit p-5 rounded-lg shadow-2xl">
+                  <div className="text-gray-dark pl-2 pt-6" style={{ margin: "auto 0 " }}>Select a chat or start a new one to view it here.</div>
+                  <div className="text-gray-dark pl-2 py-6" style={{ margin: "auto 0 " }}>Chat Away!</div>
+                </div>
               </div>
 
    
