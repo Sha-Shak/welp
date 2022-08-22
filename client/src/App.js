@@ -12,6 +12,7 @@ import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
 import VideoCall from "./pages/VideoCall"
+import Error404 from "./pages/Error404";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           }
           <Route
             path="*"
-            element={<p>STOP EMBARASSING YOURSELF! Route doesn't exist</p>}
+            element={<Error404 />}
           />
         </Routes>
       </BrowserRouter>
