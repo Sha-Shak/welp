@@ -7,7 +7,7 @@ import {
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
-import { generateRandomPassword } from '../../utils/services';
+
 function AddUserForm() {
   const user = useSelector((state) => state.auth);
   const response = useSelector((state) => state.users);
@@ -16,14 +16,11 @@ function AddUserForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const randPass = generateRandomPassword();
-    console.log("New user password: ", randPass);
 
     const newUser = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
-      password: randPass,
     };
     dispatch(addUserToOrganization(newUser)).then(() => {
       setTimeout(() => {

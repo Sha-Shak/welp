@@ -7,7 +7,7 @@ import {
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
-import { generateRandomPassword } from '../../utils/services';
+
 function AddAdminForm() {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.users);
@@ -15,15 +15,12 @@ function AddAdminForm() {
   console.log("addAdmin", response.status);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const randPass = generateRandomPassword();
-    console.log("New admin password: ", randPass);
 
     const newAdmin = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
       type: "admin",
-      password: randPass,
     };
     dispatch(addAdminToOrganization(newAdmin)).then(() => {
       setTimeout(() => {
