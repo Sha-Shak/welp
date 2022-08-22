@@ -34,7 +34,7 @@ const Sidebar = () => {
                 className="text-xl text-black cursor-pointer"
               >
                 <img
-                  src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661151765/cover-modified_g7i5cz.png"
+                  src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852521/home_a9omko.png"
                   height="30px"
                   width="30px"
                   alt="home"
