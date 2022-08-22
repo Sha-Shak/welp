@@ -5,7 +5,7 @@ import { getUsers, recommendUsers } from "../actions/users.action.js";
 import Banner from "../Components/Banner/Banner";
 import Sidebar from "../Components/Sidebar/Sidebar.jsx";
 import TopBar from "../Components/TopBar/TopBar.jsx";
-import UserCard from "../Components/UserCard/UserCard";
+import CardFlip from "../Components/UserCard/CardFlip.jsx";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ function Dashboard() {
                 </div>
               ) : (
                 orgUsers.map((orgUser) => (
-                  <UserCard
+                  <CardFlip
                     key={orgUser.id}
                     loggedInUser={user}
                     user={orgUser}

@@ -11,10 +11,7 @@ const UserCard = ({ loggedInUser, user }) => {
   const dispatch = useDispatch();
   const [deleteBox, setDeleteBox] = useState(false);
 
-  const handleProfile = async (id) => {
-    await dispatch(getOtherProfile(id));
-    navigate("/profile");
-  };
+  
   const navigate = useNavigate();
 
   const handleConfirmDelete = () => {
@@ -28,38 +25,7 @@ const UserCard = ({ loggedInUser, user }) => {
     setDeleteBox(false);
   };
   
-  const handleChatClick = (id) => {
-    checkChat(id)
-      .then((data) => {
-
-        if (data.data === false) {
-          createChat(id)
-            .then((data) => {
-
-              dispatch({
-                type:"SET_CHAT",
-                payload : data.data.id
-              })
-              
-              navigate("/chat");
-            })
-            .catch(() => {
-              console.log("Error in createChat");
-              navigate("/chat");
-            });
-        } else {
-          dispatch({
-            type:"SET_CHAT",
-            payload : data.data.id
-          })
-          navigate("/chat");
-        }
-      })
-      .catch((e) => {
-        console.log("Error in checkChat");
-        navigate("/chat");
-      });
-  };
+  
 
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
@@ -73,7 +39,7 @@ const UserCard = ({ loggedInUser, user }) => {
         />
       </figure>
       <div className={deleteBox && "bg-error p-2 mx-2 rounded" + " card-body"}>
-        {deleteBox ? (
+        {deleteBox && (
           <div>
             <h2 className="card-title text-3xl pb-3 mb-2 mt-3 text-white ">
               Confirm Delete?
@@ -91,39 +57,6 @@ const UserCard = ({ loggedInUser, user }) => {
               >
                 CANCEL
               </button>
-            </div>
-          </div>
-        ) : (
-          <div>
-            <h2
-              onClick={(e) => handleProfile(user.id)}
-              className="card-title text-2xl border-b-2 border-gray-light mb-1 "
-            >
-              {user.firstname}
-              {user.type === "admin" ? (
-                <span class="bg-indigo/50 text-gray-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                  Admin
-                </span>
-              ) : null}
-            </h2>
-
-            <p className="mb-5 ml-5 text-xs">{user.interests.join(", ")}</p>
-
-            <div className="flex">
-              <button
-                onClick={() => handleChatClick(user.id)}
-                className="btn btn-primary mx-1 rounded-full right-0"
-              >
-                CHAT
-              </button>
-              {loggedInUser.type === "admin" && (
-                <button
-                  onClick={handleConfirmDelete}
-                  className="btn btn-error mx-1 rounded-full right-0"
-                >
-                  Delete
-                </button>
-              )}
             </div>
           </div>
         )}

@@ -1,6 +1,10 @@
 import React from 'react'
+import { getTime } from './services'
 
-function Call() {
+function Call({ message }) {
+
+  const time = getTime(message.timestamp);
+
   return (
     <div>
       <div className="flex justify-center">
@@ -8,16 +12,7 @@ function Call() {
             className="text-gray text-s pt-3"
             style={{ fontSize: "1rem" }}
           >
-            Call started at 02:33 am
-          </span>
-      </div>
-      
-      <div className="flex justify-center">
-          <span
-            className="text-gray text-s pt-3"
-            style={{ fontSize: "1rem" }}
-          >
-            Call ended at 02:33 am
+            {message.content + ' - ' + time}
           </span>
       </div>
     </div>
