@@ -13,16 +13,16 @@ export default function users(state = {}, action) {
       state = {};
       return state;
     case "GET_OWN_PROFILE":
-      console.log("reduce", action.payload);
+      // console.log("reduce", action.payload);
       return action.payload;
     case "GET_OTHER_PROFILE":
-      console.log("other reduce", action.payload);
+      // console.log("other reduce", action.payload);
       return action.payload;
     case "EDIT_PROFILE":
-      console.log("reduce edit profile", action.payload);
+      // console.log("reduce edit profile", action.payload);
       return action.payload;
     case "CHANGE_PASSWORD":
-      console.log("change password", action.payload);
+      // console.log("change password", action.payload);
       localStorage.clear();
       return action.payload;
     default:

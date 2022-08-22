@@ -9,12 +9,12 @@ function Sent({ content, timestamp }) {
     <div>
         <div className="flex justify-end pt-2 p-[1rem]">
                 <span
-                  className="bg-main h-auto text-black text-md font-normal rounded-sm px-3 p-4 items-end flex justify-end "
-                  style={{ fontSize: "1rem" }}
+                  className="bg-main h-auto text-white text-md font-normal rounded-sm px-3 p-4 items-end flex justify-end "
+                  style={{ fontSize: "1rem",color:"white" }}
                 >
                   {content}{" "}
                   <span
-                    className="text-gray-dark pl-3"
+                    className="text-white pl-3"
                     style={{ fontSize: "13px" }}
                   >
                     {time}
