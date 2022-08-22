@@ -30,6 +30,10 @@ const TopBar = () => {
   const handleLogOut = () => {
     dispatch(logOut());
     // setStateUser(null);
+    dispatch({
+      type: 'SET_CHAT',
+      payload: 0
+    })
     navigate("/login");
   };
 
