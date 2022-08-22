@@ -6,7 +6,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <div className="h-screen sticky top-0 flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-x-gray-light">
+    <aside className="h-screen sticky top-0 flex flex-col items-center p-3 justify-between shadow-lg border-r-2 border-x-gray-light">
       <div className="avatar placeholder">
         <div className="rounded-full text-neutral-content w-12 shadow-xl">
           <Link to="/dashboard" className="text-xl text-black cursor-pointer">
@@ -98,7 +98,7 @@ const Sidebar = () => {
           <span className="text-xl text-black cursor-pointer">D</span>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 
