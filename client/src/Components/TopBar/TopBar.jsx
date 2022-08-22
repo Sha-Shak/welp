@@ -64,14 +64,14 @@ const TopBar = () => {
             </div>
           )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
-            <div className="bg-gray-xlight p-2 mr-3 text-neutral-content rounded-full w-9 shadow-xl cursor-pointer">
+            <div className="bg-gray-xlight p-2 mr-3 text-neutral-content rounded-full w-9 shadow-xl cursor-pointer border-2 border-main">
               <img src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/logout_fasmjv.png" alt="logout"/>
             </div>
           </div>
           <div className="ml-1 avatar placeholder">
             <div
               onClick={handleClick}
-              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl cursor-pointer"
+              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl cursor-pointer border-2 border-main"
             >
               {user && user.img_url ? (
                 <img
