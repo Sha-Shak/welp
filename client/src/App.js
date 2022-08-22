@@ -14,6 +14,7 @@ import SignUp from "./pages/SignUp";
 import VideoCall from "./pages/VideoCall"
 import Error404 from "./pages/Error404";
 import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
+import Random from "./pages/Random";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
 
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/video/:id" element={<VideoCall />} />
+            <Route path="/random" element={<Random />} />
 
           </Route>
           {
