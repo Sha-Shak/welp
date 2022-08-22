@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
   const user = useSelector((state) => state.auth);
-  const [stateUser, setStateUser] = useState();
+  //const [stateUser, setStateUser] = useState();
 
   //for reference================
   // useEffect(
@@ -16,9 +15,9 @@ const TopBar = () => {
   //   },
   //   [user]
   // );
-  useEffect(() => {
-    setStateUser(user);
-  }, [user]);
+  // useEffect(() => {
+  //  // setStateUser(user);
+  // }, [user]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,11 +29,11 @@ const TopBar = () => {
 
   const handleLogOut = () => {
     dispatch(logOut());
-    setStateUser(null);
+    // setStateUser(null);
     navigate("/login");
   };
 
-  console.log(user)
+  console.log(user);
 
   return (
     <div
