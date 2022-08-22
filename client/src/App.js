@@ -13,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
 import VideoCall from "./pages/VideoCall"
 import Error404 from "./pages/Error404";
+import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
 
 function App() {
   return (
@@ -33,8 +34,12 @@ function App() {
             <Route path="/edit-user" element={<EditUser />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/dashboard" element={<Dashboard />} />
+
+            <Route path="/dummyform" element={<DummyForm />} />
+
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/video/:id" element={<VideoCall />} />
+
           </Route>
           {
             //<Route path="/messaging" element={<Messaging />} />
