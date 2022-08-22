@@ -7,6 +7,7 @@ import {
 } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
+
 function AddUserForm() {
   const user = useSelector((state) => state.auth);
   const response = useSelector((state) => state.users);
@@ -20,7 +21,6 @@ function AddUserForm() {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
       email: e.target.email.value,
-      password: e.target.password.value,
     };
     dispatch(addUserToOrganization(newUser)).then(() => {
       setTimeout(() => {
@@ -96,16 +96,6 @@ function AddUserForm() {
                     autocomplete="email"
                     required
                     placeholder="Email address"
-                  />
-                </div>
-                <div className="mb-4">
-                  <TextInput
-                    id="password"
-                    name="password"
-                    type="password"
-                    autocomplete="off"
-                    required
-                    placeholder="Password"
                   />
                 </div>
                 <Button type="submit" buttonText="Create User"></Button>

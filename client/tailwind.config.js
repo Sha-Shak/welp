@@ -9,15 +9,15 @@ module.exports = {
       xl: "1440px",
     },
     colors: {
-      "main": "#699BF7",
-      "indigo": "#125ec0",
+      main: "#699BF7",
+      indigo: "#125ec0",
       "prpl-button": "#7e5bef",
       "bg-red": "#e39695",
       "font-red": "#d7263d",
       "bg-green": "#9ef01a",
       "font-green": "#008000",
       "gray-dark": "#111827",
-      "gray": "#6B7280",
+      gray: "#6B7280",
       "gray-light": "#E5E7EB",
       "gray-xlight": "#F9FAFB",
     },
@@ -25,7 +25,9 @@ module.exports = {
       backgroundImage: {
         banner:
           "url('https://res.cloudinary.com/dgn4bscl4/image/upload/v1660900370/1152-blue-waves_th7lql.gif')",
+        gradient: "url('https://tailwindcss.com/_next/static/media/docs@30.beeb08605f12f699c5abc3814763b65e.avif')"
       },
+      heroBanner: "url('./src/assets/images/hero.svg')",
     },
   },
   plugins: [require("daisyui")],

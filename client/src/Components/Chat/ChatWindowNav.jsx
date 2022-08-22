@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getChatRoom, getUserInfo } from "../../utils/apiClientService";
+import video_svg from '../../assets/images/video-svgrepo-com.svg'
 
 function ChatWindowNav() {
   const currentRoomId = useSelector((state) => state.currentChat);
@@ -60,7 +61,7 @@ function ChatWindowNav() {
           <i className="mdi mdi-dots-vertical text-gray-light mr-2"></i>
         </div>
         <Link to={`/video/${currentRoomId}`} target="_blank">
-          <button>Video</button>
+          <img className="h-10 mr-5 text-gray-xlight" src={video_svg} />
         </Link>
       </nav>
     </div>

@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getOwnProfile, logOut } from "../../actions/users.action.js";
 const TopBar = () => {
   const user = useSelector((state) => state.auth);
-  const [stateUser, setStateUser] = useState();
+  //const [stateUser, setStateUser] = useState();
 
   //for reference================
   // useEffect(
@@ -16,9 +15,9 @@ const TopBar = () => {
   //   },
   //   [user]
   // );
-  useEffect(() => {
-    setStateUser(user);
-  }, [user]);
+  // useEffect(() => {
+  //  // setStateUser(user);
+  // }, [user]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,16 +29,16 @@ const TopBar = () => {
 
   const handleLogOut = () => {
     dispatch(logOut());
-    setStateUser(null);
+    // setStateUser(null);
     navigate("/login");
   };
 
-  console.log(user)
+  console.log(user);
 
   return (
     <div
       data-theme="light"
-      className="p-4 flex justify-end items-center sticky top-0 z-10"
+      className="p-4 flex justify-end items-center sticky top-0 z-10 drop-shadow-lg"
     >
       {user ? (
         <div className="flex justify-end">
@@ -64,14 +63,14 @@ const TopBar = () => {
             </div>
           )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
-            <div className="bg-gray-xlight p-2 mr-3 text-neutral-content rounded-full w-9 shadow-xl cursor-pointer">
+            <div className="bg-gray-xlight p-2 mr-3 text-neutral-content rounded-full w-9 shadow-xl cursor-pointer border-2 border-main">
               <img src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/logout_fasmjv.png" alt="logout"/>
             </div>
           </div>
           <div className="ml-1 avatar placeholder">
             <div
               onClick={handleClick}
-              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl cursor-pointer"
+              className="bg-indigo-500 text-white rounded-full w-9 shadow-xl cursor-pointer border-2 border-main"
             >
               {user && user.img_url ? (
                 <img

@@ -17,7 +17,7 @@ import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
 
 function App() {
   return (
-    <div data-theme="light" className="App">
+    <div data-theme="light" className="App bg-gradient bg-no-repeat">
       <BrowserRouter>
         <Routes>
           <Route path="/land" element={<LandingPage />} />

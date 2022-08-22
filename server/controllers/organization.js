@@ -3,6 +3,7 @@ const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/
 const { deleteChatForUser } = require("../models/chat");
 const sendMail = require('../middleware/welcomeEmail');
 const { userTest, validEmail, validPassword } = require("../middleware/validate");
+const passwordGenerator = require('../middleware/passwordGen');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const secret = process.env.JWT_SECRET
@@ -107,9 +108,10 @@ async function deleteOrganizationUser(req, res) {
 async function addUserToOrganization (req, res) {
   try {
     const email = req.body.email;
-    const password = req.body.password;
+    const password = passwordGenerator();
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
+    console.log(`Auto-generated password ${password}`);
 
     // if (!validEmail(email) || !validPassword(password)) {
     if (!email || !password || !firstname || !lastname) {
