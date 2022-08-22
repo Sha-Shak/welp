@@ -19,8 +19,8 @@ function Random() {
     e.preventDefault();
 
     getRandomUser()
-      .then((data) => { 
-        if (data.data !== []) {
+      .then((data) => {
+        if (data.data.length !== 0) {
           setRandom(data.data);
         } else {
           setMessage("There are no new users in your organization to talk to.");
