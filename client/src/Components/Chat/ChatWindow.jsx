@@ -11,6 +11,7 @@ import Sent from "./Sent";
 const socket = io("http://localhost:3001");
 
 function ChatWindow() {
+
   const user = JSON.parse(localStorage.getItem("data")); // get current User
 
  const currentRoomId = useSelector((state) => state.currentChat);
@@ -86,7 +87,7 @@ function ChatWindow() {
                   {messages.reverse().map((msg)=>(
                     <>
                     { msg.sender_id === user.id && <Sent content={msg.content} timestamp={msg.timestamp} /> }
-                    { msg.sender_id !== user.id && <Received content={msg.content} timestamp={msg.timestamp} /> }
+                    { msg.sender_id !== user.id && <Received sender_id={msg.sender_id} content={msg.content} timestamp={msg.timestamp} /> }
                     
                     {/* <Call/> */}
                     </>

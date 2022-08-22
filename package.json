@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-tag-input": "^6.8.0",
     "redux-persist": "^6.0.0"
   }
 }

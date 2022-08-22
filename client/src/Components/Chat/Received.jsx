@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getUserInfo } from '../../utils/apiClientService';
 import { getTime } from './services'
 
-function Received({ content, timestamp }) {
+function Received({ sender_id, content, timestamp }) {
 
   const time = getTime(timestamp);
+  const [contact, setContact] = useState();
+
+  useEffect(() => {
+    const iffy = async () => {
+      if (sender_id) {   
+        const data = await getUserInfo(sender_id); // get the user object
+        setContact(data.data); //set the user object
+      }
+    };
+
+    iffy();
+  }, [sender_id]);
+
 
   return (
     <div>
                 <div className="flex items-center p-[1rem]">
                 <img
-                  src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660568784/WhatsApp_Image_2022-08-15_at_7.01.32_PM_byfnbw.jpg"
+                  src={contact ? (contact.img_url ? contact.img_url : "https://res.cloudinary.com/dl2tsdbcf/image/upload/v1661089877/pngwing.com_koueol.png") : undefined}
                   className="rounded-full shadow-xl"
                   width="40"
                   height="40"

@@ -12,6 +12,7 @@ import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
 import VideoCall from "./pages/VideoCall"
+import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/edit-user" element={<EditUser />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dummyform" element={<DummyForm />} />
           </Route>
           {
             //<Route path="/messaging" element={<Messaging />} />
