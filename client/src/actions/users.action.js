@@ -105,6 +105,7 @@ export const deleteUser = (id) => async (dispatch) => {
     console.log("delete user", e);
   }
 };
+
 export const recommendUsers = () => async (dispatch) => {
   try {
     const { data } = await api.recommendUser();
@@ -114,6 +115,7 @@ export const recommendUsers = () => async (dispatch) => {
     console.log("recommended user error", e);
   }
 };
+
 export const getOwnProfile = () => async (dispatch) => {
   try {
     console.log("get own");
@@ -124,6 +126,7 @@ export const getOwnProfile = () => async (dispatch) => {
     console.log(e);
   }
 };
+
 export const getOtherProfile = (id) => async (dispatch) => {
   try {
     console.log("get other");
@@ -134,6 +137,7 @@ export const getOtherProfile = (id) => async (dispatch) => {
     console.log(e);
   }
 };
+
 export const editUser = (data) => async (dispatch) => {
   try {
     console.log("editUser", data);
@@ -144,6 +148,7 @@ export const editUser = (data) => async (dispatch) => {
     console.log(e);
   }
 };
+
 export const changePassword = (data) => async (dispatch) => {
   try {
     console.log("changePass", data);

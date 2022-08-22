@@ -13,11 +13,13 @@ function EditUserForm() {
   const [url, setUrl] = useState(user.img_url);
 
   const uploadImage = async () => {
+
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "WelpImages");
     data.append("api_key", "456122925996564");
     data.append("cloud_name", "dgn4bscln4");
+
     const response = await fetch(
       "https://api.cloudinary.com/v1_1/dgn4bscln4/image/upload",
       {
@@ -179,7 +181,7 @@ function EditUserForm() {
                   <button
                     type="button"
                     onClick={uploadImage}
-                    className="py-1 px-3 bg-indigo text-white rounded-2xl"
+                    className="py-1 px-3 bg-indigo/75 text-gray-xlight rounded-2xl"
                   >
                     Upload
                   </button>
@@ -190,6 +192,7 @@ function EditUserForm() {
                       className="h-40 mt-6 mx-auto"
                       crossOrigin="anonymous"
                       src={previewImage}
+                      alt = "preview"
                     />
                   )}
                 </div>

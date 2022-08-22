@@ -1,4 +1,3 @@
-import { Action } from 'history';
 import React from 'react';
 import {useDispatch} from 'react-redux';
 
@@ -15,7 +14,7 @@ function ChatSearch() {
 
   return (
     <div>
-        <nav className="w-full h-20 bg-white rounded-tr rounded-tl flex justify-between items-center">
+        <nav className="w-full h-20 bg-indigo text-gray-xlight rounded-tr rounded-tl flex justify-between items-center">
             <div className="w-full flex justify-between items-center p-5">
               <div className="w-full relative">
               

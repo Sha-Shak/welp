@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-// import Call from "./Call";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import { getChatMessages, getChatRoom } from "../../utils/apiClientService";
@@ -14,16 +13,12 @@ const socket = io("http://localhost:3001");
 function ChatWindow() {
   const user = JSON.parse(localStorage.getItem("data")); // get current User
 
-  const currentRoomId = useSelector((state) => state.currentChat);
-  const [roomExists, setRoomExists] = useState(false);
+ const currentRoomId = useSelector((state) => state.currentChat);
+ console.log(currentRoomId)
+ // const currentRoomId = localStorage.getItem("currentChatId")
+ const [roomExists, setRoomExists] = useState(false);
   const [messages, setMessages] = useState([]);
-  const justForViewRef = useRef();
 
-  const justForView = () => {
-    if (justForViewRef.current) {
-      justForViewRef.current.scrollIntoView();
-    }
-  };
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -80,7 +75,7 @@ function ChatWindow() {
     <div className="border-2 border-gray-xlight relative h-90vh mr-6 w-2/3">
       {roomExists && (
         <div className="w-100 h-90vh flex items-center">
-          <div className=" h-90vh w-full bg-white rounded shadow-2xl">
+          <div className=" h-90vh w-full bg-white rounded border-gray-light shadow-2xl">
            
               <ChatWindowNav />
                 <div
@@ -97,35 +92,15 @@ function ChatWindow() {
                     </>
                   ))  
                   }
-                   <div ref={justForViewRef}></div>
+               
                     </div>
                    
 
-            <ChatWindowNav />
-            <div
-              className="overflow-auto px-1 py-1"
-              style={{ height: "67vh" }}
-              id="journal-scroll"
-            >
-              {messages.map((msg) => (
-                <>
-                  {msg.sender_id === user.id && (
-                    <Sent content={msg.content} timestamp={msg.timestamp} />
-                  )}
-                  {msg.sender_id !== user.id && (
-                    <Received content={msg.content} timestamp={msg.timestamp} />
-                  )}
-
-
-                  {/* <Call/> */}
-                </>
-              ))}
-              <div ref={justForViewRef}></div>
-            </div>
+            
 
             <ChatInput
               handleSocketSubmit={handleSocketSubmit}
-              justForView={justForView}
+            
             />
           </div>
         </div>
@@ -139,10 +114,10 @@ function ChatWindow() {
                 style={{ height: "67vh" }}
                 id="journal-scroll"
               >
-                <div style={{ margin: "auto 0 " }}>Chat Away</div>
+                <div className="text-gray pl-2 pt-6" style={{ margin: "auto 0 " }}>Chat Away</div>
               </div>
 
-              <div ref={justForViewRef}></div>
+   
             </div>
           </div>
         </>
