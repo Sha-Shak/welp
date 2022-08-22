@@ -39,7 +39,7 @@ const TopBar = () => {
   return (
     <div
       data-theme="light"
-      className="p-4 flex justify-end items-center sticky top-0 z-10"
+      className="p-4 flex justify-end items-center sticky top-0 z-10 drop-shadow-lg"
     >
       {user ? (
         <div className="flex justify-end">
