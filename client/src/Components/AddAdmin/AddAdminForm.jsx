@@ -14,6 +14,9 @@ function AddAdminForm() {
   console.log("addAdmin", response.status);
   const handleSubmit = (e) => {
     e.preventDefault();
+    const randPass = generateRandomPassword();
+    console.log("New admin password: ", randPass);
+
     const newAdmin = {
       firstname: e.target.firstname.value,
       lastname: e.target.lastname.value,
