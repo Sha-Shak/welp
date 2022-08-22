@@ -53,44 +53,44 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="my-3 placeholder">
-          <div
-            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
-              location.pathname.includes("/chat")
-                ? "border-2  border-indigo shadow-lg"
-                : "shadow-xl"
-            }`}
-          >
-            {user && (
-              <Link to="/chat" className="text-xl text-black cursor-pointer">
-                <img
-                  src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/message_gfibrm.png"
-                  height="50px"
-                  width="50px"
-                  alt="messaging"
-                />
-              </Link>
-            )}
-          </div>
+          {user && (
+            <div
+              className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
+                location.pathname.includes("/chat")
+                  ? "border-2  border-indigo shadow-lg"
+                  : "shadow-xl"
+              }`}
+            >
+                <Link to="/chat" className="text-xl text-black cursor-pointer">
+                  <img
+                    src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/message_gfibrm.png"
+                    height="50px"
+                    width="50px"
+                    alt="messaging"
+                  />
+                </Link>
+            </div>
+          )}
         </div>
         <div className="my-3 placeholder">
+          {user && (
           <div
-            className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
-              location.pathname.includes("/random")
-                ? "border-2  border-indigo shadow-lg"
-                : "shadow-xl"
-            }`}
-          >
-            {user && (
-              <Link to="/random" className=" text-black cursor-pointer">
-                <img
-                  src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852522/dice_ptda6e.png"
-                  height="30px"
-                  width="30px"
-                  alt="random"
-                />
-              </Link>
+              className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
+                location.pathname.includes("/random")
+                  ? "border-2  border-indigo shadow-lg"
+                  : "shadow-xl"
+              }`}
+            >
+                <Link to="/random" className=" text-black cursor-pointer">
+                  <img
+                    src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852522/dice_ptda6e.png"
+                    height="30px"
+                    width="30px"
+                    alt="random"
+                  />
+                </Link>
+            </div>
             )}
-          </div>
         </div>
       </div>
       <div className="my-3 placeholder">
