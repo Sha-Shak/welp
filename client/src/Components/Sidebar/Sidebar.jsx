@@ -11,7 +11,7 @@ const Sidebar = () => {
         <div className="rounded-full text-neutral-content w-12 shadow-xl">
           <Link to="/dashboard" className="text-xl text-black cursor-pointer">
             <img
-              src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661151765/cover-modified_g7i5cz.png"
+              src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661155859/cover-modified_2_v3fcco.png"
               height="50px"
               width="50px"
               alt="home"
