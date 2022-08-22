@@ -16,8 +16,8 @@ const Profile = () => {
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
 
   return (
-    <div className="items-center justify-center p-10 lg:p-20 ">
-      <div className="mb-5 flex items-center justify-center">
+    <div className="w-full items-center justify-center p-10 lg:p-20 ">
+      <div className="mb-5 flex items-center ">
         <figure className="">
           <img
             className="border-4 border-indigo rounded-full w-36 h-36"

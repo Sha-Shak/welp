@@ -18,6 +18,8 @@
   fill: #ffffff;
 }
 svg {
-  color: blue;
-  height: 600px;
+  color: rgba(99, 102, 241, 1) 22%;
+
+  height: 100vh;
+  width: 100%;
 }
