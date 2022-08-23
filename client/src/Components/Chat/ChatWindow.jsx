@@ -39,31 +39,26 @@ function ChatWindow() {
   }, [currentRoomId]);
 
   useEffect(() => {
-    const iffy = async () => {
+    const getChatData = async () => {
+      //switch to await async syntax
       try {
         if (currentRoomId > 0) {
-          await getChatRoom(currentRoomId)
-            .then((data) => {
-              setRoomExists(true);
-              getChatMessages(currentRoomId)
-                .then((data) => setMessages(data.data))
-                .catch((e) => console.log(e));
-              
-              const recieverId = data.data.user_id1 === user.id ? data.data.user_id2 : data.data.user_id1;
+          const getChatroomData = await getChatRoom(currentRoomId);
+          const recieverId = getChatroomData.data.user_id1 === user.id ? getChatroomData.data.user_id2 : getChatroomData.data.user_id1;
+          setRoomExists(true);
 
-              getOtherProfile(recieverId)
-                .then((data) => setReciever(data.data))
-                .catch((e) => console.log(e));
+          const getMessagesData = await getChatMessages(currentRoomId);
+          setMessages(getMessagesData.data);
 
-            })
-            .catch((err) => console.log(err));
+          const getOtherProfileData = await getOtherProfile(recieverId);
+          setReciever(getOtherProfileData.data);
         }
       } catch (e) {
         console.log(e);
       }
     };
 
-    iffy();
+    getChatData();
     const messages = document.getElementById('journal-scroll');
     messages.scrollTop = messages.scrollHeight;
   }, [currentRoomId]);
