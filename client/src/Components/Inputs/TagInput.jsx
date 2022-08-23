@@ -47,6 +47,7 @@ export default function TagInput({selected,setSelected}) {
     <div class="">
        <TagsInput
         value={selected}
+        // seprators={['comma']}
         onChange={setSelected}
         name="interests"
         placeHolder="Enter Your Interests"
