@@ -1,6 +1,7 @@
 import axios from "axios";
 const url = "http://localhost:3001";
 
+
 axios.interceptors.request.use(
   (req) => {
     const token = localStorage.getItem("user");
@@ -8,6 +9,18 @@ axios.interceptors.request.use(
     return req;
   },
   (e) => {
+    return Promise.reject(e);
+  }
+);
+
+axios.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (e) => {
+    if (e.response.status === 401) {
+      console.log('JWT expired.')
+    }
     return Promise.reject(e);
   }
 );
