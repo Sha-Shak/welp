@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
+import HashLoader from "react-spinners/HashLoader";
 import Login from "../src/pages/Login";
 import "./App.css";
 import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
@@ -39,7 +39,7 @@ function App() {
       }
     >
       {loading ? (
-        <ClipLoader color={color} cssOverride={override} size={150} />
+        <HashLoader color="#125ec0" cssOverride={override} size={150} />
       ) : (
         <BrowserRouter>
           <Routes>
