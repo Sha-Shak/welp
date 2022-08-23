@@ -1,27 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
 import { clearError, createOrg } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function SignupForm() {
   const [btnDisable, setBtnDisable] = useState(false);
-  let [loading, setLoading] = useState(false);
-  let [color, setColor] = useState("#ffffff");
-  const override: CSSProperties = {
-    display: "block",
-    margin: "0 auto",
-    borderColor: "red",
-  };
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
 
   const handleSubmit = async (e) => {
     console.log("first from comp");
-    setLoading(!loading);
     e.preventDefault();
 
     let data = {
@@ -49,13 +41,6 @@ function SignupForm() {
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-light ">
-        <ClipLoader
-          color={color}
-          loading={loading}
-          cssOverride={override}
-          size={150}
-        />
-
         <div className="max-w-md space-y-8">
           <div>
             <h6 className="text-xl text-center left">Welcome to Welp!</h6>

@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import Login from "../src/pages/Login";
 import "./App.css";
 import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
@@ -16,27 +18,49 @@ import VideoCall from "./pages/VideoCall";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#ffffff");
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  });
   return (
-    <div data-theme="light" className="App bg-gradient bg-no-repeat">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/land" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/add-user" element={<AddUser />} />
-            <Route path="/add-admin" element={<AddAdmin />} />
-            <Route path="/edit-admin" element={<EditAdmin />} />
-            <Route path="/edit-user" element={<EditUser />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dummyform" element={<DummyForm />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/video/:id" element={<VideoCall />} />
-          </Route>
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </BrowserRouter>
+    <div
+      data-theme="light"
+      className={
+        (loading && "flex h-screen items-center ") +
+        "App bg-gradient bg-no-repeat"
+      }
+    >
+      {loading ? (
+        <ClipLoader color={color} cssOverride={override} size={150} />
+      ) : (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/land" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/add-user" element={<AddUser />} />
+              <Route path="/add-admin" element={<AddAdmin />} />
+              <Route path="/edit-admin" element={<EditAdmin />} />
+              <Route path="/edit-user" element={<EditUser />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dummyform" element={<DummyForm />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/video/:id" element={<VideoCall />} />
+            </Route>
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </BrowserRouter>
+      )}
     </div>
   );
 }
