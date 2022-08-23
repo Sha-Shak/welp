@@ -91,13 +91,12 @@ const LandingPage = () => {
             </Link>
           </ul>
         </nav>
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
+        <div className="relative flex flex-col items-center pt-100px h-full container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Welcome to Welp!</h1>
-              <p className="text-gray-xlight text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur, praesentium!
+              <p className="text-gray-xlight text-xl ">
+                A lounge for colleagues working remotely
               </p>
             </div>
             <div className="w-1/2 h-96" ref={lottieContainer1}></div>
@@ -105,7 +104,7 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="layer2 spacer h-[60vh] ">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto ">
+        <div className="relative flex flex-col items-center pt-100px min-h-[60vh] container mx-auto ">
           <div className="w-full flex">
             <div className="w-1/2 h-96" ref={lottieContainer2}></div>
             <div className="w-1/2 pl-9 mt-16">
