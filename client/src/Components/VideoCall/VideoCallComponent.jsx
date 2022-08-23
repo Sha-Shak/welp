@@ -4,7 +4,7 @@ import io from "socket.io-client"
 import { getChatRoom } from "../../utils/apiClientService"
 import { useNavigate } from 'react-router'
 
-const socket = io.connect('http://localhost:3001')
+const socket = io.connect('https://welp-server.herokuapp.com')
 
 function VideoCallComponent({ chat_id }) {
   const user = JSON.parse(localStorage.getItem("data"));
@@ -115,10 +115,6 @@ function VideoCallComponent({ chat_id }) {
 
     socket.on('endCall', leaveCall);
 
-		window.addEventListener('beforeunload', function (e) {
-			e.preventDefault();
-			leaveCall();
-	});
 	}, [])
 
 
