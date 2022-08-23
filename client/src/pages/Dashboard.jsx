@@ -5,7 +5,7 @@ import { getUsers, recommendUsers } from "../actions/users.action.js";
 import Banner from "../Components/Banner/Banner";
 import Sidebar from "../Components/Sidebar/Sidebar.jsx";
 import TopBar from "../Components/TopBar/TopBar.jsx";
-import UserCard from "../Components/UserCard/UserCard";
+import CardFlip from "../Components/UserCard/CardFlip.jsx";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function Dashboard() {
               <h1 className="text-3xl text-indigo mt-3 mb-3 pb-2 border-b-2 border-gray-xlight">
                 { user.type === 'admin' ? "Organization Members" : "Suggestions"}
               </h1>
-              { user.interests.length === 0 ? 
+              { (user.type !== 'admin' && user.interests.length) === 0 ? 
                 <h2 className="text-l text-gray mt-3 mb-3 pb-2 border-b-2 border-gray-xlight">
                   Add your interests to get better suggestions.
                 </h2>
@@ -56,9 +56,9 @@ function Dashboard() {
             </div>
             <div className="mt-1 flex flex-wrap  justify-evenly">
               {!orgUsers.length ? (
-                <div>
+                <div className="flex flex-col items-center">
                   <h2 className="text-gray text-3xl mt-16 mb-10 items-center">
-                    You don't have any users yet
+                    Your organization doesn't have any new users.
                   </h2>
                   {user.type === "admin" ? (
                     <Link to="/add-user">
@@ -70,7 +70,7 @@ function Dashboard() {
                 </div>
               ) : (
                 orgUsers.map((orgUser) => (
-                  <UserCard
+                  <CardFlip
                     key={orgUser.id}
                     loggedInUser={user}
                     user={orgUser}

@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { changePassword, editUser } from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
+import TagInput from "../Inputs/TagInput.jsx";
+
 function EditUserForm() {
   const user = useSelector((state) => state.auth);
-  console.log("loop check", user);
+ 
   const dispatch = useDispatch();
+  
   const [image, setImage] = useState("");
 
   const [previewImage, setPreviewImage] = useState("");
@@ -57,15 +60,18 @@ function EditUserForm() {
   const [latestLastname, setLatestLastname] = useState(user.lastname);
   const [latestBio, setLatestBio] = useState(user.bio);
   const [latestLocation, setLatestLocation] = useState(user.location);
+  const [selectedInterest, setSelectedInterest] = useState(user.interests);
+  console.log(user)
+  console.log(selectedInterest)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const interestArray = e.target.interest.value.split(", ");
+    // const interestArray = e.target.interest.value.split(", ");
     const data = {
       firstname: latestFirstname,
       lastname: latestLastname,
       bio: latestBio,
-      interests: interestArray,
+      interests: selectedInterest,
       location: latestLocation,
       img_url: url,
     };
@@ -75,6 +81,7 @@ function EditUserForm() {
       setPreviewImage("");
     });
   };
+
   const handlePassSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -84,6 +91,7 @@ function EditUserForm() {
     console.log("trigger");
     dispatch(changePassword(data));
   };
+  
   return (
     <div className=" justify-center">
       <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
@@ -257,7 +265,7 @@ function EditUserForm() {
                     value={latestLocation}
                   />
                 </div>
-                <div className="mb-4">
+                {/* <div className="mb-4">
                   <TextInput
                     id="interest"
                     name="interest"
@@ -265,6 +273,10 @@ function EditUserForm() {
                     required
                     placeholder="Interests"
                   />
+                </div> */}
+
+                <div className="mb-4">
+                  <TagInput selected={selectedInterest} setSelected={setSelectedInterest}/>
                 </div>
 
                 <div className="flex justify-center items-center">

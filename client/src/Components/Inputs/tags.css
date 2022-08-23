@@ -1,0 +1,23 @@
+.rti--container {
+    border-radius: 0px;
+    max-width: 20rem;
+    width: 100%;
+    --tw-border-opacity: 0.2;
+    flex-shrink: 1;
+    min-height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.875rem;
+    line-height: 2;
+    border-width: 1px;
+    color:inherit;
+    margin-left:32px
+  }
+  .suggestions{
+    max-width: fit-content;
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor
+  }
+  

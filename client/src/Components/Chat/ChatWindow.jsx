@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import { getChatMessages, getChatRoom, getOtherProfile } from "../../utils/apiClientService";
 import "./chat.css";
 import ChatInput from "./ChatInput";
 import ChatWindowNav from "./ChatWindowNav";
+import Call from "./Call";
 import Received from "./Received";
 import Sent from "./Sent";
 
@@ -18,6 +19,7 @@ function ChatWindow() {
   const [roomExists, setRoomExists] = useState(false);
   const [messages, setMessages] = useState([]);
   const [reciever, setReciever] = useState(null);
+  const bottomRef = useRef(null);
 
 
   useEffect(() => {
@@ -62,7 +64,15 @@ function ChatWindow() {
     };
 
     iffy();
+    const messages = document.getElementById('journal-scroll');
+    messages.scrollTop = messages.scrollHeight;
   }, [currentRoomId]);
+
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+  }, [messages]);
+  
 
   function handleSocketSubmit(msg) {
     const message = {
@@ -78,41 +88,48 @@ function ChatWindow() {
     setMessages((prevList) => [...prevList, message]);
   }
 
+
+  function handleVideoCall() {
+    const message = {
+      content: `${user.firstname} ${user.lastname} has joined the video call`,
+      chat_id: currentRoomId,
+      sender_id: 0,
+    };
+
+    socket.emit("send_message", message);
+
+    message.timestamp = new Date();
+
+    setMessages((prevList) => [...prevList, message]);
+  }
+
   return (
     <div className="border-2 border-gray-xlight relative h-90vh mr-6 w-2/3">
       {roomExists && (
         <div className="w-100 h-90vh flex items-center">
           <div className=" h-90vh w-full bg-white rounded border-gray-light shadow-2xl">
            
-              <ChatWindowNav />
+              <ChatWindowNav handleVideoCall={handleVideoCall}/>
                 <div
-                  className="overflow-auto px-1 flex flex-col-reverse py-1"
+                  className="overflow-auto px-1 py-1"
                   style={{ height: "67vh" }}
                   id="journal-scroll"
                 >
-                  {messages.reverse().map((msg)=>(
+                  {messages.map((msg)=>(
                     <>
-                    { msg.sender_id === user.id && <Sent content={msg.content} timestamp={msg.timestamp} /> }
+                      { msg.sender_id === user.id && <Sent content={msg.content} timestamp={msg.timestamp} /> }
 
-                    { msg.sender_id !== user.id && <Received sender_id={msg.sender_id} content={msg.content} timestamp={msg.timestamp} /> }
-{/* // =======
-//                     { msg.sender_id !== user.id && <Received content={msg.content} timestamp={msg.timestamp} imgSrc={reciever ? reciever.img_url : null}/> }
-// >>>>>>> f54b900a8c9820daba423f479da10cb92f709ec4 */}
-                    
-                    {/* <Call/> */}
+                      { (msg.sender_id !== user.id && msg.sender_id !== 0) && <Received sender_id={msg.sender_id} content={msg.content} timestamp={msg.timestamp} /> }
+                      
+                      { msg.sender_id === 0 && <Call message={msg} /> }
+
+                      <div ref={bottomRef} />
                     </>
-                  ))  
-                  }
-               
-                    </div>
+                  ))}
+                </div>
                    
 
-            
-
-            <ChatInput
-              handleSocketSubmit={handleSocketSubmit}
-            
-            />
+            <ChatInput handleSocketSubmit={handleSocketSubmit} />
           </div>
         </div>
       )}
@@ -130,8 +147,6 @@ function ChatWindow() {
                   <div className="text-gray-dark pl-2 py-6" style={{ margin: "auto 0 " }}>Chat Away!</div>
                 </div>
               </div>
-
-   
             </div>
           </div>
         </>

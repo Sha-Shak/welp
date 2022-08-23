@@ -45,3 +45,5 @@ export const getUserInfo = (id) => axios.get(`${url}/user/${id}`);
 export const getChatRoom = (id) => axios.get(`${url}/chatroom/${id}`);
 
 export const getChatMessages = (id) => axios.get(`${url}/chat/${id}`);
+
+export const getRandomUser = () => axios.get(`${url}/random`);

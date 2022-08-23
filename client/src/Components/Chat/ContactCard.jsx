@@ -61,7 +61,7 @@ function ContactCard({room}) {
                   <div className="px-3 text-black text-xl">
                     {contact ? contact.firstname : 'Welp User'}
                     { contact ? (contact.type === 'admin' ? 
-                      <span class="bg-indigo/50 text-gray-dark text-xs font-semibold mr-2 ml-3 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admin</span> 
+                      <span className="bg-indigo/50 text-gray-dark text-xs font-semibold mr-2 ml-3 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admin</span> 
                         : null) 
                       : null
                     }
