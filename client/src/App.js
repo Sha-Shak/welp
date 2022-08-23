@@ -1,19 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import ProtectedRoutes from "./ProtectedRoutes";
 import Login from "../src/pages/Login";
+import "./App.css";
+import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
 import AddAdmin from "./pages/AddAdmin";
 import AddUser from "./pages/AddUser";
 import Chat from "./pages/Chat";
 import Dashboard from "./pages/Dashboard";
 import EditAdmin from "./pages/EditAdmin";
 import EditUser from "./pages/EditUser";
+import Error404 from "./pages/Error404";
 import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import SignUp from "./pages/SignUp";
-import VideoCall from "./pages/VideoCall"
-import Error404 from "./pages/Error404";
-import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
+import VideoCall from "./pages/VideoCall";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
   return (
@@ -39,15 +39,11 @@ function App() {
 
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/video/:id" element={<VideoCall />} />
-
           </Route>
           {
             //<Route path="/messaging" element={<Messaging />} />
           }
-          <Route
-            path="*"
-            element={<Error404 />}
-          />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -64,7 +64,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="m-0 overflow-x-hidden container">
+    <div className="m-0 w-full overflow-x-hidden container">
       <section className="layer1 spacer h-[60vh]">
         <nav className="w-full flex pt-2 backdrop-blur-3xl pb-4">
           <img

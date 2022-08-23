@@ -10,10 +10,14 @@ function EditUserForm() {
   const [image, setImage] = useState("");
 
   const [previewImage, setPreviewImage] = useState("");
-  const [url, setUrl] = useState(user.img_url);
+  const [url, setUrl] = useState("");
 
   const uploadImage = async () => {
-
+    if (url) {
+      console.log("true url");
+    } else {
+      console.log("false url");
+    }
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "WelpImages");
@@ -29,7 +33,13 @@ function EditUserForm() {
     );
     const dataImg = await response.json();
     const getUrl = dataImg.secure_url;
-    setUrl(getUrl);
+
+    await setUrl(getUrl);
+    if (url) {
+      console.log("11false url", getUrl);
+    } else {
+      console.log("11true url", getUrl);
+    }
     setPreviewImage(getUrl);
   };
 
@@ -192,7 +202,7 @@ function EditUserForm() {
                       className="h-40 mt-6 mx-auto"
                       crossOrigin="anonymous"
                       src={previewImage}
-                      alt = "preview"
+                      alt="preview"
                     />
                   )}
                 </div>
