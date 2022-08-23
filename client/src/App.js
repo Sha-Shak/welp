@@ -19,7 +19,8 @@ import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const override: CSSProperties = {
+  const [color, setColor] = useState("#ffffff");
+  const override = {
     display: "block",
     margin: "0 auto",
     borderColor: "red",

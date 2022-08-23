@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import lottie from "lottie-web";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import TopBar from "../Components/TopBar/TopBar";
-import UserCard from "../Components/UserCard/UserCard";
+import CardFlip from "../Components/UserCard/CardFlip";
 import { getRandomUser } from "../utils/apiClientService";
 
 function Random() {
@@ -60,7 +60,7 @@ function Random() {
                 Get Random User
               </button>
               <div className="w-max-20">
-                {random ? <UserCard user={random} loggedInUser={user} />
+                {random ? <CardFlip user={random} loggedInUser={user} />
                   : <h2 className="text-l">{message}</h2>}
               </div>
             </div>
