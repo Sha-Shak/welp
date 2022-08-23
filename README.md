@@ -1,8 +1,10 @@
-<h2 style='color:blue'>Welp!</h2>
+<img src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661177563/logo-removebg-preview_ervmv3.png" alt="" height="60px" width="110px" style="background:#125ec0"/>
+
+
 Remote working and learning can be lonely and awkward. It is hard to build strong teams and develop school spirit when nobody knows each other. Another meeting, lecture...welp that was awkward. <b style='color:blue'>Welp!</b> aims to tackle this challenge with a chat and <[video call]> app that is designed to help organizations with remote operations to build open environments and team spirit. <b style='color:blue'>Welp!</b> helps to prevent the isolation of remote work and study, build teams and connect people. <mark>One team, one dream!</mark>
 
 <br>
-<img src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fexternal-preview.redd.it%2FOEjNhnWsNSgOpNt1ytVvRMwGDPog6QZtQBOIBprueX4.jpg%3Fwidth%3D640%26crop%3Dsmart%26auto%3Dwebp%26s%3Ddb96a6688613a4a597988e8b3d88e98ae9201a8d&f=1&nofb=1' alt='awkward dog' width='150'>
+<img src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fexternal-preview.redd.it%2FOEjNhnWsNSgOpNt1ytVvRMwGDPog6QZtQBOIBprueX4.jpg%3Fwidth%3D640%26crop%3Dsmart%26auto%3Dwebp%26s%3Ddb96a6688613a4a597988e8b3d88e98ae9201a8d&f=1&nofb=1' alt='awkward dog' width='80'>
 <br>
 
 <b style='color:blue'>Welp!</b> allows organizations (typically companies or universities/colleges with large remote components) to create an account and add users. Users then receive an email allowing them to sign-up to <b style='color:blue'>Welp!</b> A user can create their profile and chat with other users in their organization via text chat or <[video call]>. <b style='color:blue'>Welp!</b> provides each user with chat/connect suggestions to connect people in the organization with similar interests. For the introverts in the organization they can set-up reminders to chat with others and for the extroverts there is a random chat feature that will give a random (not based on like interests) list of suggestions of potential connections.
