@@ -105,7 +105,7 @@ const messageSql = `
       FOREIGN KEY (chat_id)
         REFERENCES chatrooms(id)
         ON DELETE CASCADE
-  );`
+  );` 
 
 async function dropConstraints () {
   await db.connect();
