@@ -20,6 +20,7 @@ axios.interceptors.response.use(
   (e) => {
     if (e.response.status === 401) {
       console.log('JWT expired.')
+      localStorage.clear();
     }
     return Promise.reject(e);
   }
