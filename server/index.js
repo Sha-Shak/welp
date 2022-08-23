@@ -9,7 +9,7 @@ const { postMessage } = require('./models/chat');
 const SERVER_PORT = process.env.PORT || 3001;
 
 const corsConfig = {
-  //origin: 'http://localhost:3000',
+  origin: 'http://localhost:3000',
   credentials: true,
   exposedHeaders: 'Authorization'
 };
