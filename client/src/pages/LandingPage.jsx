@@ -142,34 +142,6 @@ const LandingPage = () => {
           </p>
         </div>
       </section>
-      <section className="layer2 spacer h-[60vh] ">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto ">
-          <div className="w-full flex">
-            <div className="w-1/2 h-96" ref={lottieContainer2}></div>
-            <div className="w-1/2 pl-9 mt-16">
-              <h1 className="text-7xl text-indigo">Register!</h1>
-              <p className="text-indigo text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur, praesentium!
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="layer1 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
-          <div className="w-full flex">
-            <div className="w-1/2 pl-9 mt-16">
-              <h1 className="text-7xl text-gray-xlight">Sign in</h1>
-              <p className="text-gray-xlight text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur, praesentium!
-              </p>
-            </div>
-            <div className="w-1/2 h-96" ref={lottieContainer3}></div>
-          </div>
-        </div>
-      </section>
       <section className="layer2 spacer h-[60vh]">
         <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
