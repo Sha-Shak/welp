@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './CardFlip.css';
 import CardFront from './CardFront';
 import CardBack from './CardBack';
+import CardBackBasic from './CardBackBasic';
 
 const CardFlip = ({ loggedInUser, user }) => {
   const [front, setFront] = useState(true);
@@ -24,7 +25,7 @@ const CardFlip = ({ loggedInUser, user }) => {
             <CardBack loggedInUser={loggedInUser} user={user}/>
           </div> :
           <div class="flip-card-back">
-            <CardFront currentUser={loggedInUser} user={user}/>
+            <CardBackBasic loggedInUser={loggedInUser} user={user}/>
           </div>
         }
       </div>
@@ -34,13 +35,3 @@ const CardFlip = ({ loggedInUser, user }) => {
 }
 
 export default CardFlip
-
-
-{/* <button onClick={toggleCard}>
-      {!admin ? 
-        <CardFront currentUser={loggedInUser} user={user}/>
-        : 
-        (!front ? <CardBack loggedInUser={loggedInUser} user={user}/> :
-        <CardFront currentUser={loggedInUser} user={user}/>)
-      }
-    </button> */}
