@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
 
 
 
-  // video calling points
+  // video calling points 
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded');
   });
