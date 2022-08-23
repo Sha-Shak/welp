@@ -13,6 +13,7 @@ import EditUser from "./pages/EditUser";
 import Error404 from "./pages/Error404";
 import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
+import Random from "./pages/Random";
 import SignUp from "./pages/SignUp";
 import VideoCall from "./pages/VideoCall";
 import ProtectedRoutes from "./ProtectedRoutes";
@@ -53,9 +54,9 @@ function App() {
               <Route path="/edit-user" element={<EditUser />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/dummyform" element={<DummyForm />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/video/:id" element={<VideoCall />} />
+              <Route path="/random" element={<Random />} />
             </Route>
             <Route path="*" element={<Error404 />} />
           </Routes>
