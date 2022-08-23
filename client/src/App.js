@@ -21,10 +21,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/land" element={<LandingPage />} />
-          {
-            // <Route path="/" element={<Dashboard />} />
-          }
-
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route element={<ProtectedRoutes />}>

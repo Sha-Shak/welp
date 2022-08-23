@@ -64,8 +64,8 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="m-0 w-full overflow-x-hidden container">
-      <section className="layer1 spacer h-[60vh]">
+    <div className="m-0 w-full overflow-x-hidden  overflow-y-hidden ">
+      <section className="layer1 spacer h-[60vh] ">
         <nav className="w-full flex pt-2 backdrop-blur-3xl pb-4">
           <img
             src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661177563/logo-removebg-preview_ervmv3.png"
@@ -91,7 +91,7 @@ const LandingPage = () => {
             </Link>
           </ul>
         </nav>
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh]">
+        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Welcome to Welp!</h1>
@@ -104,8 +104,8 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className="layer2 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh]">
+      <section className="layer2 spacer h-[60vh] ">
+        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto ">
           <div className="w-full flex">
             <div className="w-1/2 h-96" ref={lottieContainer2}></div>
             <div className="w-1/2 pl-9 mt-16">
@@ -119,7 +119,7 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="layer1 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh]">
+        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Sign in</h1>
@@ -133,7 +133,7 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="layer2 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh]">
+        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-indigo">Add admin</h1>
@@ -147,7 +147,7 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="layer1 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh]">
+        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 h-96" ref={lottieContainer5}></div>
             <div className="w-1/2 pl-9 mt-16">
@@ -161,7 +161,7 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="layer2 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh]">
+        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-indigo">Chat</h1>
@@ -175,7 +175,7 @@ const LandingPage = () => {
         </div>
       </section>
       <section className="layer1 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh]">
+        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 h-96" ref={lottieContainer7}></div>
             <div className="w-1/2 pl-9 mt-16">
