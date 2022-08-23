@@ -1,8 +1,6 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
-import { checkChat, createChat } from "../../utils/apiClientService.js";
+import { getOtherProfile } from "../../actions/users.action.js";
 
 const UserDetails = ({ user }) => {
   const dispatch = useDispatch();
@@ -13,44 +11,12 @@ const UserDetails = ({ user }) => {
     navigate("/profile");
   };
   
-  const handleChatClick = (id) => {
-    checkChat(id)
-      .then((data) => {
-
-        if (data.data === false) {
-          createChat(id)
-            .then((data) => {
-
-              dispatch({
-                type:"SET_CHAT",
-                payload : data.data.id
-              })
-              
-              navigate("/chat");
-            })
-            .catch(() => {
-              console.log("Error in createChat");
-              navigate("/chat");
-            });
-        } else {
-          dispatch({
-            type:"SET_CHAT",
-            payload : data.data.id
-          })
-          navigate("/chat");
-        }
-      })
-      .catch((e) => {
-        console.log("Error in checkChat");
-        navigate("/chat");
-      });
-  };
   return (
     <div>
       <div className="flex flex-row justify-between">
-        <h2
+        <p
           onClick={(e) => handleProfile(user.id)}
-          className="card-title text-2xl border-b-2 border-gray-light mb-1 "
+          className="card-title text-md font-bold border-b-2 border-gray-light mb-1 "
         >
           {user.firstname}
           {user.type === "admin" ? (
@@ -58,24 +24,16 @@ const UserDetails = ({ user }) => {
               Admin
             </span>
           ) : null}
-        </h2>
-        <div className="bg-gray-xlight p-2 text-neutral-content
-          rounded-full w-12 h-12 border-2
-          border-main shadow-lg">
-          <button
-            onClick={() => handleChatClick(user.id)}
-          >
-            <img
-              src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/message_gfibrm.png"
-              height="50px"
-              width="50px"
-              alt="messaging"
-            />
-          </button>
-        </div>
+        </p>
+        
       </div>
       <div className="py-2">
-        <p className="mb-5 ml-5 text-xs">{user.interests.join(", ")}</p>
+        <p className="mb-1 ml-5 text-xs font-bold">Bio</p>
+        <p className="mb-1 ml-5 text-xs">{user.bio ? user.location : "You know, I'm kind of a private person"}</p>
+        <p className="mb-1 ml-5 text-xs font-bold">Location</p>
+        <p className="mb-1 ml-5 text-xs">{user.location ? user.location : 'Earth'}</p>
+        <p className="mb-1 ml-5 text-xs font-bold">Interests</p>
+        <p className="mb-1 ml-5 text-xs">{user.interests.length ? user.interests.slice(0, 3).join(", ") : "Some stuff, you wouldn't understand" }</p>
       </div>
 
     </div>

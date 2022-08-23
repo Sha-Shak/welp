@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import Peer from "simple-peer";
 import io from "socket.io-client";
-import { getChatRoom } from "../../utils/apiClientService";
-import { useNavigate } from "react-router";
 
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect('https://welp-server.herokuapp.com')
 
 function VideoCallComponent({ chat_id }) {
   const user = JSON.parse(localStorage.getItem("data"));
@@ -106,7 +105,19 @@ function VideoCallComponent({ chat_id }) {
       setCallerSignal(data.signal);
     });
 
+<<<<<<< HEAD
     socket.on("endCall", leaveCall);
+=======
+    socket.on('endCall', leaveCall);
+
+	}, [])
+
+
+	socket.on("get_user", (id) => {
+		if(id !== user.id)
+			callUser(room_id);
+	});
+>>>>>>> 3a43ab321d4ee7335308995a06515f2eff21995c
 
     window.addEventListener("beforeunload", function (e) {
       e.preventDefault();

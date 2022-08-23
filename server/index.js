@@ -9,7 +9,7 @@ const { postMessage } = require('./models/chat');
 const SERVER_PORT = process.env.PORT || 3001;
 
 const corsConfig = {
-  //origin: 'http://localhost:3000',
+  origin: 'http://localhost:3000',
   credentials: true,
   exposedHeaders: 'Authorization'
 };
@@ -42,7 +42,8 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
-    methods: ['GET', 'POST']
+    methods: ['GET', 'POST'],
+    credentials: true,
   }
 })
 
@@ -76,7 +77,7 @@ io.on('connection', (socket) => {
 
 
 
-  // video calling points
+  // video calling points 
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded');
   });
