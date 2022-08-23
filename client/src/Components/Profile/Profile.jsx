@@ -26,7 +26,7 @@ const Profile = () => {
       </div>
       <div className="space-y-4">
         {user.type === "admin" ? (
-          <span class="bg-indigo/50 text-gray-dark text-s font-semibold mr-2 px-2.5 py-0.5 rounded">
+          <span className="bg-indigo/50 text-gray-dark text-s font-semibold mr-2 px-2.5 py-0.5 rounded">
             Admin
           </span>
         ) : null}

@@ -20,7 +20,7 @@ function Dashboard() {
   const isLoading = useSelector((state) => state.loader);
   console.log("in comp from reducer", isLoading);
   const [loader, setLoader] = useState(isLoading);
-  const override: CSSProperties = {
+  const override = {
     display: "block",
     margin: "0 auto",
     borderColor: "red",
@@ -57,7 +57,7 @@ function Dashboard() {
   // const [orgUsers, setOrgUsers] = useState(fetchUsers);
   console.log("map object", orgUsers);
   return (
-    <div className={loader && "flex h-screen items-center "}>
+    <div className={loader ? "flex h-screen items-center" : ""}>
       {loader ? (
         <HashLoader color="#125ec0" cssOverride={override} size={150} />
       ) : (
@@ -70,23 +70,23 @@ function Dashboard() {
                 <Banner user={user} />
                 <div className="flex flex-col items-center border-b-2 border-gray-light">
                   <h1 className="text-3xl text-indigo mt-3 mb-3 pb-2 border-b-2 border-gray-xlight">
-                    {user.type === "admin"
+                    {user && user.type === "admin"
                       ? "Organization Members"
                       : "Suggestions"}
                   </h1>
-                  {(user.type !== "admin" && user.interests.length) === 0 ? (
+                  {(user && (user.type !== "admin" && user.interests.length < 1)) && (
                     <h2 className="text-l text-gray mt-3 mb-3 pb-2 border-b-2 border-gray-xlight">
                       Add your interests to get better suggestions.
                     </h2>
-                  ) : null}
+                  )}
                 </div>
                 <div className="mt-1 flex flex-wrap  justify-evenly">
-                  {!orgUsers.length ? (
+                  {(orgUsers && !orgUsers.length) ? (
                     <div className="flex flex-col items-center">
                       <h2 className="text-gray text-3xl mt-16 mb-10 items-center">
                         Your organization doesn't have any new users.
                       </h2>
-                      {user.type === "admin" ? (
+                      {user && user.type === "admin" ? (
                         <Link to="/add-user">
                           <button className="btn btn-primary mx-1 rounded-full right-0">
                             Add your first user
