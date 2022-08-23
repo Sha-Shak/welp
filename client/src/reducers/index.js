@@ -4,9 +4,10 @@ import auth from "./auth.Reducer";
 import currentChat from "./currentChat.reducer";
 import currentUsersChats from "./currentUsersChats.reducer";
 import errors from "./errorReducers";
+import loader from "./loader";
 import messages from "./messages.reducer";
-import users from "./usersReducer";
 import searchInput from "./searchInput.reducer";
+import users from "./usersReducer";
 
 const rootReducer = combineReducers({
   auth,
@@ -16,8 +17,8 @@ const rootReducer = combineReducers({
   currentChat,
   currentUsersChats,
   allUsers,
-  searchInput
-
+  searchInput,
+  loader,
 });
 
 export default rootReducer;

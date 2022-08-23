@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 import Login from "../src/pages/Login";
 import "./App.css";
-import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
 import AddAdmin from "./pages/AddAdmin";
 import AddUser from "./pages/AddUser";
 import Chat from "./pages/Chat";
@@ -20,7 +19,6 @@ import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState("#ffffff");
   const override: CSSProperties = {
     display: "block",
     margin: "0 auto",

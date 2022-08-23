@@ -6,6 +6,9 @@ export default function error(state = "", action) {
     case "CLEAR_ERROR":
       state = "";
       return state;
+    case "LOADER":
+      console.log("loader", action.payload);
+      return action.payload;
     default:
       return state;
   }

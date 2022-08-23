@@ -31,13 +31,11 @@ const TopBar = () => {
     dispatch(logOut());
     // setStateUser(null);
     dispatch({
-      type: 'SET_CHAT',
-      payload: 0
-    })
+      type: "SET_CHAT",
+      payload: 0,
+    });
     navigate("/login");
   };
-
-  console.log(user);
 
   return (
     <div
@@ -68,7 +66,10 @@ const TopBar = () => {
           )}
           <div onClick={handleLogOut} className=" mr-1 avatar placeholder">
             <div className="bg-gray-xlight p-2 mr-2 text-neutral-content rounded-full w-9 shadow-xl cursor-pointer border-2 border-main">
-              <img src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/logout_fasmjv.png" alt="logout"/>
+              <img
+                src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/logout_fasmjv.png"
+                alt="logout"
+              />
             </div>
           </div>
           <div className="ml-1 avatar placeholder">

@@ -7,23 +7,20 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function LoginForm() {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
-  
+
   useEffect(() => {
     setTimeout(() => {
       dispatch(clearError());
     }, 3000);
   }, [error]);
 
-
   const handleSwitch = (e) => {
     console.log(e.target);
     navigate("/signup");
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,13 +35,14 @@ function LoginForm() {
     });
   };
 
-  
   return (
     <>
       <div className="w-full flex items-center justify-center py-10 border-r-2 border-gray-light">
         <div className="w-full relative">
           <div className="">
-            <h6 className="text-center text-xl text-gray-dark">Welcome Back!</h6>
+            <h6 className="text-center text-xl text-gray-dark">
+              Welcome Back!
+            </h6>
             <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-indigo">
               Sign in to your account
             </h2>
