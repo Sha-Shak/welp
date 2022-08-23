@@ -24,13 +24,20 @@ module.exports = {
     extend: {
       backgroundImage: {
         banner:
-          "url('https://res.cloudinary.com/dgn4bscl4/image/upload/v1660900370/1152-blue-waves_th7lql.gif')",
+          "url('https://res.cloudinary.com/dmpn6t2jn/image/upload/v1661246827/animation_640_l75xxtyb_sk2rcl.gif')",
         gradient:
           "url('https://tailwindcss.com/_next/static/media/docs@30.beeb08605f12f699c5abc3814763b65e.avif')",
       },
       gradient:
         "url('https://tailwindcss.com/_next/static/media/docs@30.beeb08605f12f699c5abc3814763b65e.avif')",
       heroBanner: "url('./src/assets/images/hero.svg')",
+      dropShadow: {
+        '3xl': '2px 5px 6px #000000',
+        '4xl': [
+            '0 35px 35px rgba(0, 0, 0, 0.25)',
+            '0 45px 65px rgba(0, 0, 0, 0.15)'
+        ]
+      }
     },
   },
   plugins: [require("daisyui")],

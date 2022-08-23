@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
+import HashLoader from "react-spinners/HashLoader";
 import Login from "../src/pages/Login";
 import "./App.css";
-import DummyForm from "./Components/Inputs/DummyForm/DummyForm";
 import AddAdmin from "./pages/AddAdmin";
 import AddUser from "./pages/AddUser";
 import Chat from "./pages/Chat";
@@ -21,7 +20,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 function App() {
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#ffffff");
-  const override: CSSProperties = {
+  const override = {
     display: "block",
     margin: "0 auto",
     borderColor: "red",
@@ -40,7 +39,7 @@ function App() {
       }
     >
       {loading ? (
-        <ClipLoader color={color} cssOverride={override} size={150} />
+        <HashLoader color="#125ec0" cssOverride={override} size={150} />
       ) : (
         <BrowserRouter>
           <Routes>

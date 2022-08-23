@@ -6,6 +6,7 @@ export const createOrg = (data, navigate) => async (dispatch) => {
     const user = await api.createOrg(data);
     console.log("from backend", user);
     dispatch({ type: "CREATE_ORG", payload: user });
+    dispatch({ type: "LOADER", payload: true });
     navigate("/dashboard");
   } catch (e) {
     dispatch({ type: "ERROR", payload: e.response.data });
@@ -19,6 +20,7 @@ export const logIn = (data, navigate) => async (dispatch) => {
     const user = await api.logIn(data);
     console.log("from backend", user);
     dispatch({ type: "LOG_IN", payload: user });
+    dispatch({ type: "LOADER", payload: true });
     navigate("/dashboard");
   } catch (e) {
     console.log("Error action LogIn", e);

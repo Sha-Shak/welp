@@ -29,6 +29,7 @@ function SignupForm() {
       setTimeout(() => {
         dispatch(clearError());
       }, 3000);
+      dispatch({ type: "LOADER", payload: true });
     });
   };
 
