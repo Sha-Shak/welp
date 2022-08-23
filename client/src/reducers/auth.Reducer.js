@@ -19,6 +19,10 @@ export default function auth(state = user, action) {
       localStorage.clear();
       state = null;
       return state;
+    case "CLEAR_AUTH":
+      console.log("clear auth", action.payload);
+      state = null;
+      return state;
       break;
     default:
       return state;

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import {
   addUserToOrganization,
   clearCreateUser,
@@ -10,6 +11,12 @@ import TextInput from "../Inputs/TextInput";
 
 function AddUserForm() {
   const user = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user.id) {
+      navigate("/login");
+    }
+  }, [user]);
   const response = useSelector((state) => state.users);
   const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();

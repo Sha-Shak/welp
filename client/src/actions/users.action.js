@@ -56,8 +56,8 @@ export const addAdminToOrganization = (data) => async (dispatch) => {
     // console.log(data);
     dispatch({ type: "ADD_ADMIN_TO_ORG", payload: response });
   } catch (e) {
-    dispatch({ type: "ERROR", payload: e.response.data });
     console.log("error action add admin to org", e);
+    dispatch({ type: "ERROR", payload: e.response.data });
   }
 };
 

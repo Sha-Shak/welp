@@ -1,6 +1,6 @@
 import axios from "axios";
+import { store } from "../index.js";
 const url = "http://localhost:3001";
-
 
 axios.interceptors.request.use(
   (req) => {
@@ -19,8 +19,9 @@ axios.interceptors.response.use(
   },
   (e) => {
     if (e.response.status === 401) {
-      console.log('JWT expired.')
+      console.log("JWT expired. e response is: ", e.response);
       localStorage.clear();
+      store.dispatch({ type: "CLEAR_AUTH", payload: e.response.data });
     }
     return Promise.reject(e);
   }

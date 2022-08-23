@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import {
   addAdminToOrganization,
   clearCreateAdmin,
@@ -9,10 +10,17 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function AddAdminForm() {
+  const user = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  console.log("user exist?", user);
+  useEffect(() => {
+    if (!user.id) {
+      navigate("/login");
+    }
+  }, [user]);
   const dispatch = useDispatch();
   const response = useSelector((state) => state.users);
   const error = useSelector((state) => state.errors);
-  console.log("addAdmin", response.status);
   const handleSubmit = (e) => {
     e.preventDefault();
 

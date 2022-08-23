@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 const Profile = () => {
   const user = useSelector((state) => state.users);
   const navigate = useNavigate();
-  console.log("Profile", user);
   useEffect(() => {
     if (!user.id) {
       console.log("no user");

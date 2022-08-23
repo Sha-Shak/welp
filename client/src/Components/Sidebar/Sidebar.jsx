@@ -11,7 +11,7 @@ const Sidebar = () => {
         <div className="rounded-full text-neutral-content w-12 shadow-xl">
           <Link to="/dashboard" className="text-xl text-black cursor-pointer">
             <img
-              src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661155859/cover-modified_2_v3fcco.png"
+              src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1661166913/logo_p47jh2.png"
               height="50px"
               width="50px"
               alt="home"
@@ -61,43 +61,39 @@ const Sidebar = () => {
                   : "shadow-xl"
               }`}
             >
-                <Link to="/chat" className="text-xl text-black cursor-pointer">
-                  <img
-                    src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/message_gfibrm.png"
-                    height="50px"
-                    width="50px"
-                    alt="messaging"
-                  />
-                </Link>
+              <Link to="/chat" className="text-xl text-black cursor-pointer">
+                <img
+                  src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852523/message_gfibrm.png"
+                  height="50px"
+                  width="50px"
+                  alt="messaging"
+                />
+              </Link>
             </div>
           )}
         </div>
         <div className="my-3 placeholder">
           {user && (
-          <div
+            <div
               className={`bg-gray-xlight p-2 text-neutral-content rounded-full w-12 ${
                 location.pathname.includes("/random")
                   ? "border-2  border-indigo shadow-lg"
                   : "shadow-xl"
               }`}
             >
-                <Link to="/random" className=" text-black cursor-pointer">
-                  <img
-                    src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852522/dice_ptda6e.png"
-                    height="30px"
-                    width="30px"
-                    alt="random"
-                  />
-                </Link>
+              <Link to="/random" className=" text-black cursor-pointer">
+                <img
+                  src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1660852522/dice_ptda6e.png"
+                  height="30px"
+                  width="30px"
+                  alt="random"
+                />
+              </Link>
             </div>
-            )}
+          )}
         </div>
       </div>
-      <div className="my-3 placeholder">
-        <div className="bg-gray-xlight p-2 text-main rounded-full w-12 shadow-xl">
-          <span className="text-xl text-black cursor-pointer">D</span>
-        </div>
-      </div>
+      <div className="my-3 placeholder"></div>
     </aside>
   );
 };

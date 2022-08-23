@@ -11,6 +11,12 @@ import CardFlip from "../Components/UserCard/CardFlip.jsx";
 function Dashboard() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth);
+  console.log("user exist?", user);
+  useEffect(() => {
+    if (!user.id) {
+      navigate("/login");
+    }
+  }, [user]);
   const isLoading = useSelector((state) => state.loader);
   console.log("in comp from reducer", isLoading);
   const [loader, setLoader] = useState(isLoading);
