@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
-import { checkChat, createChat } from "../../utils/apiClientService.js";
 import ActionsBox from "./ActionsBox.jsx";
 
 const CardBack = ({ loggedInUser, user }) => {
