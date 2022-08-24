@@ -66,7 +66,7 @@ const CardBack = ({ loggedInUser, user }) => {
   return (
     <div className="card border-2 border-gray-xlight card-side bg-base-100 shadow-xl p-2 my-2 w-300 h-300">
       <figure>
-        <img
+      <img
           className="rounded-full w-32 h-32 p-2"
           src={!user.img_url ? dummyImage : user.img_url}
           alt="propic"

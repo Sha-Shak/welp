@@ -1,6 +1,6 @@
 import UserDetails from "./UserDetails.jsx";
 
-const CardFront = ({ loggedInUser, user }) => {
+const CardFront = ({ user }) => {
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
   return (

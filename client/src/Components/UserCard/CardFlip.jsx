@@ -9,10 +9,9 @@ const CardFlip = ({ loggedInUser, user }) => {
   const toggleCard = () => {
     setFront(!front);
   }
-  
+
   const type = loggedInUser.type;
   const admin = type === 'admin';
-  console.log(front);
   return (
     <div class="flip-card">
       <div class="flip-card-inner">
