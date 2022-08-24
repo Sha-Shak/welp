@@ -1,64 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
-import { checkChat, createChat } from "../../utils/apiClientService.js";
 import ActionsBox from "./ActionsBox.jsx";
 
 const CardBack = ({ loggedInUser, user }) => {
-
-  const dispatch = useDispatch();
-  const [deleteBox, setDeleteBox] = useState(false);
-
-  const handleProfile = async (id) => {
-    await dispatch(getOtherProfile(id));
-    navigate("/profile");
-  };
-  const navigate = useNavigate();
-
-  const handleConfirmDelete = () => {
-    setDeleteBox((prevDeleteBox) => !deleteBox);
-  };
-
-  const handleDelete = (id) => {
-    dispatch(deleteUser(id));
-  };
-  const handleCancel = () => {
-    setDeleteBox(false);
-  };
-  
-  const handleChatClick = (id) => {
-    checkChat(id)
-      .then((data) => {
-
-        if (data.data === false) {
-          createChat(id)
-            .then((data) => {
-
-              dispatch({
-                type:"SET_CHAT",
-                payload : data.data.id
-              })
-              
-              navigate("/chat");
-            })
-            .catch(() => {
-              console.log("Error in createChat");
-              navigate("/chat");
-            });
-        } else {
-          dispatch({
-            type:"SET_CHAT",
-            payload : data.data.id
-          })
-          navigate("/chat");
-        }
-      })
-      .catch((e) => {
-        console.log("Error in checkChat");
-        navigate("/chat");
-      });
-  };
 
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
