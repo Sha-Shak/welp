@@ -97,26 +97,26 @@ const LandingPage = () => {
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Welcome to Welp!</h1>
               <p className="text-gray-xlight text-xl ">
-                A lounge for colleagues working remotely
+                A lounge for your remote team
               </p>
             </div>
-            <div className="w-1/2 h-1/2" ref={lottieContainer1}></div>
+            <div className="w-3/4 h-3/4" ref={lottieContainer1}></div>
           </div>
         </div>
       </section>
       {/* HEAD */}
-      {/* // <section className="layer2 spacer h-[60vh] ">
-      //   <div className="relative flex flex-col items-center pt-100px min-h-[60vh] container mx-auto ">
-      //     <div className="w-full flex">
-      //       <div className="w-1/2 h-96" ref={lottieContainer2}></div>
-      //       <div className="w-1/2 pl-9 mt-16">
-      //         <h1 className="text-7xl text-indigo">Register!</h1>
-      //         <p className="text-indigo text-xl">
-      //           Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      //           Consequuntur, praesentium!
-      //         </p>
-      //       </div>
-      //     </div> */}
+       {/* <section className="layer2 spacer h-[60vh] ">
+        <div className="relative flex flex-col items-center pt-100px min-h-[60vh] container mx-auto ">
+          <div className="w-full flex">
+          <div className="w-1/2 h-96" ref={lottieContainer2}></div>
+           <div className="w-1/2 pl-9 mt-16">
+            <h1 className="text-7xl text-indigo">Register!</h1>
+              <p className="text-indigo text-xl">
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                 Consequuntur, praesentium!
+                </p>
+            </div>
+            </div> */}
 {/* // ======= */}
       <section className="px-32 py-32 my-auto flex justify-around bg-gray-light space-x-6">
         <div className="flex flex-col items-center">
@@ -125,10 +125,9 @@ const LandingPage = () => {
             src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
             alt=""
           />
-          <h4 className="text-red-500 font-bold">EXTENSIBLE</h4>
+          <h4 className="text-red-500 font-bold">REGISTER ORGANIZATION</h4>
           <p className="text-black text-center">
-            Gives you true flexibility by allowing use of any other libraries
-            thanks to modular architecture.
+            Signup using your organization name
           </p>
 {/* >>>>>>> 600b8148e59fe0b78efb7aa65a49f3fea9a62081 */}
         </div>
@@ -138,10 +137,9 @@ const LandingPage = () => {
             src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
             alt=""
           />
-          <h4 className="text-red-500 font-bold">EXTENSIBLE</h4>
+          <h4 className="text-red-500 font-bold">ADD USERS</h4>
           <p className="text-black text-center">
-            Gives you true flexibility by allowing use of any other libraries
-            thanks to modular architecture.
+            Add people of your organization <br/>using their email addresses
           </p>
         </div>
         <div className="flex flex-col items-center">
@@ -150,10 +148,9 @@ const LandingPage = () => {
             src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
             alt=""
           />
-          <h4 className="text-red-500 font-bold">EXTENSIBLE</h4>
+          <h4 className="text-red-500 font-bold">COMMUNITY BUILT!</h4>
           <p className="text-black text-center">
-            Gives you true flexibility by allowing use of any other libraries
-            thanks to modular architecture.
+            Welp Algorithm will handle the rest!
           </p>
         </div>
       </section>
@@ -161,31 +158,47 @@ const LandingPage = () => {
         <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
-              <h1 className="text-7xl text-indigo">Add admin</h1>
-              <p className="text-indigo text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur, praesentium!
+              <h1 className="text-7xl text-indigo">How it works</h1>
+              <p className="text-indigo text-xl mt-4">
+                Community members are asked to input their interests. 
+              </p>
+              <p className="text-indigo text-xl mt-2">
+                Based on their interests they are matched with other people in the community.
+              </p>
+              <p className="text-indigo text-xl mt-2">
+                Welp Members can chat and video call.
+              </p>
+              <p className="text-indigo text-xl mt-2">
+                If a community member cannot choose a member to network with, Welp Algorithm can suggest a colleague at random.
               </p>
             </div>
-            <div className="w-1/2 h-96" ref={lottieContainer4}></div>
+            <div className="w-3/4 h-96" ref={lottieContainer7}></div>
           </div>
         </div>
       </section>
       <section className="layer1 spacer h-[60vh]">
         <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
-            <div className="w-1/2 h-96" ref={lottieContainer5}></div>
+            <div className="w-1/2 h-96" ref={lottieContainer6}></div>
             <div className="w-1/2 pl-9 mt-16">
-              <h1 className="text-7xl text-gray-xlight">Add users</h1>
-              <p className="text-gray-xlight text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur, praesentium!
+              <h1 className="text-7xl text-gray-xlight">Why Use Welp</h1>
+              <p className="text-gray-xlight text-xl mt-5">
+                 Chat and Video Call Features
+              </p>
+              <p className="text-gray-xlight text-xl mt-3">
+                 A lounge for your online team
+              </p>
+              <p className="text-gray-xlight text-xl mt-3">
+                 Ironing internal friction
+              </p>
+              <p className="text-gray-xlight text-xl mt-3">
+                 Mental health of your team
               </p>
             </div>
           </div>
         </div>
       </section>
-      <section className="layer2 spacer h-[60vh]">
+      {/* <section className="layer2 spacer h-[60vh]">
         <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
@@ -195,14 +208,14 @@ const LandingPage = () => {
                 Consequuntur, praesentium!
               </p>
             </div>
-            <div className="w-1/2 h-96" ref={lottieContainer6}></div>
+            <div className="w-1/2 h-96" ref={lottieContainer5}></div>
           </div>
         </div>
-      </section>
-      <section className="layer1 spacer h-[60vh]">
+      </section> */}
+      {/* <section className="layer1 spacer h-[60vh]">
         <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
-            <div className="w-1/2 h-96" ref={lottieContainer7}></div>
+            <div className="w-1/2 h-96" ref={lottieContainer4}></div>
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Video Call</h1>
               <p className="text-gray-xlight text-xl">
@@ -212,7 +225,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
