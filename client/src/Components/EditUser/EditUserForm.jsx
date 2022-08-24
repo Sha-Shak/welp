@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePassword, editUser } from "../../actions/users.action.js";
+import {
+  changePassword,
+  clearChangePass,
+  clearError,
+  editUser,
+} from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
-import TextInput from "../Inputs/TextInput";
 import TagInput from "../Inputs/TagInput.jsx";
+import TextInput from "../Inputs/TextInput";
 
 function EditUserForm() {
   const user = useSelector((state) => state.auth);
- 
+
   const dispatch = useDispatch();
-  
+
   const [image, setImage] = useState("");
 
   const [previewImage, setPreviewImage] = useState("");
@@ -61,8 +66,7 @@ function EditUserForm() {
   const [latestBio, setLatestBio] = useState(user.bio);
   const [latestLocation, setLatestLocation] = useState(user.location);
   const [selectedInterest, setSelectedInterest] = useState(user.interests);
-  console.log(user)
-  console.log(selectedInterest)
+  const error = useSelector((state) => state.errors);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,9 +93,15 @@ function EditUserForm() {
       newPassword: e.target.confirmPassword.value,
     };
     console.log("trigger");
-    dispatch(changePassword(data));
+    dispatch(changePassword(data)).then(() => {
+      setTimeout(() => {
+        dispatch(clearError());
+        dispatch(clearChangePass());
+      }, 2000);
+    });
+    e.target.reset();
   };
-  
+
   return (
     <div className=" justify-center">
       <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
@@ -121,6 +131,11 @@ function EditUserForm() {
               className="mt-8
             space-y-8"
             >
+              {error && (
+                <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                  {error}
+                </h2>
+              )}
               <div className="rounded-md shadow-md p-8 ">
                 <div className="mx-8">
                   <div className="mb-4">
@@ -276,7 +291,10 @@ function EditUserForm() {
                 </div> */}
 
                 <div className="mb-4">
-                  <TagInput selected={selectedInterest} setSelected={setSelectedInterest}/>
+                  <TagInput
+                    selected={selectedInterest}
+                    setSelected={setSelectedInterest}
+                  />
                 </div>
 
                 <div className="flex justify-center items-center">

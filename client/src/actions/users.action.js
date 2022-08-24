@@ -85,6 +85,13 @@ export const clearCreateAdmin = () => (dispatch) => {
     console.log("action LogOut", e);
   }
 };
+export const clearChangePass = () => (dispatch) => {
+  try {
+    dispatch({ type: "CLEAR_CHANGE_PASS" });
+  } catch (e) {
+    console.log("action LogOut", e);
+  }
+};
 
 export const getUsers = () => async (dispatch) => {
   try {
