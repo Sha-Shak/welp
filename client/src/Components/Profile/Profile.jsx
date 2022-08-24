@@ -10,7 +10,7 @@ const Profile = () => {
       console.log("no user");
       navigate("/dashboard");
     }
-  }, [user]);
+  }, [user, navigate]);
   const dummyImg =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
 
@@ -20,6 +20,7 @@ const Profile = () => {
         <figure className="">
           <img
             className="border-4 border-indigo rounded-full w-36 h-36"
+            alt="user-image"
             src={user.img_url ? user.img_url : dummyImg}
           />
         </figure>

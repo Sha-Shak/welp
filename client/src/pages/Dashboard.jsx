@@ -28,7 +28,7 @@ function Dashboard() {
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) navigate("/login");
-  }, [user]);
+  }, [user, navigate]);
   // useEffect(() => {
   //   if (!user.id) {
   //     console.log("no user");
@@ -48,11 +48,8 @@ function Dashboard() {
     } else {
       dispatch(recommendUsers());
     }
-  }, [dispatch]);
+  }, [dispatch, user.type]);
   const fetchUsers = useSelector((state) => state.allUsers);
-
-  const [userList, setUserList] = useState(fetchUsers);
-
   const orgUsers = fetchUsers.filter((fetchUser) => fetchUser.id !== user.id);
   // const [orgUsers, setOrgUsers] = useState(fetchUsers);
   console.log("map object", orgUsers);
@@ -74,14 +71,16 @@ function Dashboard() {
                       ? "Organization Members"
                       : "Suggestions"}
                   </h1>
-                  {(user && (user.type !== "admin" && user.interests.length < 1)) && (
-                    <h2 className="text-l text-gray mt-3 mb-3 pb-2 border-b-2 border-gray-xlight">
-                      Add your interests to get better suggestions.
-                    </h2>
-                  )}
+                  {user &&
+                    user.type !== "admin" &&
+                    user.interests.length < 1 && (
+                      <h2 className="text-l text-gray mt-3 mb-3 pb-2 border-b-2 border-gray-xlight">
+                        Add your interests to get better suggestions.
+                      </h2>
+                    )}
                 </div>
                 <div className="mt-1 flex flex-wrap  justify-evenly">
-                  {(orgUsers && !orgUsers.length) ? (
+                  {orgUsers && !orgUsers.length ? (
                     <div className="flex flex-col items-center">
                       <h2 className="text-gray text-3xl mt-16 mb-10 items-center">
                         Your organization doesn't have any new users.

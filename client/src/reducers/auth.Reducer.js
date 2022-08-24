@@ -23,7 +23,6 @@ export default function auth(state = user, action) {
       console.log("clear auth", action.payload);
       state = null;
       return state;
-      break;
     default:
       return state;
   }

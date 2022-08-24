@@ -1,5 +1,8 @@
 import lottie from "lottie-web";
 import React, { useEffect, useRef } from "react";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { BsFacebook } from "react-icons/bs";
+import { TiSocialLinkedinCircular } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import "../App.css";
 const LandingPage = () => {
@@ -104,7 +107,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className="px-32 py-32 my-auto flex justify-around bg-gray-light space-x-6">
+      <section className="px-10 py-32 my-auto flex justify-around bg-gray-light space-x-6">
         <div className="flex flex-col items-center">
           <img
             className="w-16 h-16"
@@ -198,6 +201,68 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      <section className="px-10 py-32 my-auto flex justify-around bg-gray-xlight space-x-6 w-full">
+        <div className="flex">
+          <div className="w-2/3">
+            <h2 className="text-3xl font-bold text-indigo">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </h2>
+            <p className="mt-2 font-normal text-xl text-indigo">
+              Lorem ipsum dolor sit amet.
+            </p>
+          </div>
+          <div className="w-1/3 ">
+            <button className="bg-indigo px-8 py-2 rounded-full text-gray-xlight font- border-2 border-gray-xlight mr-3">
+              Sign Up
+            </button>
+            <button className="bg-gray-xlight px-8 py-2 rounded-full text-indigo border-2 border-indigo">
+              Log In
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer className="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <a href="" className="flex items-center mb-4 sm:mb-0">
+            <img
+              src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661177563/logo-removebg-preview_ervmv3.png"
+              className="mr-3 h-8"
+              alt="Welp-Logo"
+            />
+          </a>
+          <ul className="flex flex-wrap justify-around items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+            <li>
+              <a href="#" className="mr-6 ">
+                <BsFacebook style={{ fontSize: "22px", color: "#177ee0" }} />
+              </a>
+            </li>
+            <li>
+              <a href="#" className="mr-6 ">
+                <AiFillTwitterCircle
+                  style={{ fontSize: "26px", color: "#177ee0" }}
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#" className="mr-6 ">
+                <TiSocialLinkedinCircular
+                  style={{ fontSize: "28px", color: "#177ee0" }}
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          {" "}
+          © 2022{" "}
+          <a href="" className="hover:underline">
+            Welp™
+          </a>
+          . All Rights Reserved.
+        </span>
+      </footer>
     </div>
   );
 };
