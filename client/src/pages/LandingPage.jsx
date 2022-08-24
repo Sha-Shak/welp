@@ -239,7 +239,7 @@ Start Building your Welp Community Today
         <div className="sm:flex sm:items-center sm:justify-between">
           <a href="" className="flex items-center mb-4 sm:mb-0">
             <img
-              src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661177563/logo-removebg-preview_ervmv3.png"
+              src="https://res.cloudinary.com/dl2tsdbcf/image/upload/v1661350976/blue_on_white_nyiufu.jpg"
               className="mr-3 h-8"
               alt="Welp-Logo"
             />
