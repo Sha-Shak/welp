@@ -1,35 +1,35 @@
-import { useState } from 'react';
-import './CardFlip.css';
-import CardFront from './CardFront';
-import CardBack from './CardBack';
+import { useState } from "react";
+import CardBack from "./CardBack";
+import "./CardFlip.css";
+import CardFront from "./CardFront";
 
 const CardFlip = ({ loggedInUser, user }) => {
   const [front, setFront] = useState(true);
 
   const toggleCard = () => {
     setFront(!front);
-  }
+  };
 
   const type = loggedInUser.type;
-  const admin = type === 'admin';
+  const admin = type === "admin";
   return (
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <CardFront currentUser={loggedInUser} user={user}/>
+    <div className="flip-card w-1/4 mx-2 ">
+      <div className="flip-card-inner">
+        <div className="flip-card-front">
+          <CardFront currentUser={loggedInUser} user={user} />
         </div>
-        {admin ?
-          <div class="flip-card-back">
-            <CardBack loggedInUser={loggedInUser} user={user}/>
-          </div> :
-          <div class="flip-card-back">
-            <CardBack loggedInUser={loggedInUser} user={user}/>
+        {admin ? (
+          <div className="flip-card-back">
+            <CardBack loggedInUser={loggedInUser} user={user} />
           </div>
-        }
+        ) : (
+          <div className="flip-card-back">
+            <CardBack loggedInUser={loggedInUser} user={user} />
+          </div>
+        )}
       </div>
-    </div> 
-    
-  )
-}
+    </div>
+  );
+};
 
-export default CardFlip
+export default CardFlip;
