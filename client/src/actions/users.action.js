@@ -165,6 +165,7 @@ export const changePassword = (data) => async (dispatch) => {
     console.log("from server", response);
     dispatch({ type: "CHANGE_PASSWORD", payload: response.data });
   } catch (e) {
+    dispatch({ type: "ERROR", payload: e.response.data });
     console.log(e);
   }
 };
