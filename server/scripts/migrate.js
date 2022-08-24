@@ -109,15 +109,15 @@ const messageSql = `
 
 async function dropConstraints () {
   await db.connect();
-  await removeConstraint('messages', ['fk_chatid', 'fk_senderId']);
+  await removeConstraint('messages', ['fk_chatid']);
   await removeConstraint('chatrooms', ['fk_userid1', 'fk_userid2']);
   await removeConstraint('organizationuser', ['fk_orgId', 'fk_adminId']);
   await removeConstraint('users', ['fk_orgId']);
 }
 
 async function strip() {
-  await dropTableIfExist('message');
-  await dropTableIfExist('chat');
+  await dropTableIfExist('messages');
+  await dropTableIfExist('chatrooms');
   await dropTableIfExist('organizationuser');
   await dropTableIfExist('users');
   await dropTableIfExist('organizations');
