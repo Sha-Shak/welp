@@ -4,10 +4,10 @@ export default function auth(state = user, action) {
   switch (action.type) {
     case "CREATE_ORG":
       const authUser = action.payload.headers.authorization;
-      console.log("reducer auth create", action.payload.headers.authorization);
+      console.log("reducer auth create", action.payload.data);
       localStorage.setItem("user", JSON.stringify(authUser));
       localStorage.setItem("data", JSON.stringify(action.payload.data));
-      return action.payload;
+      return action.payload.data;
     case "LOG_IN":
       console.log("reducer login", action.payload);
       const loggedInUser = action.payload.headers.authorization;
@@ -17,6 +17,10 @@ export default function auth(state = user, action) {
       return (state = user);
     case "LOG_OUT":
       localStorage.clear();
+      state = null;
+      return state;
+    case "CLEAR_AUTH":
+      console.log("clear auth", action.payload);
       state = null;
       return state;
       break;

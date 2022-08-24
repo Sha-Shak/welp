@@ -104,12 +104,8 @@ const messageSql = `
     CONSTRAINT fk_chatid
       FOREIGN KEY (chat_id)
         REFERENCES chatrooms(id)
-        ON DELETE CASCADE,
-    CONSTRAINT fk_senderId
-      FOREIGN KEY (sender_id)
-        REFERENCES users(id)
         ON DELETE CASCADE
-  );`
+  );` 
 
 async function dropConstraints () {
   await db.connect();

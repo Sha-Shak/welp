@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 const Profile = () => {
   const user = useSelector((state) => state.users);
   const navigate = useNavigate();
-  console.log("Profile", user);
   useEffect(() => {
     if (!user.id) {
       console.log("no user");
@@ -27,7 +26,7 @@ const Profile = () => {
       </div>
       <div className="space-y-4">
         {user.type === "admin" ? (
-          <span class="bg-indigo/50 text-gray-dark text-s font-semibold mr-2 px-2.5 py-0.5 rounded">
+          <span className="bg-indigo/50 text-gray-dark text-s font-semibold mr-2 px-2.5 py-0.5 rounded">
             Admin
           </span>
         ) : null}

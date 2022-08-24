@@ -10,6 +10,7 @@ const LandingPage = () => {
   const lottieContainer5 = useRef();
   const lottieContainer6 = useRef();
   const lottieContainer7 = useRef();
+  
   useEffect(() => {
     lottie.loadAnimation({
       container: lottieContainer1.current,
@@ -65,7 +66,7 @@ const LandingPage = () => {
 
   return (
     <div className="m-0 w-full overflow-x-hidden  overflow-y-hidden ">
-      <section className="layer1 spacer h-[60vh] ">
+      <section className="layer1 spacer h-[70vh] ">
         <nav className="w-full flex pt-2 backdrop-blur-3xl pb-4">
           <img
             src="https://res.cloudinary.com/dgn4bscl4/image/upload/v1661177563/logo-removebg-preview_ervmv3.png"
@@ -99,36 +100,61 @@ const LandingPage = () => {
                 A lounge for colleagues working remotely
               </p>
             </div>
-            <div className="w-1/2 h-96" ref={lottieContainer1}></div>
+            <div className="w-1/2 h-1/2" ref={lottieContainer1}></div>
           </div>
         </div>
       </section>
-      <section className="layer2 spacer h-[60vh] ">
-        <div className="relative flex flex-col items-center pt-100px min-h-[60vh] container mx-auto ">
-          <div className="w-full flex">
-            <div className="w-1/2 h-96" ref={lottieContainer2}></div>
-            <div className="w-1/2 pl-9 mt-16">
-              <h1 className="text-7xl text-indigo">Register!</h1>
-              <p className="text-indigo text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur, praesentium!
-              </p>
-            </div>
-          </div>
+      {/* HEAD */}
+      {/* // <section className="layer2 spacer h-[60vh] ">
+      //   <div className="relative flex flex-col items-center pt-100px min-h-[60vh] container mx-auto ">
+      //     <div className="w-full flex">
+      //       <div className="w-1/2 h-96" ref={lottieContainer2}></div>
+      //       <div className="w-1/2 pl-9 mt-16">
+      //         <h1 className="text-7xl text-indigo">Register!</h1>
+      //         <p className="text-indigo text-xl">
+      //           Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      //           Consequuntur, praesentium!
+      //         </p>
+      //       </div>
+      //     </div> */}
+{/* // ======= */}
+      <section className="px-32 py-32 my-auto flex justify-around bg-gray-light space-x-6">
+        <div className="flex flex-col items-center">
+          <img
+            className="w-16 h-16"
+            src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
+            alt=""
+          />
+          <h4 className="text-red-500 font-bold">EXTENSIBLE</h4>
+          <p className="text-black text-center">
+            Gives you true flexibility by allowing use of any other libraries
+            thanks to modular architecture.
+          </p>
+{/* >>>>>>> 600b8148e59fe0b78efb7aa65a49f3fea9a62081 */}
         </div>
-      </section>
-      <section className="layer1 spacer h-[60vh]">
-        <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
-          <div className="w-full flex">
-            <div className="w-1/2 pl-9 mt-16">
-              <h1 className="text-7xl text-gray-xlight">Sign in</h1>
-              <p className="text-gray-xlight text-xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur, praesentium!
-              </p>
-            </div>
-            <div className="w-1/2 h-96" ref={lottieContainer3}></div>
-          </div>
+        <div className="flex flex-col items-center">
+          <img
+            className="w-16 h-16"
+            src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
+            alt=""
+          />
+          <h4 className="text-red-500 font-bold">EXTENSIBLE</h4>
+          <p className="text-black text-center">
+            Gives you true flexibility by allowing use of any other libraries
+            thanks to modular architecture.
+          </p>
+        </div>
+        <div className="flex flex-col items-center">
+          <img
+            className="w-16 h-16 "
+            src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
+            alt=""
+          />
+          <h4 className="text-red-500 font-bold">EXTENSIBLE</h4>
+          <p className="text-black text-center">
+            Gives you true flexibility by allowing use of any other libraries
+            thanks to modular architecture.
+          </p>
         </div>
       </section>
       <section className="layer2 spacer h-[60vh]">
