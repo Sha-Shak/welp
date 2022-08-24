@@ -2,10 +2,10 @@ import lottie from "lottie-web";
 import React, { useEffect, useRef } from "react";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
+import { IoMdArrowForward } from "react-icons/io";
 import { TiSocialLinkedinCircular } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import "../App.css";
-import {IoMdArrowForward} from 'react-icons/io';
 
 const LandingPage = () => {
   const lottieContainer1 = useRef();
@@ -15,7 +15,7 @@ const LandingPage = () => {
   const lottieContainer5 = useRef();
   const lottieContainer6 = useRef();
   const lottieContainer7 = useRef();
-  
+
   useEffect(() => {
     lottie.loadAnimation({
       container: lottieContainer1.current,
@@ -100,11 +100,10 @@ const LandingPage = () => {
         <div className="relative flex flex-col items-center pt-100px h-full container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
-              <h1 className="text-7xl text-gray-xlight">Welcome to Welp!</h1>
+              <h1 className="text-6xl text-gray-xlight">Welcome to Welp!</h1>
 
-              <p className="text-gray-xlight text-2xl ">
+              <p className="text-gray-xlight text-2xl mt-3 ">
                 A lounge for your remote team
-
               </p>
             </div>
             <div className="w-3/4 h-3/4" ref={lottieContainer1}></div>
@@ -112,9 +111,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-
       <section className="px-10 py-32 my-auto flex justify-around bg-gray-light space-x-6">
-
         <div className="flex flex-col items-center">
           <img
             className="w-16 h-16"
@@ -125,7 +122,6 @@ const LandingPage = () => {
           <p className="text-black text-center">
             Signup using your organization name
           </p>
-
         </div>
         <div className="flex flex-col items-center">
           <img
@@ -135,7 +131,8 @@ const LandingPage = () => {
           />
           <h4 className="text-red-500 font-bold">ADD YOUR TEAM MEMBERS</h4>
           <p className="text-black text-center">
-            Add people of your organization <br/>using their email addresses
+            Add people of your organization <br />
+            using their email addresses
           </p>
         </div>
         <div className="flex flex-col items-center">
@@ -154,27 +151,49 @@ const LandingPage = () => {
         <div className="relative flex flex-col items-center pt-100px min-h-[70vh] container mx-auto">
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
-
               <h1 className="text-7xl text-indigo">How it works</h1>
-              <ul>  
-                    <li className="text-indigo text-xl mt-4 flex align-center">
-                      
-                      <span className="flex"> <IoMdArrowForward style={{marginTop:"4px"}}/></span>
-                      <span className="flex">  Community members are asked to input&nbsp;<b>their interests.</b></span> 
-                    </li>
-                  <li className="text-indigo flex text-xl mt-2">
-                  <span className=""> <IoMdArrowForward style={{marginTop:"4px"}}/></span>
-                  <span className="">  Based on their interests they are &nbsp;<b>matched</b> with other people in the community.</span>
-                  </li>
-                  <li className="text-indigo text-xl flex mt-2">
-                  <span className="flex"> <IoMdArrowForward style={{marginTop:"4px"}}/></span>
-                    Welp Members can &nbsp;<b>chat and video call eachother.</b>
-                  </li>
-                  <li className="text-indigo text-xl flex mt-2">
-                  <span className="flex"> <IoMdArrowForward style={{marginTop:"4px"}}/></span>
-                  <span>  If a community member cannot choose a member to network with, Welp Algorithm will make a &nbsp;<b>suggestion for them.</b> </span>
-
-                  </li>
+              <ul>
+                <li className="text-indigo text-xl mt-4 flex align-center">
+                  <span className="flex">
+                    {" "}
+                    <IoMdArrowForward style={{ marginTop: "4px" }} />
+                  </span>
+                  <span className="flex">
+                    {" "}
+                    Community members are asked to input&nbsp;
+                    <b>their interests.</b>
+                  </span>
+                </li>
+                <li className="text-indigo flex text-xl mt-2">
+                  <span className="">
+                    {" "}
+                    <IoMdArrowForward style={{ marginTop: "4px" }} />
+                  </span>
+                  <span className="">
+                    {" "}
+                    Based on their interests they are &nbsp;<b>matched</b> with
+                    other people in the community.
+                  </span>
+                </li>
+                <li className="text-indigo text-xl flex mt-2">
+                  <span className="flex">
+                    {" "}
+                    <IoMdArrowForward style={{ marginTop: "4px" }} />
+                  </span>
+                  Welp Members can &nbsp;<b>chat and video call eachother.</b>
+                </li>
+                <li className="text-indigo text-xl flex mt-2">
+                  <span className="flex">
+                    {" "}
+                    <IoMdArrowForward style={{ marginTop: "4px" }} />
+                  </span>
+                  <span>
+                    {" "}
+                    If a community member cannot choose a member to network
+                    with, Welp Algorithm will make a &nbsp;
+                    <b>suggestion for them.</b>{" "}
+                  </span>
+                </li>
               </ul>
             </div>
             <div className="w-3/4 h-96" ref={lottieContainer7}></div>
@@ -186,39 +205,35 @@ const LandingPage = () => {
           <div className="w-full flex">
             <div className="w-1/2 h-96" ref={lottieContainer6}></div>
             <div className="w-1/2 pl-2 mt-16">
-
               <h1 className="text-7xl text-gray-xlight">Why Use Welp</h1>
-              <span className="flex">
-                <span>
-                  
-                   <p className="text-gray-xlight flex text-lg mt-3">
-                   <span className="flex"> <IoMdArrowForward style={{marginTop:"4px"}}/></span><span> Chat and Video Call Features </span>
-                  </p>
-                  <p className="text-gray-xlight text-lg mt-3">
-                  <span className="flex"> <IoMdArrowForward style={{marginTop:"4px"}}/></span><span> A lounge for your online team </span>
-                  </p>
-                  </span>
-                  <span>
-
-                      <p className="text-gray-xlight text-lg mt-3">
-                      <span className="flex"> <IoMdArrowForward style={{marginTop:"4px"}}/></span><span>      Ironing internal friction </span>
-                      </p>
-                      <p className="text-gray-xlight text-lg mt-3">
-                      <span className="flex"> <IoMdArrowForward style={{marginTop:"4px"}}/></span><span>   Mental health of your team </span>
-
-                      </p>
-                  </span>
-              </span>
+              <ul className="">
+                <li className="text-gray-xlight flex text-lg mt-3">
+                  <IoMdArrowForward style={{ marginTop: "4px" }} /> Chat and
+                  Video Call Features
+                </li>
+                <li className="text-gray-xlight flex text-lg mt-3">
+                  <IoMdArrowForward style={{ marginTop: "4px" }} /> A lounge for
+                  your online team
+                </li>
+                <li className="text-gray-xlight flex text-lg mt-3">
+                  <IoMdArrowForward style={{ marginTop: "4px" }} />
+                  Ironing internal friction
+                </li>
+                <li className="text-gray-xlight flex text-lg mt-3">
+                  <IoMdArrowForward style={{ marginTop: "4px" }} />
+                  Mental health of your team
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
-   
+
       <section className="px-10 py-32 my-auto flex justify-around bg-gray-xlight space-x-6 w-full">
         <div className="flex">
           <div className="w-2/3">
             <h2 className="text-3xl font-bold text-indigo">
-Start Building your Welp Community Today
+              Start Building your Welp Community Today
             </h2>
             <p className="mt-2 font-normal text-xl mt-2 text-indigo">
               Get Started in 3 easy steps
@@ -276,7 +291,6 @@ Start Building your Welp Community Today
           . All Rights Reserved.
         </span>
       </footer>
-
     </div>
   );
 };
