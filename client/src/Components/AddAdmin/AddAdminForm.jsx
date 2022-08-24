@@ -17,7 +17,7 @@ function AddAdminForm() {
     if (!user.id) {
       navigate("/login");
     }
-  }, [user]);
+  }, [user, navigate]);
   const dispatch = useDispatch();
   const response = useSelector((state) => state.users);
   const error = useSelector((state) => state.errors);

@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePassword, editUser } from "../../actions/users.action.js";
+import {
+  changePassword,
+  clearChangePass,
+  clearError,
+  editUser,
+} from "../../actions/users.action.js";
 import Button from "../Buttons/SubmitButton";
-import TextInput from "../Inputs/TextInput";
 import TagInput from "../Inputs/TagInput.jsx";
+import TextInput from "../Inputs/TextInput";
 
 function EditUserForm() {
   const user = useSelector((state) => state.auth);
- 
+
   const dispatch = useDispatch();
-  
+
   const [image, setImage] = useState("");
 
   const [previewImage, setPreviewImage] = useState("");
   const [url, setUrl] = useState("");
+
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(false);
 
   const uploadImage = async () => {
     if (url) {
@@ -61,8 +70,7 @@ function EditUserForm() {
   const [latestBio, setLatestBio] = useState(user.bio);
   const [latestLocation, setLatestLocation] = useState(user.location);
   const [selectedInterest, setSelectedInterest] = useState(user.interests);
-  console.log(user)
-  console.log(selectedInterest)
+  const error = useSelector((state) => state.errors);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,7 +81,7 @@ function EditUserForm() {
       bio: latestBio,
       interests: selectedInterest,
       location: latestLocation,
-      img_url: url,
+      img_url: url ? url : user.img_url,
     };
     const newData = { ...user, ...data };
     dispatch(editUser(newData)).then(() => {
@@ -89,9 +97,35 @@ function EditUserForm() {
       newPassword: e.target.confirmPassword.value,
     };
     console.log("trigger");
-    dispatch(changePassword(data));
+    dispatch(changePassword(data)).then(() => {
+      setTimeout(() => {
+        dispatch(clearError());
+        dispatch(clearChangePass());
+      }, 2000);
+    });
+    e.target.reset();
   };
-  
+
+
+  const handleChangePassword = (e) => {
+    const pass = e.target.value;
+    setPassword(pass);
+    if (pass === confirmPassword)
+      setPasswordMatch(true)
+    else
+      setPasswordMatch(false)
+  };
+
+  const handleChangeConfirmPassword = (e) => {
+    const cPassword = e.target.value;
+    setConfirmPassword(cPassword);
+
+    if (cPassword === password)
+      setPasswordMatch(true)
+    else
+      setPasswordMatch(false)
+  };
+
   return (
     <div className=" justify-center">
       <div className="flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
@@ -121,6 +155,11 @@ function EditUserForm() {
               className="mt-8
             space-y-8"
             >
+              {error && (
+                <h2 className="text-center text-2xl tracking-tight font-bold text-white bg-error">
+                  {error}
+                </h2>
+              )}
               <div className="rounded-md shadow-md p-8 ">
                 <div className="mx-8">
                   <div className="mb-4">
@@ -139,6 +178,7 @@ function EditUserForm() {
                       type="password"
                       required
                       placeholder="New Password"
+                      onChange={handleChangePassword}
                     />
                   </div>
                   <div className="mb-4">
@@ -148,6 +188,7 @@ function EditUserForm() {
                       type="password"
                       required
                       placeholder="Confirm Password"
+                      onChange={handleChangeConfirmPassword}
                     />
                   </div>
                 </div>
@@ -155,6 +196,7 @@ function EditUserForm() {
                   <button
                     type="submit"
                     className="btn rounded-full bg-gray-xlight text-indigo mr-2"
+                    disabled={!passwordMatch}
                   >
                     Save
                   </button>
@@ -276,7 +318,10 @@ function EditUserForm() {
                 </div> */}
 
                 <div className="mb-4">
-                  <TagInput selected={selectedInterest} setSelected={setSelectedInterest}/>
+                  <TagInput
+                    selected={selectedInterest}
+                    setSelected={setSelectedInterest}
+                  />
                 </div>
 
                 <div className="flex justify-center items-center">

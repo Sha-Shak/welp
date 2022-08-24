@@ -29,11 +29,15 @@ const TopBar = () => {
 
   const handleLogOut = () => {
     dispatch(logOut());
-    // setStateUser(null);
     dispatch({
       type: "SET_CHAT",
       payload: 0,
     });
+    navigate("/login");
+  };
+
+  const handleNav = (e) => {
+    e.preventDefault();
     navigate("/login");
   };
 
@@ -92,7 +96,7 @@ const TopBar = () => {
           </div>
         </div>
       ) : (
-        <button className="btn btn-primary mx-1 rounded-full right-0">
+        <button className="btn btn-primary mx-1 rounded-full right-0" onClick={handleNav}>
           Log In
         </button>
       )}
