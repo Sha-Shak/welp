@@ -20,6 +20,10 @@ function EditUserForm() {
   const [previewImage, setPreviewImage] = useState("");
   const [url, setUrl] = useState("");
 
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(false);
+
   const uploadImage = async () => {
     if (url) {
       console.log("true url");
@@ -77,7 +81,7 @@ function EditUserForm() {
       bio: latestBio,
       interests: selectedInterest,
       location: latestLocation,
-      img_url: url,
+      img_url: url ? url : user.img_url,
     };
     const newData = { ...user, ...data };
     dispatch(editUser(newData)).then(() => {
@@ -100,6 +104,26 @@ function EditUserForm() {
       }, 2000);
     });
     e.target.reset();
+  };
+
+
+  const handleChangePassword = (e) => {
+    const pass = e.target.value;
+    setPassword(pass);
+    if (pass === confirmPassword)
+      setPasswordMatch(true)
+    else
+      setPasswordMatch(false)
+  };
+
+  const handleChangeConfirmPassword = (e) => {
+    const cPassword = e.target.value;
+    setConfirmPassword(cPassword);
+
+    if (cPassword === password)
+      setPasswordMatch(true)
+    else
+      setPasswordMatch(false)
   };
 
   return (
@@ -154,6 +178,7 @@ function EditUserForm() {
                       type="password"
                       required
                       placeholder="New Password"
+                      onChange={handleChangePassword}
                     />
                   </div>
                   <div className="mb-4">
@@ -163,6 +188,7 @@ function EditUserForm() {
                       type="password"
                       required
                       placeholder="Confirm Password"
+                      onChange={handleChangeConfirmPassword}
                     />
                   </div>
                 </div>
@@ -170,6 +196,7 @@ function EditUserForm() {
                   <button
                     type="submit"
                     className="btn rounded-full bg-gray-xlight text-indigo mr-2"
+                    disabled={!passwordMatch}
                   >
                     Save
                   </button>

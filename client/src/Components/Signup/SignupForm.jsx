@@ -6,7 +6,9 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function SignupForm() {
-  const [btnDisable, setBtnDisable] = useState(false);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,9 +36,22 @@ function SignupForm() {
   };
 
   const handleChangePassword = (e) => {
-    const password = e.target.password;
-    const cPassword = e.target.confirmPassword;
-    console.log(password, cPassword);
+    const pass = e.target.value;
+    setPassword(pass);
+    if (pass === confirmPassword)
+      setPasswordMatch(true)
+    else
+      setPasswordMatch(false)
+  };
+
+  const handleChangeConfirmPassword = (e) => {
+    const cPassword = e.target.value;
+    setConfirmPassword(cPassword);
+
+    if (cPassword === password)
+      setPasswordMatch(true)
+    else
+      setPasswordMatch(false)
   };
 
   return (
@@ -105,7 +120,7 @@ function SignupForm() {
               </div>
               <div className="mb-4">
                 <TextInput
-                  onChange={(e) => handleChangePassword(e)}
+                  onChange={handleChangePassword}
                   id="password"
                   name="password"
                   type="password"
@@ -122,10 +137,11 @@ function SignupForm() {
                   autocomplete="off"
                   required
                   placeholder="Confirm Password"
+                  onChange={handleChangeConfirmPassword}
                 />
               </div>
               <Button
-                disabled={btnDisable && "disabled"}
+                disabled={!passwordMatch}
                 type="submit"
                 buttonText="Sign up"
               ></Button>
