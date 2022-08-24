@@ -91,15 +91,15 @@ const ActionsBox = ({ loggedInUser, user }) => {
                   />
                 </button>
               </div>
-              <div className="flex justify-center mx-1 rounded-full border-2 border-font-red w-12 h-12 right-0">
-                {loggedInUser.type === "admin" && (
-                  <button
-                    onClick={handleConfirmDelete}
-                  >
-                    <BsTrash size={25} className="text-font-red"/>
-                  </button>
-                )}
-              </div>
+              {loggedInUser.type === "admin" && (
+                <div className="flex justify-center mx-1 rounded-full border-2 border-font-red w-12 h-12 right-0">
+                    <button
+                      onClick={handleConfirmDelete}
+                    >
+                      <BsTrash size={25} className="text-font-red"/>
+                    </button>
+                </div>
+              )}
             </div>
           </div>
           ) 
