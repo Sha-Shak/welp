@@ -41,7 +41,7 @@ function SignupForm() {
     if (pass === confirmPassword)
       setPasswordMatch(true)
     else
-      setConfirmPassword(false)
+      setPasswordMatch(false)
   };
 
   const handleChangeConfirmPassword = (e) => {
