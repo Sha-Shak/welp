@@ -1,8 +1,10 @@
 import lottie from "lottie-web";
 import React, { useEffect, useRef } from "react";
-import { AiFillTwitterCircle } from "react-icons/ai";
+import { AiFillTwitterCircle, AiOutlineUserAdd } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
+import { FaUserFriends } from "react-icons/fa";
 import { IoMdArrowForward } from "react-icons/io";
+import { RiCommunityLine } from "react-icons/ri";
 import { TiSocialLinkedinCircular } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import "../App.css";
@@ -113,22 +115,14 @@ const LandingPage = () => {
 
       <section className="px-10 py-32 my-auto flex justify-around bg-gray-light space-x-6">
         <div className="flex flex-col items-center">
-          <img
-            className="w-16 h-16"
-            src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
-            alt=""
-          />
+          <AiOutlineUserAdd style={{ fontSize: "70px" }} />
           <h3 className="text-red-500 font-bold">REGISTER YOUR ORGANIZATION</h3>
           <p className="text-black text-center">
             Signup using your organization name
           </p>
         </div>
         <div className="flex flex-col items-center">
-          <img
-            className="w-16 h-16"
-            src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
-            alt=""
-          />
+          <FaUserFriends style={{ fontSize: "70px" }} />
           <h4 className="text-red-500 font-bold">ADD YOUR TEAM MEMBERS</h4>
           <p className="text-black text-center">
             Add people of your organization <br />
@@ -136,11 +130,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="flex flex-col items-center">
-          <img
-            className="w-16 h-16 "
-            src="https://d33wubrfki0l68.cloudfront.net/af047ac54e246e4a16a9874f8f8e8b23b944786a/4f102/3d.87c64f5b.svg"
-            alt=""
-          />
+          <RiCommunityLine style={{ fontSize: "70px" }} />
           <h4 className="text-red-500 font-bold">COMMUNITY BUILT!</h4>
           <p className="text-black text-center">
             Welp Algorithm will handle the rest!
