@@ -3,7 +3,7 @@ const { addUser, getUserByEmail, getOrgUsers, deleteUser } = require("../models/
 const { deleteChatForUser } = require("../models/chat");
 const sendMail = require('../middleware/welcomeEmail');
 const { userTest, validEmail, validPassword } = require("../middleware/validate");
-const passwordGenerator = require('../middleware/passwordGen');
+const randomGenerator = require('../middleware/randomGen');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const secret = process.env.JWT_SECRET
@@ -30,7 +30,8 @@ async function createNewOrganization (req, res) {
       
       const salt = bcrypt.genSaltSync(10);
       const password = bcrypt.hashSync(req.body.password, salt);
-  
+      
+      const seed = randomGenerator('seed', 5);
       const user = {
         firstname: firstname,
         lastname: lastname,
@@ -41,7 +42,7 @@ async function createNewOrganization (req, res) {
         location: '',
         interests: [],
         bio: '',
-        img_url: ''
+        img_url: `https://avatars.dicebear.com/api/open-peeps/${seed}.svg`
       }
       
       const addUserRes = await addUser(user);
@@ -108,7 +109,7 @@ async function deleteOrganizationUser(req, res) {
 async function addUserToOrganization (req, res) {
   try {
     const email = req.body.email;
-    const password = passwordGenerator();
+    const password = randomGenerator('pw', 20);
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     console.log(`Auto-generated password ${password}`);
@@ -129,6 +130,7 @@ async function addUserToOrganization (req, res) {
         const encryptedPassword = bcrypt.hashSync(password, salt);
   
         //Validate user information before making request
+        const seed = randomGenerator('seed', 5);
         const user = {
           firstname: firstname,
           lastname: lastname,
@@ -139,7 +141,7 @@ async function addUserToOrganization (req, res) {
           location: '',
           interests: [],
           bio: '',
-          img_url: ''
+          img_url: `https://avatars.dicebear.com/api/open-peeps/${seed}.svg`
         }
         
         const orgName = await getOrgName(user.organization_id);
