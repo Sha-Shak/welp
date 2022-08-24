@@ -98,7 +98,7 @@ const LandingPage = () => {
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Welcome to Welp!</h1>
-              <p className="text-gray-xlight text-xl">
+              <p className="text-gray-xlight text-xl mt-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Consequuntur, praesentium!
               </p>
@@ -150,7 +150,7 @@ const LandingPage = () => {
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-indigo">Add admin</h1>
-              <p className="text-indigo text-xl">
+              <p className="text-indigo text-xl mt-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Consequuntur, praesentium!
               </p>
@@ -165,7 +165,7 @@ const LandingPage = () => {
             <div className="w-1/2 h-96" ref={lottieContainer5}></div>
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Add users</h1>
-              <p className="text-gray-xlight text-xl">
+              <p className="text-gray-xlight text-xl mt-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Consequuntur, praesentium!
               </p>
@@ -178,7 +178,7 @@ const LandingPage = () => {
           <div className="w-full flex">
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-indigo">Chat</h1>
-              <p className="text-indigo text-xl">
+              <p className="text-indigo text-xl mt-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Consequuntur, praesentium!
               </p>
@@ -193,7 +193,7 @@ const LandingPage = () => {
             <div className="w-1/2 h-96" ref={lottieContainer7}></div>
             <div className="w-1/2 pl-9 mt-16">
               <h1 className="text-7xl text-gray-xlight">Video Call</h1>
-              <p className="text-gray-xlight text-xl">
+              <p className="text-gray-xlight text-xl mt-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Consequuntur, praesentium!
               </p>
@@ -207,7 +207,7 @@ const LandingPage = () => {
             <h2 className="text-3xl font-bold text-indigo">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </h2>
-            <p className="mt-2 font-normal text-xl text-indigo">
+            <p className="mt-2 font-normal text-xl mt-2 text-indigo">
               Lorem ipsum dolor sit amet.
             </p>
           </div>

@@ -12,6 +12,9 @@ export default function users(state = {}, action) {
     case "CLEAR_ADMIN_RES":
       state = {};
       return state;
+    case "CLEAR_CHANGE_PASS":
+      state = {};
+      return state;
     case "GET_OWN_PROFILE":
       // console.log("reduce", action.payload);
       return action.payload;
