@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createAvatar } from '@dicebear/avatars';
+import * as style from '@dicebear/micah';
 import { deleteUser, getOtherProfile } from "../../actions/users.action.js";
 import { checkChat, createChat } from "../../utils/apiClientService.js";
 import ActionsBox from "./ActionsBox.jsx";
@@ -60,8 +62,13 @@ const CardBack = ({ loggedInUser, user }) => {
       });
   };
 
+  const tempAvatar = createAvatar(style, {
+    seed: 'custom-seed',
+  });
+
   const dummyImage =
     "https://res.cloudinary.com/dgn4bscl4/image/upload/v1660585320/Screenshot_2021-08-07_at_11.35.28_PM_erxssn.png";
+
   return (
     <div className="card border-2 border-gray-xlight card-side bg-base-100 shadow-xl p-2 my-2 w-300 h-300">
       <figure>

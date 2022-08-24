@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './CardFlip.css';
 import CardFront from './CardFront';
 import CardBack from './CardBack';
-import CardBackBasic from './CardBackBasic';
 
 const CardFlip = ({ loggedInUser, user }) => {
   const [front, setFront] = useState(true);
