@@ -13,7 +13,7 @@ const CardFlip = ({ loggedInUser, user }) => {
   const type = loggedInUser.type;
   const admin = type === "admin";
   return (
-    <div className="flip-card w-1/4 mx-2 ">
+    <div className="flip-card w-64 mx-2 ">
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <CardFront currentUser={loggedInUser} user={user} />
