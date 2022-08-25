@@ -1,0 +1,33 @@
+.waveShape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.waveShape svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 236px;
+}
+
+.waveShape .shape-fill {
+  fill: #ffffff;
+}
+.spacer {
+  aspect-ratio: 960/500;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+.layer1 {
+  background-image: url("./assets/images/hero.svg");
+}
+.layer2 {
+  background-image: url("./assets/images/gray-layered-waves-haikei.svg");
+}
