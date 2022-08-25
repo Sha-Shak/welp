@@ -52,7 +52,7 @@ function Dashboard() {
   const fetchUsers = useSelector((state) => state.allUsers);
   const orgUsers = fetchUsers.filter((fetchUser) => fetchUser.id !== user.id);
   // const [orgUsers, setOrgUsers] = useState(fetchUsers);
-  console.log("map object", orgUsers);
+
   return (
     <div className={loader ? "flex h-screen items-center" : ""}>
       {loader ? (

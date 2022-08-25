@@ -16,7 +16,9 @@ function LoginForm() {
       dispatch(clearError());
     }, 3000);
   }, [error]);
-
+  useEffect(() => {
+    navigate("/dashboard");
+  }, []);
   const handleSwitch = (e) => {
     navigate("/signup");
   };

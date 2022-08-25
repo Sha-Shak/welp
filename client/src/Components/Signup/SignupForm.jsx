@@ -13,7 +13,9 @@ function SignupForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
-
+  useEffect(() => {
+    navigate("/dashboard");
+  }, []);
   const handleSubmit = async (e) => {
     // console.log("first from comp");
     e.preventDefault();
