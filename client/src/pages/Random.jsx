@@ -62,18 +62,18 @@ function Random() {
         <div className="container mx-auto grow">
           <div className="flex justify-around">
             <div className="w-1/3" ref={lottieContainer1}></div>
-            <div className="flex flex-col justify-start items-center h-full">
+            <div className="flex flex-col w-1/3 justify-start items-center h-full">
               <button
                 className="bg-prpl-button text-gray-xlight text-xl p-3 rounded-full my-10"
                 onClick={handleClick}
               >
                 Get Random User
               </button>
-              <div className="w-max-20">
+              <div className="w-full">
                 {random ? (
                   <CardFlip user={random} loggedInUser={user} />
                 ) : (
-                  <h2 className="text-l">{message}</h2>
+                  <h2 className="text-l text-center">{message}</h2>
                 )}
               </div>
             </div>
