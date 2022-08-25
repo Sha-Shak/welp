@@ -19,7 +19,7 @@ axios.interceptors.response.use(
   },
   (e) => {
     if (e.response.status === 401) {
-      console.log("JWT expired. e response is: ", e.response);
+      // console.log("JWT expired. e response is: ", e.response);
       localStorage.clear();
       store.dispatch({ type: "CLEAR_AUTH", payload: e.response.data });
     }
@@ -31,9 +31,9 @@ export const createOrg = (data) =>
   axios.post(`${url}/organization/create`, data);
 
 export const logIn = (data) => {
-  console.log('CHecking url: ', url)
+  // console.log('CHecking url: ', url)
   return axios.post(`${url}/login`, data);
-}
+};
 
 export const addUserToOrganization = (data) =>
   axios.post(`${url}/organization/users`, data);

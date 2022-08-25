@@ -12,7 +12,7 @@ import TextInput from "../Inputs/TextInput";
 function AddAdminForm() {
   const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  console.log("user exist?", user);
+  // console.log("user exist?", user);
   useEffect(() => {
     if (!user.id) {
       navigate("/login");

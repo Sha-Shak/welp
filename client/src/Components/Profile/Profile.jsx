@@ -7,7 +7,7 @@ const Profile = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!user.id) {
-      console.log("no user");
+      // console.log("no user");
       navigate("/dashboard");
     }
   }, [user, navigate]);

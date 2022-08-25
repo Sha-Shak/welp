@@ -18,7 +18,6 @@ function LoginForm() {
   }, [error]);
 
   const handleSwitch = (e) => {
-    console.log(e.target);
     navigate("/signup");
   };
 

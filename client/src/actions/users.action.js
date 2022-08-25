@@ -2,9 +2,9 @@ import * as api from "../utils/apiClientService";
 
 export const createOrg = (data, navigate) => async (dispatch) => {
   try {
-    console.log("action", data);
+    // console.log("action", data);
     const user = await api.createOrg(data);
-    console.log("from backend", user);
+    // console.log("from backend", user);
     dispatch({ type: "CREATE_ORG", payload: user });
     dispatch({ type: "LOADER", payload: true });
     navigate("/dashboard");
@@ -16,7 +16,7 @@ export const createOrg = (data, navigate) => async (dispatch) => {
 
 export const logIn = (data, navigate) => async (dispatch) => {
   try {
-    console.log("action", data);
+    // console.log("action", data);
     const user = await api.logIn(data);
     console.log("from backend", user);
     dispatch({ type: "LOG_IN", payload: user });
@@ -39,9 +39,9 @@ export const logOut = () => (dispatch) => {
 
 export const addUserToOrganization = (data) => async (dispatch) => {
   try {
-    console.log("action add user", data);
+    // console.log("action add user", data);
     const response = await api.addUserToOrganization(data);
-    console.log(response);
+    // console.log(response);
     dispatch({ type: "ADD_USER_TO_ORG", payload: response });
   } catch (e) {
     dispatch({ type: "ERROR", payload: e.response.data });
@@ -63,7 +63,7 @@ export const addAdminToOrganization = (data) => async (dispatch) => {
 
 export const clearError = () => (dispatch) => {
   try {
-    console.log("adduser");
+    // console.log("adduser");
     dispatch({ type: "CLEAR_ERROR" });
   } catch (e) {
     console.log("action LogOut", e);
@@ -97,7 +97,7 @@ export const getUsers = () => async (dispatch) => {
   try {
     // console.log("form action get users: ");
     const users = await api.getUsers();
-    console.log("form action get NOT users: ", users.data);
+    // console.log("form action get NOT users: ", users.data);
     dispatch({ type: "GET_ALL_USERS", payload: users.data });
   } catch (e) {
     console.log("error get all users", e);
@@ -118,7 +118,7 @@ export const deleteUser = (id) => async (dispatch) => {
 export const recommendUsers = () => async (dispatch) => {
   try {
     const { data } = await api.recommendUser();
-    console.log("recommended object", data);
+    // console.log("recommended object", data);
     dispatch({ type: "RECOM_USERS", payload: data });
   } catch (e) {
     console.log("recommended user error", e);
@@ -127,9 +127,9 @@ export const recommendUsers = () => async (dispatch) => {
 
 export const getOwnProfile = () => async (dispatch) => {
   try {
-    console.log("get own");
+    // console.log("get own");
     const response = await api.getOwnProfile();
-    console.log(response);
+    // console.log(response);
     dispatch({ type: "GET_OWN_PROFILE", payload: response.data });
   } catch (e) {
     console.log(e);
@@ -138,9 +138,9 @@ export const getOwnProfile = () => async (dispatch) => {
 
 export const getOtherProfile = (id) => async (dispatch) => {
   try {
-    console.log("get other");
+    // console.log("get other");
     const response = await api.getOtherProfile(id);
-    console.log("get other", response);
+    // console.log("get other", response);
     dispatch({ type: "GET_OTHER_PROFILE", payload: response.data });
   } catch (e) {
     console.log(e);
@@ -149,9 +149,9 @@ export const getOtherProfile = (id) => async (dispatch) => {
 
 export const editUser = (data) => async (dispatch) => {
   try {
-    console.log("editUser", data);
+    // console.log("editUser", data);
     const response = await api.editUser(data);
-    console.log("from server", response);
+    // console.log("from server", response);
     dispatch({ type: "EDIT_PROFILE", payload: response.data });
   } catch (e) {
     console.log(e);
@@ -160,9 +160,9 @@ export const editUser = (data) => async (dispatch) => {
 
 export const changePassword = (data) => async (dispatch) => {
   try {
-    console.log("changePass", data);
+    // console.log("changePass", data);
     const response = await api.changePassword(data);
-    console.log("from server", response);
+    // console.log("from server", response);
     dispatch({ type: "CHANGE_PASSWORD", payload: response.data });
   } catch (e) {
     dispatch({ type: "ERROR", payload: e.response.data });

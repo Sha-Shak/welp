@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearError, createOrg } from "../../actions/users.action.js";
@@ -6,18 +6,16 @@ import Button from "../Buttons/SubmitButton";
 import TextInput from "../Inputs/TextInput";
 
 function SignupForm() {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
 
-  useEffect(() => console.log(error), [error]);
-
   const handleSubmit = async (e) => {
-    console.log("first from comp");
+    // console.log("first from comp");
     e.preventDefault();
 
     let data = {
@@ -39,20 +37,16 @@ function SignupForm() {
   const handleChangePassword = (e) => {
     const pass = e.target.value;
     setPassword(pass);
-    if (pass === confirmPassword)
-      setPasswordMatch(true)
-    else
-      setPasswordMatch(false)
+    if (pass === confirmPassword) setPasswordMatch(true);
+    else setPasswordMatch(false);
   };
 
   const handleChangeConfirmPassword = (e) => {
     const cPassword = e.target.value;
     setConfirmPassword(cPassword);
 
-    if (cPassword === password)
-      setPasswordMatch(true)
-    else
-      setPasswordMatch(false)
+    if (cPassword === password) setPasswordMatch(true);
+    else setPasswordMatch(false);
   };
 
   return (

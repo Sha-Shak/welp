@@ -20,29 +20,21 @@ function EditUserForm() {
   const [previewImage, setPreviewImage] = useState("");
   const [url, setUrl] = useState("");
 
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(false);
 
   const uploadImage = async () => {
-    if (url) {
-      console.log("true url");
-    } else {
-      console.log("false url");
-    }
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
     data.append("api_key", process.env.REACT_APP_CLOUDINARY_API_KEY);
     data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
 
-    const response = await fetch(
-      process.env.REACT_APP_CLOUDINARY_URL,
-      {
-        method: "POST",
-        body: data,
-      }
-    );
+    const response = await fetch(process.env.REACT_APP_CLOUDINARY_URL, {
+      method: "POST",
+      body: data,
+    });
     const dataImg = await response.json();
     const getUrl = dataImg.secure_url;
 
@@ -96,7 +88,7 @@ function EditUserForm() {
       oldPassword: e.target.oldPassword.value,
       newPassword: e.target.confirmPassword.value,
     };
-    console.log("trigger");
+
     dispatch(changePassword(data)).then(() => {
       setTimeout(() => {
         dispatch(clearError());
@@ -106,24 +98,19 @@ function EditUserForm() {
     e.target.reset();
   };
 
-
   const handleChangePassword = (e) => {
     const pass = e.target.value;
     setPassword(pass);
-    if (pass === confirmPassword)
-      setPasswordMatch(true)
-    else
-      setPasswordMatch(false)
+    if (pass === confirmPassword) setPasswordMatch(true);
+    else setPasswordMatch(false);
   };
 
   const handleChangeConfirmPassword = (e) => {
     const cPassword = e.target.value;
     setConfirmPassword(cPassword);
 
-    if (cPassword === password)
-      setPasswordMatch(true)
-    else
-      setPasswordMatch(false)
+    if (cPassword === password) setPasswordMatch(true);
+    else setPasswordMatch(false);
   };
 
   return (
