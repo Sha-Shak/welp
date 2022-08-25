@@ -9,7 +9,7 @@ const { postMessage } = require('./models/chat');
 const SERVER_PORT = process.env.PORT || 3001;
 
 const corsConfig = {
-  origin: ['http://localhost:3000', "https://stunning-toffee-064b0a.netlify.app"],
+  origin: ['http://localhost:3000', "https://stunning-toffee-064b0a.netlify.app", "https://welp-ten.vercel.app/signup"],
   credentials: true,
   exposedHeaders: 'Authorization'
 };
