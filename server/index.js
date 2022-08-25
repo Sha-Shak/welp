@@ -9,7 +9,7 @@ const { postMessage } = require('./models/chat');
 const SERVER_PORT = process.env.PORT || 3001;
 
 const corsConfig = {
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', "https://stunning-toffee-064b0a.netlify.app"],
   credentials: true,
   exposedHeaders: 'Authorization'
 };
@@ -41,7 +41,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ['GET', 'POST'],
     credentials: true,
   }
