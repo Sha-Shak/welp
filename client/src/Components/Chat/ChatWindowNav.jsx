@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import video_svg from "../../assets/images/video-svgrepo-com.svg";
 import { getChatRoom, getUserInfo } from "../../utils/apiClientService";
 
-function ChatWindowNav({ handleVideoCall }) {
+function ChatWindowNav() {
   const currentRoomId = useSelector((state) => state.currentChat);
 
   const [contact, setContact] = useState();

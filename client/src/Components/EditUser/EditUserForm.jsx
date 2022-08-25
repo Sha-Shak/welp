@@ -32,12 +32,12 @@ function EditUserForm() {
     }
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "WelpImages");
-    data.append("api_key", "456122925996564");
-    data.append("cloud_name", "dgn4bscln4");
+    data.append("upload_preset", process.env.CLOUDINARY_PRESET);
+    data.append("api_key", process.env.CLOUDINARY_API_KEY);
+    data.append("cloud_name", process.env.CLOUDINARY_CLOUD_NAME);
 
     const response = await fetch(
-      "https://api.cloudinary.com/v1_1/dgn4bscln4/image/upload",
+      process.env.CLOUDINARY_URL,
       {
         method: "POST",
         body: data,

@@ -14,7 +14,6 @@ import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import Random from "./pages/Random";
 import SignUp from "./pages/SignUp";
-import VideoCall from "./pages/VideoCall";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { store } from "../index.js";
-const url = "http://localhost:3001";
+const url = process.env.SERVER_URL;
 
 axios.interceptors.request.use(
   (req) => {

@@ -14,7 +14,7 @@ import ChatWindowNav from "./ChatWindowNav";
 import Received from "./Received";
 import Sent from "./Sent";
 
-const socket = io("http://localhost:3001");
+const socket = io(process.env.SERVER_PORT);
 
 function ChatWindow() {
   const user = useSelector((state) => state.auth);
@@ -92,26 +92,13 @@ function ChatWindow() {
     setMessages((prevList) => [...prevList, message]);
   }
 
-  function handleVideoCall() {
-    const message = {
-      content: `${user.firstname} ${user.lastname} has joined the video call`,
-      chat_id: currentRoomId,
-      sender_id: 0,
-    };
-
-    socket.emit("send_message", message);
-
-    message.timestamp = new Date();
-
-    setMessages((prevList) => [...prevList, message]);
-  }
 
   return (
     <div className="border-2 border-gray-xlight relative h-90vh mr-6 w-2/3">
       {roomExists && (
         <div className="w-100 h-90vh flex items-center">
           <div className=" h-90vh w-full bg-white rounded border-gray-light shadow-2xl">
-            <ChatWindowNav handleVideoCall={handleVideoCall} />
+            <ChatWindowNav />
             <div
               className="overflow-auto px-1 py-1"
               style={{ height: "67vh" }}
