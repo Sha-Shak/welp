@@ -18,7 +18,7 @@ export const logIn = (data, navigate) => async (dispatch) => {
   try {
     // console.log("action", data);
     const user = await api.logIn(data);
-    console.log("from backend", user);
+    // console.log("from backend", user);
     dispatch({ type: "LOG_IN", payload: user });
     dispatch({ type: "LOADER", payload: true });
     navigate("/dashboard");
