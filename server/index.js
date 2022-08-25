@@ -18,6 +18,7 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router)
 
+
 const server = http.createServer(app);
 
 (async function bootstrap () {
