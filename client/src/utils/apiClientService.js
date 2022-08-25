@@ -1,6 +1,6 @@
 import axios from "axios";
 import { store } from "../index.js";
-const url = process.env.SERVER_URL;
+const url = process.env.REACT_APP_SERVER_URL;
 
 axios.interceptors.request.use(
   (req) => {
@@ -30,7 +30,10 @@ axios.interceptors.response.use(
 export const createOrg = (data) =>
   axios.post(`${url}/organization/create`, data);
 
-export const logIn = (data) => axios.post(`${url}/login`, data);
+export const logIn = (data) => {
+  console.log('CHecking url: ', url)
+  return axios.post(`${url}/login`, data);
+}
 
 export const addUserToOrganization = (data) =>
   axios.post(`${url}/organization/users`, data);

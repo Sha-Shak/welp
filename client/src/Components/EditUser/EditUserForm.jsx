@@ -32,12 +32,12 @@ function EditUserForm() {
     }
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", process.env.CLOUDINARY_PRESET);
-    data.append("api_key", process.env.CLOUDINARY_API_KEY);
-    data.append("cloud_name", process.env.CLOUDINARY_CLOUD_NAME);
+    data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
+    data.append("api_key", process.env.REACT_APP_CLOUDINARY_API_KEY);
+    data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
 
     const response = await fetch(
-      process.env.CLOUDINARY_URL,
+      process.env.REACT_APP_CLOUDINARY_URL,
       {
         method: "POST",
         body: data,

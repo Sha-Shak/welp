@@ -14,7 +14,7 @@ import ChatWindowNav from "./ChatWindowNav";
 import Received from "./Received";
 import Sent from "./Sent";
 
-const socket = io(process.env.SERVER_PORT);
+const socket = io(process.env.REACT_APP_SERVER_PORT);
 
 function ChatWindow() {
   const user = useSelector((state) => state.auth);
