@@ -62,13 +62,6 @@ function ChatWindowNav({ handleVideoCall }) {
           <i className="mdi mdi-phone text-gray-light mr-2"></i>
           <i className="mdi mdi-dots-vertical text-gray-light mr-2"></i>
         </div>
-        <Link
-          to={`/video/${currentRoomId}`}
-          target="_blank"
-          onClick={handleVideoCall}
-        >
-          <img className="h-10 mr-5 text-gray-xlight" src={video_svg} />
-        </Link>
       </nav>
     </div>
   );

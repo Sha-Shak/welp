@@ -54,7 +54,6 @@ function App() {
               <Route path="/chat" element={<Chat />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/video/:id" element={<VideoCall />} />
               <Route path="/random" element={<Random />} />
             </Route>
             <Route path="*" element={<Error404 />} />
