@@ -40,12 +40,12 @@ const UserDetails = ({ user }) => {
         </p>
         <p className="mb-1 ml-5 text-xs">
           {user.interests.length
-            ? user.interests.map((interest) => (
-                <span className="bg-indigo w-auto text-gray-xlight rounded-full py-1 px-2 mr-1">
-                  {interest}{" "}
+            ? user.interests.map((interest, i) => (
+                <span className="mx-2 my-2 bg-indigo w-auto text-gray-xlight rounded-full py-1 px-2 mr-1">
+                  {interest}
                 </span>
               ))
-            : //user.interests.slice(0, 3).join(", ")
+            : //user.interests.slice(0, 3).join
 
               "Some stuff, you wouldn't understand"}
         </p>

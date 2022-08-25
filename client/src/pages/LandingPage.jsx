@@ -230,12 +230,16 @@ const LandingPage = () => {
             </p>
           </div>
           <div className="w-1/3 ">
-            <button className="bg-indigo px-8 py-2 rounded-full text-gray-xlight font- border-2 border-gray-xlight mr-3">
-              Sign Up
-            </button>
-            <button className="bg-gray-xlight px-8 py-2 rounded-full text-indigo border-2 border-indigo">
-              Log In
-            </button>
+            <Link to="/signup">
+              <button className="bg-indigo px-8 py-2 rounded-full text-gray-xlight font- border-2 border-gray-xlight mr-3">
+                Sign Up
+              </button>
+            </Link>
+            <Link to="/login">
+              <button className="bg-gray-xlight px-8 py-2 rounded-full text-indigo border-2 border-indigo">
+                Log In
+              </button>
+            </Link>
           </div>
         </div>
       </section>
