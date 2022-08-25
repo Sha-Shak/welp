@@ -15,7 +15,6 @@ async function createNewOrganization (req, res) {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const email = req.body.email;
-    const password = req.body.password;
 
     // const validTest = userTest(firstname, lastname, email, password);
     // if (validTest.length > 0) {

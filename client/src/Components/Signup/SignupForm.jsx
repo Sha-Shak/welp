@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearError, createOrg } from "../../actions/users.action.js";
@@ -13,6 +13,8 @@ function SignupForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const error = useSelector((state) => state.errors);
+
+  useEffect(() => console.log(error), [error]);
 
   const handleSubmit = async (e) => {
     console.log("first from comp");
@@ -31,7 +33,6 @@ function SignupForm() {
       setTimeout(() => {
         dispatch(clearError());
       }, 3000);
-      dispatch({ type: "LOADER", payload: true });
     });
   };
 
