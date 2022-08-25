@@ -30,7 +30,7 @@ export const logIn = (data, navigate) => async (dispatch) => {
 
 export const logOut = () => (dispatch) => {
   try {
-    console.log("lout");
+    // console.log("lout");
     dispatch({ type: "LOG_OUT" });
   } catch (e) {
     console.log("action LogOut", e);
