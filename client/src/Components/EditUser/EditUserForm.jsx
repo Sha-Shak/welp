@@ -39,11 +39,7 @@ function EditUserForm() {
     const getUrl = dataImg.secure_url;
 
     await setUrl(getUrl);
-    if (url) {
-      console.log("11false url", getUrl);
-    } else {
-      console.log("11true url", getUrl);
-    }
+
     setPreviewImage(getUrl);
   };
 
