@@ -121,24 +121,26 @@ function ChatWindow() {
               id="journal-scroll"
             >
               {messages.map((msg) => {
-                    if(msg.sender_id === user.id) 
-                    {
-                      return ( <Sent content={msg.content} timestamp={msg.timestamp} />)
                     
-                    } 
-                      if (msg.sender_id !== user.id && msg.sender_id !== 0) {
-                        return (
-                          <Received
-                          sender_id={msg.sender_id}
-                          content={msg.content}
-                          timestamp={msg.timestamp}
-                        />
-                        )
-                      }
+                    const isRecipent = (msg.sender_id !== user.id && msg.sender_id !== 0) ? true : false; 
+                    const isSender = (msg.sender_id === user.id) ? true : false;
+                    if (isRecipent) {
+                      return (
+                        <Received
+                        sender_id={msg.sender_id}
+                        content={msg.content}
+                        timestamp={msg.timestamp}
+                      />
+                      )
+                    }
 
-                        else {
-                          return <Call message={msg} />
-                        }
+                    if(isSender) {
+                      return ( <Sent content={msg.content} timestamp={msg.timestamp} />)
+                    } 
+                    
+                    else {
+                      return <Call message={msg} />
+                    }
 
 
 

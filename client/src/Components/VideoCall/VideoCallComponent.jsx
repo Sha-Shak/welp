@@ -59,10 +59,12 @@ function VideoCallComponent({ chat_id }) {
       trickle: false,
       stream: stream,
     });
+
     peer.on("signal", (data) => {
       console.log("signalData: ", data);
       socket.emit("answerCall", { signal: data, to: room_id, name: name });
     });
+    
     peer.on("stream", (stream) => {
       console.log("stream: ", stream);
       userVideo.current.srcObject = stream;
