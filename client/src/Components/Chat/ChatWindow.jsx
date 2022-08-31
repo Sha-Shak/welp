@@ -17,13 +17,16 @@ import Sent from "./Sent";
 const socket = io("http://localhost:3001");
 
 function ChatWindow() {
+  
   const user = useSelector((state) => state.auth);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!user.id) {
       navigate("/login");
     }
   }, [user]);
+  
   const currentRoomId = useSelector((state) => state.currentChat);
   const [roomExists, setRoomExists] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -117,25 +120,34 @@ function ChatWindow() {
               style={{ height: "67vh" }}
               id="journal-scroll"
             >
-              {messages.map((msg) => (
-                <>
-                  {msg.sender_id === user.id && (
-                    <Sent content={msg.content} timestamp={msg.timestamp} />
-                  )}
+              {messages.map((msg) => {
+                    if(msg.sender_id === user.id) 
+                    {
+                      return ( <Sent content={msg.content} timestamp={msg.timestamp} />)
+                    
+                    } 
+                      if (msg.sender_id !== user.id && msg.sender_id !== 0) {
+                        return (
+                          <Received
+                          sender_id={msg.sender_id}
+                          content={msg.content}
+                          timestamp={msg.timestamp}
+                        />
+                        )
+                      }
 
-                  {msg.sender_id !== user.id && msg.sender_id !== 0 && (
-                    <Received
-                      sender_id={msg.sender_id}
-                      content={msg.content}
-                      timestamp={msg.timestamp}
-                    />
-                  )}
+                        else {
+                          return <Call message={msg} />
+                        }
 
-                  {msg.sender_id === 0 && <Call message={msg} />}
 
-                  <div ref={bottomRef} />
-                </>
-              ))}
+
+              }
+              
+                                
+                
+              )}
+              <div ref={bottomRef} />
             </div>
 
             <ChatInput handleSocketSubmit={handleSocketSubmit} />
