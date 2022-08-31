@@ -75,7 +75,7 @@ function Dashboard() {
                     user.type !== "admin" &&
                     user.interests.length < 1 && (
                       <h2 className="text-l text-gray mt-3 mb-3 pb-2 border-b-2 border-gray-xlight">
-                        Add your interests to get better suggestions.
+                        Add more interests to improve suggestions.
                       </h2>
                     )}
                 </div>

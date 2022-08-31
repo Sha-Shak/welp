@@ -171,7 +171,7 @@ async function changePassword(req, res) {
 
         res.status(200).send(newUserInfo);
       } else {
-        res.status(401).send("Incorrect password.");
+        res.status(403).send("Incorrect password.");
       }
     } else {
       res.status(401).send("Unauthorized to get matches.");
