@@ -122,11 +122,12 @@ function ChatWindow() {
             >
               {messages.map((msg) => {
                     
-                    const isRecipent = (msg.sender_id !== user.id && msg.sender_id !== 0) ? true : false; 
-                    const isSender = (msg.sender_id === user.id) ? true : false;
+                    const isRecipent = (msg.sender_id !== user.id && msg.sender_id !== 0); 
+                    const isSender = (msg.sender_id === user.id);
                     if (isRecipent) {
                       return (
                         <Received
+                        key={msg.id}
                         sender_id={msg.sender_id}
                         content={msg.content}
                         timestamp={msg.timestamp}
@@ -135,15 +136,11 @@ function ChatWindow() {
                     }
 
                     if(isSender) {
-                      return ( <Sent content={msg.content} timestamp={msg.timestamp} />)
+                      return <Sent key={msg.id} content={msg.content} timestamp={msg.timestamp} />
                     } 
                     
-                    else {
-                      return <Call message={msg} />
-                    }
-
-
-
+                    
+                    return <Call key={msg.id} message={msg} />
               }
               
                                 
